@@ -12,6 +12,7 @@ import theme from './utils/theme'
 import {useState,useRef} from 'react'
 import List from './components/List'
 import ListItem from './components/ListItem'
+import Tooltip from './components/Tooltip';
 
 
 function Quan() {
@@ -30,15 +31,10 @@ function Quan() {
     <div>
       <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List"}>
-          <List>
-            <ListItem button icon={<IconPlus/>}>Example 1</ListItem>
-            <ListItem button icon={<IconPlus/>}>Example 2</ListItem>
-          </List>
-          <List>
-            <ListItem >Example 1</ListItem>
-            <ListItem>Example 2</ListItem>
-          </List>
-        </Container>
+         <Tooltip content="Click" direction="bottom">
+          <Button >abc</Button>
+         </Tooltip>
+         </Container>
       </ThemeProvider>
     </div>
   )

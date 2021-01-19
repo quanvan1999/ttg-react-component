@@ -28,7 +28,7 @@ function Quan() {
   
   return (
     <div>
-      <ThemeProvider theme = {theme.light}>
+      <ThemeProvider theme = {theme.dark}>
         <Container headline = {"Simple List"}>
           <List>
             <ListItem button icon={<IconPlus/>}>Example 1</ListItem>

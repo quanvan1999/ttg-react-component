@@ -5,24 +5,18 @@ import PropTypes  from 'prop-types';
 const ToolTipWrapper = styled.div`
     display:inline-block;
     position:relative;
-
-    & .top {
-        top: -40px;
-      }
-    & .left{
-        left:-50%;
-        top: 4px;
-    }
-    & .right{
-        left: 150%;
-        top:4px;
-    }
 `;
 const ToolTipDirection = styled.div`
     position: absolute;
+    ${props =>props.direction === "bottom" && 'top: 40px;'}
+    ${props =>props.direction === "bottom" && 'left: 50%;'}
+    ${props =>props.direction === "top" && 'top: -35px;'}
+    ${props =>props.direction === "top" && 'left: 50%;'}
+    ${props =>props.direction === "left" && 'top: 4px;'}
+    ${props =>props.direction === "left" && 'left:-50%;'}
+    ${props =>props.direction === "right" && 'top: 4px;'}
+    ${props =>props.direction === "right" && 'left: -150%;'}
     border-radius: 4px;
-    top:40px;
-    left: 50%;
     transform: translateX(-50%);
     padding: 6px;
     color: #fff;
@@ -48,13 +42,13 @@ const Tooltip = (props) =>{
     }
     
     return(
-        <ToolTipWrapper className="Tooltip-wrapper"
+        <ToolTipWrapper  
             onMouseEnter={showTip}
             onMouseLeave={hideTip}
         >
          {props.children}
          {active && (
-             <ToolTipDirection className={`tooltip-tip ${props.direction || "bottom"}`}>
+             <ToolTipDirection {...props} >
                  {props.content}
              </ToolTipDirection>
          )}   

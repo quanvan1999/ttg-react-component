@@ -1,32 +1,46 @@
 import React from 'react'
 import styled from 'styled-components'
 import {Icon} from './elements/'
-import Button from '../components/elements/Button'
+import PropTypes from 'prop-types'
+import RippleButton from "./RippleButton";
 
-const StyListItem  = styled.div`
-    padding: 12px 6px;
-    background:transparent;
-    border: 0;
-    cursor:pointer;
+const StyleItem = styled.div`
     display:flex;
-    margin: 0;
+    margin:0;
+    padding: 5px 10px;
+    color:#000;
+    background:transparent;
     &:hover{
-        background:#ccc;
+        background: ${props => props.theme.color.fill.primary};
+        color: ${props => props.theme.color.background.primary};
     }
 `;
 const StyListName = styled.div`
     display:block;
     font-size:1rem;
-    cursor:pointer;
 `;
 const ListItem = (props) => {
 
 
     return(
-       <StyListItem {...props} >
-            {props.icon ? <Icon style={{"margin-right": "12px"}}>{props.icon}</Icon> : null }
-           <StyListName>{props.children}</StyListName>
-       </StyListItem> 
+       <>
+            {
+            props.button ? 
+           <RippleButton {...props}>
+                {props.icon ? <Icon style={{"margin-right": "15px"}}>{props.icon}</Icon> : null }
+                <StyListName>{props.children}</StyListName>
+           </RippleButton> : 
+            <StyleItem {...props}>
+              {props.icon ? <Icon style={{"margin-right": "15px"}}>{props.icon}</Icon> : null }
+              <StyListName>{props.children}</StyListName>
+            </StyleItem> 
+            }
+            
+       </> 
     )
+}
+ListItem.propTypes = {
+    icon: PropTypes.element,
+    button: PropTypes.bool
 }
 export default ListItem

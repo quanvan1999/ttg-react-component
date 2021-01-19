@@ -9,23 +9,20 @@ const ToolTipWrapper = styled.div`
 const ToolTipDirection = styled.div`
     position: absolute;
     ${props =>props.direction === "bottom" && 'top: 40px;'}
-    ${props =>props.direction === "bottom" && 'left: 0%;'}
+    ${props =>props.direction === "bottom" && 'left: 0;'}
+    left: ${props => props.middle ? '50%' : '0'};
+    transform: ${props =>props.middle ? 'translateX(-50%)' : 'translateX(0)'};
+
     ${props =>props.direction === "top" && 'top: -35px;'}
-    ${props =>props.direction === "top" && 'left: 50%;'}
-    ${props =>props.direction === "left" && 'top: 4px;'}
-    ${props =>props.direction === "left" && 'left:-50%;'}
-    ${props =>props.direction === "right" && 'top: 4px;'}
-    ${props =>props.direction === "right" && 'left: -150%;'}
+    ${props =>props.direction === "top" && 'left: 0;'}
     border-radius: 4px;
-    transform: translateX(-50%);
     padding: 6px;
     color: #fff;
     background: #363636c2;
     font-size: 10px;
     line-height: 1;
     z-index: 100;
-    width: ${props => props.maxWidth ? props.maxWidth : '300px'};
-    transform: translateX(${props => props.middle ? '50%' : '0'})
+    width: ${props => props.maxWidth ? props.maxWidth+'px' : '300px'};
 `;
 const Tooltip = (props) =>{
 
@@ -59,9 +56,13 @@ const Tooltip = (props) =>{
     Tooltip.defaultProps = {
         direction: "bottom",
         content: "",
+        maxWidth: 300,
+        middle: false
     }
     Tooltip.propTypes = {
         direction: PropTypes.string,
-        content : PropTypes.string
+        content : PropTypes.string,
+        maxWidth: PropTypes.number,
+        middle: PropTypes.bool
     }
 export default Tooltip

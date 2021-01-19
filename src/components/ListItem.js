@@ -10,10 +10,7 @@ const StyleItem = styled.div`
     padding: 5px 10px;
     color:#000;
     background:transparent;
-    &:hover{
-        background: ${props => props.theme.color.fill.primary};
-        color: ${props => props.theme.color.background.primary};
-    }
+
 `;
 const StyListName = styled.div`
     display:block;

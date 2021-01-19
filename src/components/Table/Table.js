@@ -2,10 +2,10 @@ import styled from 'styled-components'
 import React from 'react'
 
 const Table = styled.table`
-    width: 50%;
-    background: #fff;
-    margin: auto;
-    border: 1px solid rgba(34,36,38,.15); 
+    width: ${props => props.width ? 'auto' : '50%'};
+    background: ${props => props.theme.color.background.secondary};
+    margin: ${props => props.demo ? "8px": "0px"};
+    border: 1px solid ${props => props.displayMode === "disabled" ? "var(--fillColor)" : "rgba(34,36,38,.15)"};
     -webkit-box-shadow: none;
     box-shadow: none;
     border-radius: .28571429rem; 

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const DivPagination = styled.div`
     display: inline-block;
+    background: white;
     .active{
         background: #8080804f;
     }

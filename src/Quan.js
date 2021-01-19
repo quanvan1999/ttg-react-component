@@ -30,8 +30,8 @@ function Quan() {
   return (
     <div>
       <ThemeProvider theme = {theme.light}>
-        <Container headline = {"Simple List"}>
-         <Tooltip content="Click" direction="bottom">
+        <Container headline = {"Simple List "}>
+         <Tooltip content="Lorem Ipsum is simply dummy text of the print">
           <Button >abc</Button>
          </Tooltip>
          </Container>
@@ -39,5 +39,7 @@ function Quan() {
     </div>
   )
 }
+
+
 
 export default Quan;

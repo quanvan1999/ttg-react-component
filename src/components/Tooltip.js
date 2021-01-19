@@ -9,7 +9,7 @@ const ToolTipWrapper = styled.div`
 const ToolTipDirection = styled.div`
     position: absolute;
     ${props =>props.direction === "bottom" && 'top: 40px;'}
-    ${props =>props.direction === "bottom" && 'left: 50%;'}
+    ${props =>props.direction === "bottom" && 'left: 0%;'}
     ${props =>props.direction === "top" && 'top: -35px;'}
     ${props =>props.direction === "top" && 'left: 50%;'}
     ${props =>props.direction === "left" && 'top: 4px;'}
@@ -24,7 +24,8 @@ const ToolTipDirection = styled.div`
     font-size: 10px;
     line-height: 1;
     z-index: 100;
-    white-space: nowrap;
+    width: ${props => props.maxWidth ? props.maxWidth : '300px'};
+    transform: translateX(${props => props.middle ? '50%' : '0'})
 `;
 const Tooltip = (props) =>{
 

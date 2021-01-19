@@ -10,52 +10,9 @@ import IcoX from './components/icons/IcoX'
 import FB from './components/elements/FloatingActionButton';
 import theme from './utils/theme'
 import {useState,useRef} from 'react'
-import Table from './components/Table/Table';
+import List from './components/List'
+import ListItem from './components/ListItem'
 
-
-const items=[
-  { to: '/', label: 'Home' },
-  { to: '/dashboard', label: 'Dashboard' },
-  { to: '/contact', label: 'Contact' },
-  { to: '/blog', label: 'Blog' },
-]
-const title = {
-  "id": "",
-  "name": "",
-  "author": "",
-  "released": ""
-}
-
-const data= [{
-  "id": "1",
-  "name": "Apple",
-  "author": "Kevin Mitnick",
-  "released": "08/15/2011"
-},
-{
-  "id": "2",
-  "name": "SamSung",
-  "author": "Blake J. Harris",
-  "released": "05/13/2014"
-},
-{
-  "id": "3",
-  "name": "Xiaomi",
-  "author": "Gene Kim",
-  "released": "12/01/2017"
-},
-{
-  "id": "4",
-  "name": "Huawei",
-  "author": "Kevin Desar",
-  "released": "08/15/2011"
-},
-{
-  "id": "5",
-  "name": "Sony",
-  "author": "KAX",
-  "released": "08/15/2011"
-},]
 
 function Quan() {
   const [mode, setMode] = useState("edit")
@@ -72,18 +29,15 @@ function Quan() {
   return (
     <div>
       <ThemeProvider theme = {theme.light}>
-        <Container headline = {"Test Component"}>
-            <div>Alert</div>
-            <Alert demo color="info" action={<IcoX/>}>This message contains information</Alert>
-            <Alert demo color="danger" action={<strong>UNDO</strong>}>Danger message</Alert>
-            <Alert demo color="warning">Warning message</Alert>
-            <div>Snackbar</div>
-            <Snackbar visible={open} position="topRight" onClose={() => setOpen(false)} timeOut={2000}>
-                <Alert color="info" action={<IcoX onClick={() => setOpen(!open)}/>}>
-                  Min-width: 288px
-                </Alert>
-            </Snackbar>
-            <Button onClick={() => setOpen(!open)}>Toggle Snackbar</Button>
+        <Container headline = {"Simple List"}>
+          <List>
+            <ListItem icon={<IconPlus/>}>Example 1</ListItem>
+            <ListItem icon={<IconPlus/>}>Example 2</ListItem>
+          </List>
+          <List>
+            <ListItem>Example 1</ListItem>
+            <ListItem>Example 2</ListItem>
+          </List>
         </Container>
       </ThemeProvider>
     </div>

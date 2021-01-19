@@ -123,3 +123,89 @@ Name|Type|Default|Description
 `name`|`string`|`none`|Name of Modal
 `title`|`string`|`none`|Title of Modal
 #### Example:
+### 13. `<Badge>` *Badge Icon*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`demo`|`bool`|`false`|Only use for testing purpose, it will set the margin by 8px
+`icon`|`svg`|`none`|Icon of Badge
+`value`|`number`|`0`|the value you want to display
+`max`|`number`|`0`|Highest value of Badge
+`dot`|`bool`|`false`|Displays dots instead of values
+`showZero`|`number`|`0`|Displays values 0
+#### Example: 
+`<Badge demo icon={<IcoMail/>} value={1} max={10} dot/>`
+`<Badge demo icon={<IcoMail/>} value={99} max={999}/>`
+`<Badge demo icon={<IcoMail/>} value={0} max={10} showZero/>`
+### 14. `Tab` *Tab Parent*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`name`|`string`|`none`|Name of Tab
+`fullheight`|`bool`|`false`|Display full height or auto
+#### Example:
+`<Tab name="group tab" fullHeight></Tab>`
+### 15. `TabPane` *Children Tab*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`name`|`string`|`none`|Name of tabpane
+`value`|`number`|`none`|The value in a tab must be different
+`selected`|`bool`|`false`|Selected value TabPane
+`disable`|`bool`| `false`|Mode disable
+#### Example:
+`<TabPane name="Active" value="1"></TabPane>`
+### 16. `Avata` *Avata*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`demo`|`bool`|`false`|Only use for testing purpose, it will set the margin by 8px
+`alt`|`string`|`none`|Title of avata
+`fuild`|`bool`|`false`|Dispaly fullwidth
+`size`|`string`|`medium`|Show large or small avatars
+#### Example:
+`<Avatar demo alt="Example" fluid={false} size="small"></Avatar>`
+### 17. `AvataGroup` *Avata Group*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`demo`|`bool`|`false`|Only use for testing purpose, it will set the margin by 8px
+`max`|`number`|`none`|The maximum number of images you want to display
+`size`|`string`|`medium`|Show large or small AvataGroup
+#### Example:
+`<AvatarGroup demo  max={9} size="small">`
+### 18. `Alert` *Alert*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`demo`|`string`|`false`|Only use for testing purpose, it will set the margin by 8px
+`color`|`string`|`primary`|Display background-color of Alert
+`action`|`string`|`none`|Add a handler for the alert
+`type`|`string`|`contained`|Kind of Alert you want to display (outline, full background...)
+`Alert.Title`|`string`|`none`|Title Alert
+#### Example:
+`<Alert demo color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Warning message</Alert>`
+`<Alert.Title>Success</Alert.Title>`
+### 19. `Calendar` *Calendar*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`demo`|`bool`|`false`|Only use for testing purpose, it will set the margin by 8px
+`onSelect`|`func`|`(x)=>console.log(x)`|Set value for Calendar
+`<Calendar demo onSelect={date => setDateValue(date)}/>`
+### 20. `Snackbar` *Snackbar*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`visible`|`bool`|`false`|Display or hide Snackbar
+`onClose`|`func`|`() => setSnackbarState(false)`|Handle close snackbar
+`timeOut`|`number`|`5000`|Time to turn off Snackbar
+#### Example:
+`<Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={200000}></Snackbar>`
+
+ 
+
+
+
+
+

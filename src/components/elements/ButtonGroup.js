@@ -8,7 +8,6 @@ const StyledButtonGroup = styled.div`
     margin: ${props => props.demo ? "8px": "0px"};
     padding: 0px;
     display: ${props => props.fullWidth ? "flex" : "inline-flex"};
-    align-items: flex-start;
     border-radius: 4px;
     overflow: hidden;
     background: ${props => props.theme.color.background.secondary};
@@ -48,6 +47,7 @@ const ButtonGroup = (props) => {
                     {
                         fullWidth: false, 
                         demo: false, 
+                        equalSize: props.equalSize,
                         displayMode: props.displayMode,
                         color: props.color,
                         ingroup: idx === 0 ? "left" : idx === props.children.length - 1 ? "right" : "middle", 
@@ -58,15 +58,13 @@ const ButtonGroup = (props) => {
     )
 }
 ButtonGroup.propTypes ={
-    className: PropTypes.string,
     displayMode: PropTypes.oneOf(["edit", "view", "disabled"]),
-    name:PropTypes.string,
     onClick:PropTypes.func,
     onSelect:PropTypes.func,
     fullWidth: PropTypes.bool,
-    type: PropTypes.string,
     theme:PropTypes.string,
-    color: PropTypes.string
+    color: PropTypes.string,
+    equalSize: PropTypes.bool
 }
 ButtonGroup.defaultProps = {
     onSelect: (x) => console.log(x),

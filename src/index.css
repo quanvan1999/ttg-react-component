@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Mulish&family=Roboto&family=Noto+Sans+SC&family=Alegreya+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Nunito&family=Quicksand&family=Inter&display=swap');
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Noto Sans SC', 'Segoe UI', Helvetica, sans-serif;
 }
 html {
     background-color: #171717;
-    font-size: 14px;
+    font-size: 15px;
 }

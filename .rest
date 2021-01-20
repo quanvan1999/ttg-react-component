@@ -1,0 +1,3 @@
+GET https://ttgvncom.sharepoint.com/_api/web/lists/GetByTitle('SO_CSDL')
+Authorization: "Bearer " + accessToken
+Accept: "application/json;odata=verbose"

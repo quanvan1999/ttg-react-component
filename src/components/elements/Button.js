@@ -29,7 +29,7 @@ const StyledButton = styled.button`
     border-radius: ${props => props.ingroup ? "0" : "4px"};
     display: ${props => props.fullWidth ? "block" : "inline-block"};
     width: ${props => props.fullWidth ? "100%": "auto"};
-    box-shadow: ${props => props.ingroup ? "none" : props.type === "contained" ? "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)" : "none"};
+    box-shadow: ${props => props.ingroup ? "none" : props.type === "contained" ? props.theme.shadow : "none"};
     &:hover {
         color: ${props => props.type === "contained" ? "var(--textColor)" : props.type === "outline" ? "var(--fillColor)" : "var(--darkFillColor)"};
         background: ${props => props.type === "contained" ? "var(--lightFillColor)" : props.type === "outline" ? "var(--darkTextColor)" : "transparent"};

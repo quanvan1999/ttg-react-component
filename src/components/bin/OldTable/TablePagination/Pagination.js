@@ -18,11 +18,9 @@ const ChildPagination = styled.a`
     border-right: 1px solid rgba(0,0,0,.05);
     background: rgba(0,0,0,.05);
     cursor: pointer;
-
     &:active{
         color: white;
     }
-
     &:hover{
         background: #8080804f;
     }

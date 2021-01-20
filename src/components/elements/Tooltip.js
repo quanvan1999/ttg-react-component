@@ -13,7 +13,7 @@ top:0;
     border-radius:4px;
     background-color: #525050;
     color: #fff;
-    font-size:10px;
+    font-size:14px;
     min-width: 80px;
     opacity: 0;
     transform-origin: center center;
@@ -41,7 +41,7 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
 
   useEffect(() => {
     const el = tooltipEl.current;
-
+    const rect = el.getBoundingClientRect()
     if(el) {
 
       setTimeout(() => {
@@ -52,8 +52,8 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
         }
         else if(tooltipPosition === 'bottom' ) {
           el.style.top = `${position.top}px`;
-          el.style.left = `${position.left}px`;
-          el.style.transform = `translate(-50%, 15px) `;
+          el.style.left = `${position.left > rect.width/2 ? position.left : 0}px`;
+          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0%"}, 15px) `;
         }
         else if(tooltipPosition === 'left') {
           el.style.top = `${position.top}px`;

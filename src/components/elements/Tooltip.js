@@ -18,7 +18,7 @@ const StyleToolTip = styled.div`
     transition: opacity 0.6s;
 `;
 
-const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) => {
+const TooltipContent = ({ content, position, tooltipPosition }) => {
   const tooltipEl = useRef();
   const targetEl = document.getElementById('root');
 
@@ -55,7 +55,7 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
   }, []);
 
   const output = <StyleToolTip
-                     className={tooltipClass} ref={tooltipEl}>{content}
+                      ref={tooltipEl}>{content}
                 </StyleToolTip>
 
   return targetEl ? ReactDOM.createPortal(output, targetEl) : output;
@@ -63,7 +63,6 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
 
 TooltipContent.propTypes = {
   content: PropTypes.any.isRequired,
-  tooltipClass: PropTypes.string.isRequired,
   position: PropTypes.shape({
     top: PropTypes.number.isRequired,
     left: PropTypes.number.isRequired

@@ -226,7 +226,7 @@ function Combox(props) {
                 <SelectContainer>
                     {props.searchable &&
                     <SearchBarContainer>
-                        <SearchBar ref={refSearchBar} type="input" placeholder="Search..." value={seachText} onChange={handleSearchText}/>
+                        <SearchBar ref={refSearchBar} type="input" spellCheck="false" placeholder="Search..." value={seachText} onChange={handleSearchText}/>
                     </SearchBarContainer>
                     }
                     {props.children

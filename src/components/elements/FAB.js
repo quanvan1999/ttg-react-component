@@ -11,7 +11,7 @@ const StyledButton = styled.button`
     padding: 12px;
     border: none;
     transition: background 0.15s linear;
-    font-size: ${props => props.theme.textSize[props.size] || props.theme.textSize.small };
+    font-size: ${props => props.theme.textSize[props.size] || props.theme.textSize.medium};
     font-weight: ${props => props.theme.weight[props.fontWeight] || props.theme.weight.normal};
     cursor: pointer;
     outline: none;
@@ -45,7 +45,7 @@ FAB.defaultProps = {
     color: "primary",
     position: false,
     displayMode: "edit",
-    size: "large",
+    size: "medium",
     disabled: false,
     onClick: () => {},
     onSelect: () => {}

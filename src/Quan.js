@@ -36,6 +36,24 @@ function Quan() {
         <Tooltip position="top" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
           <Button demo>abc</Button>
         </Tooltip>
+        <Tooltip position="right" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
+          <Button demo>abc</Button>
+        </Tooltip>
+        <Tooltip position="bottom" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
+          <Button demo>abc</Button>
+        </Tooltip>
+        <Tooltip position="left" content="lorem dolor sit dasd dasd adamet" >
+          <Button demo>abc</Button>
+        </Tooltip>
+        <Tooltip position="top" content="lorem  adamet" >
+          <Button demo>abc</Button>
+        </Tooltip>
+        <Tooltip position="right" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
+          <Button demo>abc</Button>
+        </Tooltip>
+        <Tooltip position="bottom" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
+          <Button demo>abc</Button>
+        </Tooltip>
          </Container>
       </ThemeProvider>
     </div>

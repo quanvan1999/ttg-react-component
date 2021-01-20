@@ -4,27 +4,19 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
 const StyleToolTip = styled.div`
-position:absolute;
-top:0;
 
-& .tooltip{
     position: absolute;
     padding:  5px;
     border-radius:4px;
     background-color: #525050;
     color: #fff;
-<<<<<<< HEAD
     font-size:14px;
-    min-width: 80px;
-=======
-    font-size:10px;
-    min-width: 100px;
->>>>>>> 086af82eda8a1d46687b56f68f341614140abb2f
+    width: 80px;
     opacity: 0;
     transform-origin: center center;
     text-align: center;
-    transition: 0.7s all;
-}
+    transition: opacity 0.6s;
+
 & .tooltip--top{
   transform: translate(-50%,-15px);
 }
@@ -53,7 +45,7 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
         if(tooltipPosition === 'top') {
           el.style.top = `${position.top > rect.height ? position.top - el.clientHeight : position.top}px`;
           el.style.left = `${position.left > rect.width/2 ? position.left : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , ${position.top > rect.height ? "-15px" : "30px"})`;
+          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , ${position.top > rect.height ? "-15px" : "45px"})`;
         }
         else if(tooltipPosition === 'bottom' ) {
           el.style.top = `${position.top}px`;
@@ -63,7 +55,7 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
         else if(tooltipPosition === 'left') {
           el.style.top = `${position.top}px`;
           el.style.left = `${position.left > rect.width ? position.left - el.clientWidth : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width ? "-15px" : "0"},-50%)`;
+          el.style.transform = `translate(${position.left > rect.width ? "-15px" : "15px"},${position.left > rect.width ? "-50%" : "50%"})`;
         }
         else if(tooltipPosition === 'right') {
           el.style.top = `${position.top}px`;
@@ -76,9 +68,8 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
     // eslint-disable-next-line
   }, []);
 
-  const output = <StyleToolTip>
-                    <div className={tooltipClass} ref={tooltipEl}>{content}
-                    </div>
+  const output = <StyleToolTip
+                     className={tooltipClass} ref={tooltipEl}>{content}
                 </StyleToolTip>
 
   return targetEl ? ReactDOM.createPortal(output, targetEl) : output;
@@ -135,7 +126,7 @@ const Tooltip = ({ children, position, content}) => {
   return(
     <Fragment>
       {show && <TooltipContent tooltipClass={tooltipClass} position={elPosition} content={content} tooltipPosition={position} />}
-      {cloneElement(children, {...children.props, onMouseOver: getPosition, onMouseLeave: () => setShow(false)})}
+      {cloneElement(children, {...children.props, onMouseEnter: getPosition, onMouseLeave: () => setShow(false)})}
     </Fragment>
   );
 }

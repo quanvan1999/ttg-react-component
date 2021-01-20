@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 const StyleToolTip = styled.div`
 
-& .tooltip{
     position: absolute;
     padding:  5px;
     border-radius:4px;
@@ -16,8 +15,8 @@ const StyleToolTip = styled.div`
     opacity: 0;
     transform-origin: center center;
     text-align: center;
-    transition: 0.7s all;
-}
+    transition: opacity 0.6s;
+
 & .tooltip--top{
   transform: translate(-50%,-15px);
 }
@@ -69,9 +68,8 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
     // eslint-disable-next-line
   }, []);
 
-  const output = <StyleToolTip>
-                    <div className={tooltipClass} ref={tooltipEl}>{content}
-                    </div>
+  const output = <StyleToolTip
+                     className={tooltipClass} ref={tooltipEl}>{content}
                 </StyleToolTip>
 
   return targetEl ? ReactDOM.createPortal(output, targetEl) : output;
@@ -128,7 +126,7 @@ const Tooltip = ({ children, position, content}) => {
   return(
     <Fragment>
       {show && <TooltipContent tooltipClass={tooltipClass} position={elPosition} content={content} tooltipPosition={position} />}
-      {cloneElement(children, {...children.props, onMouseOver: getPosition, onMouseLeave: () => setShow(false)})}
+      {cloneElement(children, {...children.props, onMouseEnter: getPosition, onMouseLeave: () => setShow(false)})}
     </Fragment>
   );
 }

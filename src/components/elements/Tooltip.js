@@ -3,13 +3,14 @@ import  styled  from 'styled-components'
 import PropTypes  from 'prop-types';
 
 const ToolTipWrapper = styled.div`
-    display:inline-block;
     position:relative;
+    display: block;
 `;
 const ToolTipDirection = styled.div`
     position: absolute;
     ${props =>props.direction === "bottom" && 'top: 40px;'}
     ${props =>props.direction === "bottom" && 'left: 0;'}
+
     left: ${props => props.middle ? '50%' : '0'};
     transform: ${props =>props.middle ? 'translateX(-50%)' : 'translateX(0)'};
 
@@ -17,12 +18,11 @@ const ToolTipDirection = styled.div`
     ${props =>props.direction === "top" && 'left: 0;'}
     border-radius: 4px;
     padding: 6px;
-    color: #fff;
-    background: #363636c2;
-    font-size: 10px;
-    line-height: 1;
+    color: ${props => props.theme.color.text.secondary};
+    background: ${props => props.theme.color.background.secondary};
+    font-size: ${props => props.theme.textSize.small};
     z-index: 100;
-    width: ${props => props.maxWidth ? props.maxWidth+'px' : '300px'};
+    max-width: 240px;
 `;
 const Tooltip = (props) =>{
 
@@ -40,10 +40,7 @@ const Tooltip = (props) =>{
     }
     
     return(
-        <ToolTipWrapper  
-            onMouseEnter={showTip}
-            onMouseLeave={hideTip}
-        >
+        <ToolTipWrapper onMouseEnter={showTip} onMouseLeave={hideTip}>
          {props.children}
          {active && (
              <ToolTipDirection {...props} >
@@ -54,15 +51,11 @@ const Tooltip = (props) =>{
     )
 }
     Tooltip.defaultProps = {
-        direction: "bottom",
-        content: "",
-        maxWidth: 300,
-        middle: false
+        position: "bottom",
     }
     Tooltip.propTypes = {
-        direction: PropTypes.string,
+        position: PropTypes.string,
         content : PropTypes.string,
         maxWidth: PropTypes.number,
-        middle: PropTypes.bool
     }
 export default Tooltip

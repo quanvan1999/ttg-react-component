@@ -21,14 +21,14 @@ import {
   Tab,
   Alert,
   Calendar,
-  Snackbar
+  Snackbar,
+  Tooltip
 } from './components/elements'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
 import Box from './components/Box'
 import Code from './components/Code'
 import IcoMail from './components/icons/IcoMail'
-import IcoAlertTriangle from './components/icons/IcoAlertTriangle'
 import IcoSettings from './components/icons/IcoSettings'
 import IcoX from './components/icons/IcoX'
 import Combox from './components/elements/Combox'
@@ -92,13 +92,25 @@ function Quanh() {
               </Alert>
               <Alert demo color="danger" type="outline" action={<IcoX/>}>This is a danger message!</Alert>
             </Box>
-            <Box headline="Combox">
-              <Combox onSelect={(v) => setComboxResult(v)} multiple>
+            <Box headline="Combox" block>
+              <p>Select One</p>
+              <Combox demo onSelect={(v) => setComboxResult(v)}>
               {ComboxData.map((data, index) => 
                 <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={index}>{data.name}</Combox.Option>
               )}
               </Combox>
-              <Code>{JSON.stringify(comboxResult)}</Code>
+              <p>Select Multiple</p>
+              <Combox demo onSelect={(v) => setComboxResult(v)} multiple>
+              {ComboxData.map((data, index) => 
+                <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={index}>{data.name}</Combox.Option>
+              )}
+              </Combox>
+              <p>Select Multiple with Search</p>
+              <Combox demo onSelect={(v) => setComboxResult(v)} multiple searchable>
+              {ComboxData.map((data, index) => 
+                <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={index}>{data.name}</Combox.Option>
+              )}
+              </Combox>
             </Box>
             <Box headline="Tab" block>
               <div style={{height: "160px"}}>

@@ -10,6 +10,7 @@ const StyledCode = styled.code`
     border: 1px solid #A3A3A3;
     border-radius: 8px;
     padding: 0 8px;
+    min-width: 600px;
 `;
 
 const Code = ({children}) => {

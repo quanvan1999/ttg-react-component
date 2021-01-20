@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
 const StyleToolTip = styled.div`
-position:absolute;
-top:0;
 
 & .tooltip{
     position: absolute;
@@ -13,13 +11,8 @@ top:0;
     border-radius:4px;
     background-color: #525050;
     color: #fff;
-<<<<<<< HEAD
     font-size:14px;
-    min-width: 80px;
-=======
-    font-size:10px;
-    min-width: 100px;
->>>>>>> 086af82eda8a1d46687b56f68f341614140abb2f
+    width: 80px;
     opacity: 0;
     transform-origin: center center;
     text-align: center;

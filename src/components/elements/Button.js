@@ -22,7 +22,7 @@ const StyledButton = styled.button`
     pointer-events: ${props => props.displayMode !== "edit" ? "none" : "auto"};
     color:${props => props.type === "contained" ? "var(--textColor)" : "var(--fillColor)"};
     background: ${props=>props.type === "contained" ? "var(--fillColor)" : "transparent"};
-    flex: 1;
+    flex: ${props => props.equalSize ? "1" : "none"};
     border-style: solid;
     border-color: ${props => props.ingroup ? props.theme.color.border.primary : "var(--fillColor)"};
     border-width: ${props => props.ingroup === "left" ? "0 1px 0 0" : props.ingroup === "right" ? "0 0 0 1px" : props.ingroup === "middle" ? "0 1px 0 1px" : props.type === "outline" ? "2px": "0px"};

@@ -8,7 +8,7 @@ const StyledButton = styled.button`
     position:fixed;
     ${props => props.position ? "left: 1rem" : "right: 1rem"};
     bottom: 2rem;
-    padding: 16px;
+    padding: 12px;
     border: none;
     transition: background 0.15s linear;
     font-size: ${props => props.theme.textSize[props.size] || props.theme.textSize.small };

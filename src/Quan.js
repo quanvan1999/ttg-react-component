@@ -1,17 +1,17 @@
 import {ThemeProvider} from 'styled-components'
 import { React } from "react";
 import Container from './components/Container'
-import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar} from './components/elements'
+import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB} from './components/elements'
 import IconCheck from './components/icons/IcoCheckCircle';
 import IconError from './components/icons/IcoAlertTriangle';
 import IconPlus from './components/icons/IcoEdit2';
 import IconInfo from "./components/icons/IcoInfo";
 import IcoX from './components/icons/IcoX'
-import FB from './components/elements/FloatingActionButton';
 import theme from './utils/theme'
 import {useState,useRef} from 'react'
 import List from './components/List'
 import ListItem from './components/ListItem'
+import Tooltip from './components/elements/Tooltip';
 
 
 function Quan() {
@@ -28,20 +28,17 @@ function Quan() {
   
   return (
     <div>
-      <ThemeProvider theme = {theme.dark}>
-        <Container headline = {"Simple List"}>
-          <List>
-            <ListItem button icon={<IconPlus/>}>Example 1</ListItem>
-            <ListItem button icon={<IconPlus/>}>Example 2</ListItem>
-          </List>
-          <List>
-            <ListItem >Example 1</ListItem>
-            <ListItem>Example 2</ListItem>
-          </List>
-        </Container>
+      <ThemeProvider theme = {theme.light}>
+        <Container headline = {"Simple List "}>
+         <Tooltip maxWidth={300} middle direction="bottom" content="Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the print">
+          <Button >abc</Button>
+         </Tooltip>
+         </Container>
       </ThemeProvider>
     </div>
   )
 }
+
+
 
 export default Quan;

@@ -12,10 +12,7 @@ const StyleItem = styled.div`
     background:transparent;
 
 `;
-const StyListName = styled.div`
-    display:block;
-    font-size:1rem;
-`;
+
 const ListItem = (props) => {
 
 
@@ -25,11 +22,11 @@ const ListItem = (props) => {
             props.button ? 
            <RippleButton {...props}>
                 {props.icon ? <Icon style={{"margin-right": "15px"}}>{props.icon}</Icon> : null }
-                <StyListName>{props.children}</StyListName>
+                {props.children}
            </RippleButton> : 
             <StyleItem {...props}>
               {props.icon ? <Icon style={{"margin-right": "15px"}}>{props.icon}</Icon> : null }
-              <StyListName>{props.children}</StyListName>
+              {props.children}
             </StyleItem> 
             }
             

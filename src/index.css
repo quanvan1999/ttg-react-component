@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Mulish&family=Roboto&family=Noto+Sans+SC&family=Alegreya+Sans&display=swap');
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Poppins, 'Segoe UI', Helvetica, sans-serif;
+    font-family: 'Noto Sans SC', 'Segoe UI', Helvetica, sans-serif;
 }
 html {
     background-color: #171717;

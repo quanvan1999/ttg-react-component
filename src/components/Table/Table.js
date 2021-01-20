@@ -14,26 +14,6 @@ const Table = styled.table`
     border-collapse: separate; 
     border-spacing: 0;  
     position: relative;
-
-    tr{
-        width: 100%;
-        background: #fff;
-        margin: 1em 0;
-        border: 1px solid rgba(34,36,38,.15);
-        -webkit-box-shadow: none;
-        box-shadow: none;
-        border-radius: .28571429rem;
-        text-align: left;
-        color: rgba(0,0,0,.87);
-        border-collapse: separate;
-        border-spacing: 0;
-
-        &:hover{
-            background: rgba(0,0,0,.05)!important;
-            color: rgba(0,0,0,.95)!important;
-        }
-    }
-
     th{
         cursor: auto;
         background: #f9fafb;
@@ -57,13 +37,33 @@ const Table = styled.table`
     }
 `;
 const Header = styled.thead``;
-const Row = styled.tr``;
+const Row = styled.tr`
+    width: 100%;
+    background: #fff;
+    margin: 1em 0;
+    border: 1px solid rgba(34,36,38,.15);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: .28571429rem;
+    text-align: left;
+    color: rgba(0,0,0,.87);
+    border-collapse: separate;
+    border-spacing: 0;
+
+    &:hover{
+        background: rgba(0,0,0,.05)!important;
+        color: rgba(0,0,0,.95)!important;
+    }
+`;
 const HeaderCell = styled.th``;
 const Body = styled.tbody``;
 const Cell = styled.td``;
 const TableFooter = styled.tr`
     right: 0;
     position: absolute;
+    &:hover{
+        background: transparent;
+    }
 `;
 
 const handleClick = (props)=>{

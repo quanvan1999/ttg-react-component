@@ -51,14 +51,14 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
 
       setTimeout(() => {
         if(tooltipPosition === 'top') {
-          el.style.top = `${position.top > rect.height ? position.top - el.clientHeight : 0}px`;
+          el.style.top = `${position.top > rect.height ? position.top - el.clientHeight : position.top}px`;
           el.style.left = `${position.left > rect.width/2 ? position.left : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , ${position.top > rect.height ? "-15px" : "0"})`;
+          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , ${position.top > rect.height ? "-15px" : "30px"})`;
         }
         else if(tooltipPosition === 'bottom' ) {
           el.style.top = `${position.top}px`;
           el.style.left = `${position.left > rect.width ? position.left : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , 15px)`;
+          el.style.transform = `translate(${position.left > rect.width ? "-50%" : "0"} , 15px)`;
         }
         else if(tooltipPosition === 'left') {
           el.style.top = `${position.top}px`;

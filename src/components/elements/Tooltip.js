@@ -46,7 +46,7 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
         if(tooltipPosition === 'top') {
           el.style.top = `${position.top > rect.height ? position.top - el.clientHeight : position.top}px`;
           el.style.left = `${position.left > rect.width/2 ? position.left : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , ${position.top > rect.height ? "-15px" : "30px"})`;
+          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , ${position.top > rect.height ? "-15px" : "45px"})`;
         }
         else if(tooltipPosition === 'bottom' ) {
           el.style.top = `${position.top}px`;
@@ -56,7 +56,7 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
         else if(tooltipPosition === 'left') {
           el.style.top = `${position.top}px`;
           el.style.left = `${position.left > rect.width ? position.left - el.clientWidth : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width ? "-15px" : "0"},-50%)`;
+          el.style.transform = `translate(${position.left > rect.width ? "-15px" : "15px"},${position.left > rect.width ? "-50%" : "50%"})`;
         }
         else if(tooltipPosition === 'right') {
           el.style.top = `${position.top}px`;

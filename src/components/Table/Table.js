@@ -67,7 +67,8 @@ const TableFooter = styled.tfoot`
 `;
 
 const handleClick = (props)=>{
-    console.log(props)
+    var x = document.querySelectorAll('a');
+    console.log(x)
 }
 function Table(props){
     return(
@@ -77,9 +78,7 @@ function Table(props){
                 return React.cloneElement(
                     child, 
                     {
-                        onSelect: () => handleClick(child.props.value), 
-                        displayMode: props.displayMode,
-                        ingroup: true
+                        onSelect: () => handleClick(child.props.value)
                     })
             })
         }

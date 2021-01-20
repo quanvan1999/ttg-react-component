@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ThemeProvider } from 'styled-components'
-import TableComponent from './components/Table/Table'
+import Table from './components/Table/Table'
 import Container from './components/Container'
 import theme from './utils/theme'
 import Menu from './components/Table/Menu'
@@ -17,34 +17,34 @@ export default function Dat(props) {
   return (
     <ThemeProvider theme = {theme.light}>
       <Container headline = {"Table Component"}>
-        <TableComponent>
+        <Table>
 
-          <TableComponent.Header>
-            <TableComponent.Row>
-              <TableComponent.HeaderCell>{title.id}</TableComponent.HeaderCell>
-              <TableComponent.HeaderCell>{title.title}</TableComponent.HeaderCell>
-              <TableComponent.HeaderCell>{title.body}</TableComponent.HeaderCell>
-            </TableComponent.Row>
-          </TableComponent.Header>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>{title.id}</Table.HeaderCell>
+              <Table.HeaderCell>{title.title}</Table.HeaderCell>
+              <Table.HeaderCell>{title.body}</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
             
-          <TableComponent.Body>
+          <Table.Body>
             {
               data.map((value, index)=>{
                 return(
-                  <TableComponent.Row key={index}>
-                    <TableComponent.Cell>
+                  <Table.Row key={index}>
+                    <Table.Cell>
                       {value.id}
-                    </TableComponent.Cell>
-                    <TableComponent.Cell>{value.title}</TableComponent.Cell>
-                    <TableComponent.Cell>{value.body}</TableComponent.Cell>
-                  </TableComponent.Row>
+                    </Table.Cell>
+                    <Table.Cell>{value.title}</Table.Cell>
+                    <Table.Cell>{value.body}</Table.Cell>
+                  </Table.Row>
                 )
               })
             }
-          </TableComponent.Body>
+          </Table.Body>
 
-          <TableComponent.TableFooter>
-              <TableComponent.HeaderCell>
+          <Table.TableFooter>
+              <Table.HeaderCell>
                 <Menu>
                   <Menu.Item><IcoArrowLeft/></Menu.Item>
                   <Menu.Item>One</Menu.Item>
@@ -52,10 +52,10 @@ export default function Dat(props) {
                   <Menu.Item>three</Menu.Item>
                   <Menu.Item><IcoArrowRight/></Menu.Item>
                 </Menu>
-              </TableComponent.HeaderCell>
-          </TableComponent.TableFooter>
+              </Table.HeaderCell>
+          </Table.TableFooter>
 
-        </TableComponent>
+        </Table>
       </Container>
     </ThemeProvider>
   )

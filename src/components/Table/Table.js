@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 
-const Table = styled.table`
+const TableComponent = styled.table`
     width: ${props => props.width ? props.width : '100%'};
     background: ${props => props.theme.color.background.secondary};
     margin: ${props => props.demo ? "8px": "0px"};
@@ -69,9 +69,9 @@ const TableFooter = styled.tfoot`
 const handleClick = (props)=>{
     console.log(props)
 }
-function TableComponent(props){
+function Table(props){
     return(
-        <Table {...props}>
+        <TableComponent {...props}>
         {
             React.Children.map(props.children, child => {
                 return React.cloneElement(
@@ -83,16 +83,16 @@ function TableComponent(props){
                     })
             })
         }
-        </Table>
+        </TableComponent>
     )
 };
 
-TableComponent.Header = Header
-TableComponent.Row = Row
-TableComponent.HeaderCell = HeaderCell
-TableComponent.Body = Body
-TableComponent.Cell = Cell
-TableComponent.TableFooter = TableFooter
+Table.Header = Header
+Table.Row = Row
+Table.HeaderCell = HeaderCell
+Table.Body = Body
+Table.Cell = Cell
+Table.TableFooter = TableFooter
 
 
-export default TableComponent
+export default Table

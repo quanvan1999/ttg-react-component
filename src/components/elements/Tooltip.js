@@ -53,7 +53,7 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
         else if(tooltipPosition === 'bottom' ) {
           el.style.top = `${position.top}px`;
           el.style.left = `${position.left > rect.width ? position.left : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , 15px)`;
+          el.style.transform = `translate(${position.left > rect.width ? "-50%" : "0"} , 15px)`;
         }
         else if(tooltipPosition === 'left') {
           el.style.top = `${position.top}px`;

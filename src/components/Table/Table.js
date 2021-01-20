@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import React from 'react'
 
 const Table = styled.table`
-    width: 100%;
+    width: ${props => props.width ? props.width : '100%'};
     background: ${props => props.theme.color.background.secondary};
     margin: ${props => props.demo ? "8px": "0px"};
     border: 1px solid ${props => props.displayMode === "disabled" ? "var(--fillColor)" : "rgba(34,36,38,.15)"};
@@ -58,7 +58,7 @@ const Row = styled.tr`
 const HeaderCell = styled.th``;
 const Body = styled.tbody``;
 const Cell = styled.td``;
-const TableFooter = styled.tr`
+const TableFooter = styled.tfoot`
     right: 0;
     position: absolute;
     &:hover{

@@ -3,6 +3,9 @@ import { ThemeProvider } from 'styled-components'
 import TableComponent from './components/Table/Table'
 import Container from './components/Container'
 import theme from './utils/theme'
+import Menu from './components/Table/Menu'
+import IcoArrowLeft from './components/icons/IcoArrowLeft'
+import IcoArrowRight from './components/icons/IcoArrowRight'
 const title = {
   "id": "ID",
   "title": "Title",
@@ -39,6 +42,18 @@ export default function Dat(props) {
               })
             }
           </TableComponent.Body>
+
+          <TableComponent.TableFooter>
+              <TableComponent.HeaderCell>
+                <Menu>
+                  <Menu.Item><IcoArrowLeft/></Menu.Item>
+                  <Menu.Item>One</Menu.Item>
+                  <Menu.Item>Two</Menu.Item>
+                  <Menu.Item>three</Menu.Item>
+                  <Menu.Item><IcoArrowRight/></Menu.Item>
+                </Menu>
+              </TableComponent.HeaderCell>
+          </TableComponent.TableFooter>
 
         </TableComponent>
       </Container>

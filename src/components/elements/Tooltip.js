@@ -18,20 +18,20 @@ top:0;
     opacity: 0;
     transform-origin: center center;
     text-align: center;
-    transition: 0.8s all;
+    transition: 0.7s all;
 }
-&  .tooltip--top {
-    transform: translate(-50%, -15px) ;
-  }
-&  .tooltip--bottom {
-    transform: translate(-50%, 15px) ;
-  }
-&  .tooltip--left {
-    transform: translate(-15px, -50%) ;
-  }
-&  .tooltip--right {
-    transform: translate(15px, -50%) ;
-  }
+& .tooltip--top{
+  transform: translate(-50%,-15px);
+}
+& .tooltip--bottom{
+  transform: translate(-50%,15px);
+}
+& .tooltip--left{
+  transform: translate(-15px,-50%);
+}
+& .tooltip--right{
+  transform: translate(15px,-50%);
+}
 
 `;
 
@@ -48,22 +48,22 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
         if(tooltipPosition === 'top') {
           el.style.top = `${position.top > rect.height ? position.top - el.clientHeight : 0}px`;
           el.style.left = `${position.left > rect.width/2 ? position.left : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0%"} , -15px)`;
+          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , ${position.top > rect.height ? "-15px" : "0"})`;
         }
         else if(tooltipPosition === 'bottom' ) {
           el.style.top = `${position.top}px`;
-          el.style.left = `${position.left > rect.width/2 ? position.left : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0%"} , 15px)`;
+          el.style.left = `${position.left > rect.width ? position.left : 0}px`;
+          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , 15px)`;
         }
         else if(tooltipPosition === 'left') {
           el.style.top = `${position.top}px`;
           el.style.left = `${position.left > rect.width ? position.left - el.clientWidth : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-15px" : "0"},-50%)`;
+          el.style.transform = `translate(${position.left > rect.width ? "-15px" : "0"},-50%)`;
         }
         else if(tooltipPosition === 'right') {
           el.style.top = `${position.top}px`;
-          el.style.left = `${position.left > rect.width ? position.left - el.clientWidth : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width/2 ? "15px" : "0"},-50%)`;
+          el.style.left = `${position.left}px`;
+          el.style.transform = `translate(15px,-50%)`;
         }
         el.style.opacity = '1';
       }, 20);

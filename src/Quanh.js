@@ -1,4 +1,4 @@
-import {ThemeProvider} from 'styled-components'
+import styled, {ThemeProvider} from 'styled-components'
 import Container from './components/Container'
 import {
   Button, 
@@ -21,17 +21,19 @@ import {
   Tab,
   Alert,
   Calendar,
-  Snackbar
+  Snackbar,
+  Tooltip,
+  FAB
 } from './components/elements'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
 import Box from './components/Box'
 import Code from './components/Code'
 import IcoMail from './components/icons/IcoMail'
-import IcoAlertTriangle from './components/icons/IcoAlertTriangle'
 import IcoSettings from './components/icons/IcoSettings'
 import IcoX from './components/icons/IcoX'
 import Combox from './components/elements/Combox'
+
 function Quanh() {
   useEffect(() => {
     document.title = "Theme: " + theme[myTheme].name
@@ -79,29 +81,53 @@ function Quanh() {
 
           <br/>
           <Container headline={"Elements"} fullWidth>
+            <FAB><IcoSettings/></FAB>
+            <FAB position><IcoSettings/> With Text</FAB>
             <Box headline="Snackbar" block>
-              <Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={200000}>
-                <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Warning message</Alert>
+              <Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={2000}>
+                <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Infomative message</Alert>
               </Snackbar>
               <Button onClick={() => setSnackbarState(!snackbarState)}>Toggle Snackbar</Button>
             </Box>
-            <Box headline="Alert" block>
+            <Box headline="Alert">
               <Alert demo color="success" action={<strong>UNDO</strong>}>
                 <Alert.Title>Success</Alert.Title>
-                This is a success message!
+                This is a success message with a title!
               </Alert>
-              <Alert demo color="danger" type="outline" action={<IcoX/>}>This is a danger message!</Alert>
+              <Alert demo color="danger" type="contained" action={<IcoX/>}>This is a danger message!</Alert>
+              <Alert demo color="info" action={<IcoX/>}>This is an info message!</Alert>
+              <Alert demo color="warning" action={<IcoX/>}>This is a warning message!</Alert>
+              <Alert demo color="primary" action={<IcoX/>}>This is a primary message!</Alert>
+              <Alert demo color="secondary" action={<IcoX/>}>This is a secondary message!</Alert>
             </Box>
             <Box headline="Combox">
-              <Combox onSelect={(v) => setComboxResult(v)} multiple>
-              {ComboxData.map((data, index) => 
-                <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={index}>{data.name}</Combox.Option>
-              )}
-              </Combox>
-              <Code>{JSON.stringify(comboxResult)}</Code>
+              <Box.Item>
+                <p>Select One</p>
+                <Combox demo onSelect={(v) => setComboxResult(v)}>
+                {ComboxData.map((data) => 
+                  <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
+                )}
+                </Combox>
+              </Box.Item>
+              <Box.Item>
+                <p>Select Multiple</p>
+                <Combox demo onSelect={(v) => setComboxResult(v)} multiple>
+                {ComboxData.map((data) => 
+                  <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
+                )}
+                </Combox>
+              </Box.Item>
+              <Box.Item>
+                <p>Select Multiple with Search</p>
+                <Combox demo onSelect={(v) => setComboxResult(v)} multiple searchable>
+                {ComboxData.map((data) => 
+                  <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
+                )}
+                </Combox>
+              </Box.Item>
             </Box>
             <Box headline="Tab" block>
-              <div style={{height: "160px"}}>
+              <div style={{height: "80px"}}>
                 <Tab name="group tab" fullHeight>
                   <TabPane name="Active" value="1" key="1">
                     <Button>Active Tab 160px</Button>
@@ -121,13 +147,13 @@ function Quanh() {
                 </Tab>
               </div>
             </Box>
-            <Box headline="Avatar" block>
-                <Avatar demo alt="Quan Van" fluid={false} size="small"></Avatar>
-                <Avatar demo alt="Quan Van" fluid={false} size="medium"></Avatar>
-                <Avatar demo alt="Quan Van" fluid={false} size="large"></Avatar>
+            <Box headline="Avatar">
                 <div style={{width: "100px", height: "100px", padding: "8px"}}>
                   <Avatar alt="Quan Van" fluid={true} size="large"></Avatar>
                 </div>
+                <Avatar demo alt="Quan Van" fluid={false} size="small"></Avatar>
+                <Avatar demo alt="Quan Van" fluid={false} size="medium"></Avatar>
+                <Avatar demo alt="Quan Van" fluid={false} size="large"></Avatar>
                 <AvatarGroup demo  max={9} size="small">
                   <Avatar alt="A"></Avatar>
                   <Avatar alt="B"></Avatar>
@@ -150,13 +176,12 @@ function Quanh() {
                   <Avatar alt="D"></Avatar>
                   <Avatar alt="E"></Avatar>
                 </AvatarGroup>
-                
             </Box>
             <Box headline="Breadcrumb" block>
               <Breadcrumb>
-                <a href="#">Home</a>
-                <a href="#">Trending</a>
-                <a href="#">Funny</a>
+                <a href="google.com">Home</a>
+                <a href="google.com">Trending</a>
+                <a href="google.com">Funny</a>
               </Breadcrumb>
             </Box>
             <Box headline="Badge" block>
@@ -164,6 +189,7 @@ function Quanh() {
               <Badge demo icon={<IcoMail/>} value={99} max={999}/>
               <Badge demo icon={<IcoMail/>} value={50} max={10}/>
               <Badge demo icon={<IcoMail/>} value={0} max={10} showZero/>
+              <Badge demo icon={<IcoMail/>} value={0} max={10}/>
             </Box>
             <Box headline="Modal" block>
               <Modal visible={modalState} onClickOutside={() => setModalState(false)} title="Great Title">
@@ -175,16 +201,21 @@ function Quanh() {
               </Modal>
               <Button color="secondary" demo onClick={() => setModalState2(true)}>Open Modal With No Title</Button>
             </Box>
-            <Box headline="Link" block>
-              Very beautiful <Link href="https://google.com">link</Link>
-              <br/>
-              Visited or not <Link href="#">link</Link>
-              <br/>
-              It can have <Link href="#" underline>underline</Link>
+            <Box headline="Link">
+              <Box.Item>Very beautiful <Link href="https://google.com">link</Link></Box.Item>
+              <Box.Item>Visited or not <Link href="#">link</Link></Box.Item>
+              <Box.Item>It can have <Link href="#" underline>underline</Link></Box.Item>
             </Box>
             <Box headline="Text Input">
-              <SimpleInput displayMode={mode} defaultValue="my default text is here" demo onChange={(v) => setTextValue(v)} value={textValue}/>
-              <Code>{JSON.stringify(textValue)}</Code>
+              <Box.Item>
+                <p>Auto Width Input</p>
+                <SimpleInput displayMode={mode} defaultValue="my default text is here" onChange={(v) => setTextValue(v)} value={textValue}/>
+              </Box.Item>
+              <Box.Item>
+                <p>Full Width Input</p>
+                <SimpleInput fullWidth displayMode={mode} defaultValue="my default text is here" onChange={(v) => setTextValue(v)} value={textValue}/>
+              </Box.Item>
+              
             </Box>
             <Box headline="Button" block>
               <Button color="success" size="small" displayMode={mode} demo onSelect={() => console.log("Wow")}>Success small</Button>
@@ -194,60 +225,79 @@ function Quanh() {
               <Button color="secondary"size="small" displayMode={mode} demo >Secondary</Button>
               <Button displayMode={mode} demo type="outline" >Outline</Button>
               <Button size="medium" displayMode={mode} demo type="text" >Text</Button>
-              <Button size="medium" displayMode={mode} demo type="contained" ><IcoSettings/></Button>
+              <Button size="medium" displayMode={mode} demo type="contained" ><IcoSettings left/> Settings</Button>
+              <Button size="medium" displayMode={mode} demo type="contained" > Settings</Button>
             </Box>
             <Box headline="Calendar">
-              <div>
                 <Calendar demo onSelect={date => setDateValue(date)}/>
-              </div>
-              <Code>{dateValue.toString()}</Code>
             </Box>
             <Box headline="Toggle">
-              <Toggle displayMode={mode} onSelect={v => setToggleValue(v)}>Awesome</Toggle>
-              <Code>{JSON.stringify(toggleValue)}</Code>
+              <Box.Item>
+                <p>Toggle</p>
+                <Toggle displayMode={mode} onSelect={v => setToggleValue(v)}>Awesome</Toggle>
+              </Box.Item>
+              <Box.Item>
+                <p>Toggle Group</p>
+                <ToggleGroup displayMode={mode} onSelect={v => setToggleGroupValue(v)}>
+                  <Toggle value={1}>One</Toggle>
+                  <Toggle value={2}>Two</Toggle>
+                </ToggleGroup>
+              </Box.Item>
+              <Box.Item>
+                <p>Toggle Group Horizontal</p>
+                <ToggleGroup horizontal displayMode={mode} onSelect={v => setToggleGroupValue(v)}>
+                  <Toggle value={1}>One</Toggle>
+                  <Toggle value={2}>Two</Toggle>
+                </ToggleGroup>
+              </Box.Item>
             </Box>
-
-            <Box headline="Toggle Group">
-              <ToggleGroup displayMode={mode} onSelect={v => setToggleGroupValue(v)}>
-                <Toggle value={1}>One</Toggle>
-                <Toggle value={2}>Two</Toggle>
-              </ToggleGroup>
-              <Code>{JSON.stringify(toggleGroupValue)}</Code>
-            </Box>
-
             <Box headline="Checkbox">
-              <Checkbox displayMode={mode} onSelect={(value) => setCheckboxValue(value)}>Awesome</Checkbox>
-              <Code>{JSON.stringify(checkboxValue)}</Code>
+              <Box.Item>
+                <p>Checkbox</p>
+                <Checkbox displayMode={mode} onSelect={(value) => setCheckboxValue(value)}>Awesome</Checkbox>
+              </Box.Item>
+              <Box.Item>
+                <p>Checkbox Group</p>
+                <CheckboxGroup displayMode={mode} onSelect={(value) => setCheckboxGroupValue(value)}>
+                  <Checkbox value={1}>One</Checkbox>
+                  <Checkbox value={2}>Two</Checkbox>
+                </CheckboxGroup>
+              </Box.Item>
+              <Box.Item>
+                <p>Checkbox Group Horizontal</p>
+                <CheckboxGroup horizontal displayMode={mode} onSelect={(value) => setCheckboxGroupValue(value)}>
+                  <Checkbox value={1}>One</Checkbox>
+                  <Checkbox value={2}>Two</Checkbox>
+                </CheckboxGroup>
+              </Box.Item>
             </Box>
-
-            <Box headline="Checkbox Group">
-              <CheckboxGroup displayMode={mode} onSelect={(value) => setCheckboxGroupValue(value)}>
-                <Checkbox value={1}>One</Checkbox>
-                <Checkbox value={2}>Two</Checkbox>
-              </CheckboxGroup>
-              <Code>{JSON.stringify(checkboxGroupValue)}</Code>
-            </Box>
-
             <Box headline="Radio Group">
-              <RadioGroup displayMode={mode} onSelect={(value) => setRadioGroupValue(value)}>
-                <Radio value={1}>One</Radio>
-                <Radio value={2}>Two</Radio>
-                <Radio value={3}>Three</Radio>
-              </RadioGroup>
-              <Code>{JSON.stringify(radioGroupValue)}</Code>
+              <Box.Item>
+                <p>Radio Group</p>
+                <RadioGroup displayMode={mode} onSelect={(value) => setRadioGroupValue(value)}>
+                  <Radio value={1}>One</Radio>
+                  <Radio value={2}>Two</Radio>
+                  <Radio value={3}>Three</Radio>
+                </RadioGroup>
+              </Box.Item>
+              <Box.Item>
+                <p>Radio Group Horizontal</p>
+                <RadioGroup horizontal displayMode={mode} onSelect={(value) => setRadioGroupValue(value)}>
+                  <Radio value={1}>One</Radio>
+                  <Radio value={2}>Two</Radio>
+                  <Radio value={3}>Three</Radio>
+                </RadioGroup>
+              </Box.Item>
             </Box>
-
             <Box headline="Button Group">
               <ButtonGroup displayMode={mode} onSelect={(value) => setButtonGroupValue(value)}>
                 <Button value={1}>One</Button>
                 <Button value={2}>Two</Button>
                 <Button value={3}>Three</Button>
               </ButtonGroup>
-              <Code>{JSON.stringify(buttonGroupValue)}</Code>
             </Box>              
             <Box headline="Slide">
               <Slider onSlide={(v) => setSliderValue(v)} displayMode={mode} fullWidth defaultValue={50}/>
-              <Code>{JSON.stringify(sliderValue)}</Code>
             </Box>
 
           </Container>

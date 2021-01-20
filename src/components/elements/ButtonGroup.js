@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
 import Button from './Button';
 import PropTypes from 'prop-types'
@@ -13,24 +13,18 @@ const StyledButtonGroup = styled.div`
     overflow: hidden;
     background: ${props => props.theme.color.background.secondary};
     border: 0px solid ${props => props.displayMode === "disabled" ? "#A3A3A3" : "var(--fillColor)"};
+    box-shadow: ${props => props.theme.shadow};
 `;
 
 const ButtonGroup = (props) => {
-    let runInit = useRef(false)
-    let {children} = props
-    const [value, setValue] = useState("")
+    let {onSelect, children} = props
+    const [value, setValue] = useState(children.find(child => child.props.default) ? children.find(child => child.props.default).props.value : "")
+    const handleClick = (value) => {
+        setValue(value)
+    }
     useEffect(() => {
-        // console.log("rn")
-        if (!runInit.current) {
-            // console.log("Btn group run")
-            let defElement = children.find(child => child.props.default)
-            if (defElement) {
-                handleClick(defElement.props.value)
-            }
-            runInit.current = true
-        }
-        
-    }, [])
+        onSelect(value)
+    }, [onSelect, value])
 
     useEffect(() => {
         // Catching errors
@@ -44,10 +38,7 @@ const ButtonGroup = (props) => {
             throw Error("Cannot have more than one default value")
     }, [children])
 
-    const handleClick = (value) => {
-        setValue(value)
-        props.onSelect(value)
-    }
+    
 
     return (
         <StyledButtonGroup {...props}>

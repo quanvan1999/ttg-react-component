@@ -4,7 +4,7 @@ const theme = {
         color: {
             text: {
                 primary: "#404040",
-                secondary: "#2F8DE3",
+                secondary: "#575757",
                 link: "#2F8DE3",
                 visited: "#7B237B",
                 disabled: "#A3A3A3"
@@ -55,7 +55,8 @@ const theme = {
             light: 300,
             normal: 500,
             bold: 700
-        }
+        },
+        shadow: "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"
     },
     dark: {
         name: "Dark Theme",
@@ -113,7 +114,8 @@ const theme = {
             light: 300,
             normal: 500,
             bold: 700
-        }
+        },
+        shadow: "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"
     }
 }
 

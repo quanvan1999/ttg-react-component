@@ -12,7 +12,7 @@ const StyledContainer = styled.div`
     transition: background 0.2s linear;
     & h3 {
         font-weight: 500;
-        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
     }
 `;
 

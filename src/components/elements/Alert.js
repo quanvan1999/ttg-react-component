@@ -17,6 +17,7 @@ const AlertStyle = styled.div`
     border-radius: 4px;
     justify-content: flex-start;
     align-items: center;
+    box-shadow: ${props => props.theme.shadow};
 `;
 const AlertMsg = styled.div`
     padding: 0.25rem;

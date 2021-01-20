@@ -30,9 +30,15 @@ function Quan() {
     <div>
       <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List "}>
-         <Tooltip maxWidth={300} middle direction="bottom" content="Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy text of the print">
-          <Button >abc</Button>
-         </Tooltip>
+        <Tooltip position="bottom" content="lorem dolor sit amet" >
+          <button>abc</button>
+        </Tooltip>
+        <Tooltip position="top" content="lorem ipsum dolor si jkdsajd s dkjda dkasddk ajkast amet" >
+          <button>abc</button>
+        </Tooltip>
+        <Tooltip position="bottom" content="lorem ipsum dolorksajdskdjs jdksjdka djskdj sit amet" >
+          <button>abc</button>
+        </Tooltip>
          </Container>
       </ThemeProvider>
     </div>

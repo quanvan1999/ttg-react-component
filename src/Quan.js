@@ -30,7 +30,7 @@ function Quan() {
     <div>
       <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List "}>
-        <Tooltip position="left" content="lorem dolor sit dasd dasd adamet" >
+        <Tooltip position="top" content="lorem dolor sit dasd adamet lorem dodsad da da aa dadlor sit dasd dasd adamet awdawd awd awd awd awdawdaw dawd " >
           <Button demo>abc</Button>
         </Tooltip>
         <Tooltip position="top" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >

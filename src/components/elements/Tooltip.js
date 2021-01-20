@@ -11,28 +11,14 @@ const StyleToolTip = styled.div`
     background-color: #525050;
     color: #fff;
     font-size:14px;
-    width: 80px;
+    max-width:200px;
     opacity: 0;
     transform-origin: center center;
     text-align: center;
     transition: opacity 0.6s;
-
-& .tooltip--top{
-  transform: translate(-50%,-15px);
-}
-& .tooltip--bottom{
-  transform: translate(-50%,15px);
-}
-& .tooltip--left{
-  transform: translate(-15px,-50%);
-}
-& .tooltip--right{
-  transform: translate(15px,-50%);
-}
-
 `;
 
-const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) => {
+const TooltipContent = ({ content, position, tooltipPosition }) => {
   const tooltipEl = useRef();
   const targetEl = document.getElementById('root');
 
@@ -69,7 +55,7 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
   }, []);
 
   const output = <StyleToolTip
-                     className={tooltipClass} ref={tooltipEl}>{content}
+                      ref={tooltipEl}>{content}
                 </StyleToolTip>
 
   return targetEl ? ReactDOM.createPortal(output, targetEl) : output;
@@ -77,7 +63,6 @@ const TooltipContent = ({ tooltipClass, content, position, tooltipPosition }) =>
 
 TooltipContent.propTypes = {
   content: PropTypes.any.isRequired,
-  tooltipClass: PropTypes.string.isRequired,
   position: PropTypes.shape({
     top: PropTypes.number.isRequired,
     left: PropTypes.number.isRequired
@@ -89,7 +74,6 @@ TooltipContent.propTypes = {
 const Tooltip = ({ children, position, content}) => {
   const [elPosition, setElPosition] = useState({ top: 0, left: 0 });
   const [show, setShow] = useState(false);
-  let tooltipClass = 'tooltip';
 
   const getPosition = (e) => {
     const pos = e.currentTarget.getBoundingClientRect();
@@ -109,23 +93,9 @@ const Tooltip = ({ children, position, content}) => {
 
     setShow(true);
   }
-
-  if(position === 'top') {
-    tooltipClass += ' tooltip--top';
-  }
-  else if(position === 'bottom') {
-    tooltipClass += ' tooltip--bottom';
-  }
-  else if(position === 'left') {
-    tooltipClass += ' tooltip--left';
-  }
-  else if(position === 'right') {
-    tooltipClass += ' tooltip--right';
-  }
-
   return(
     <Fragment>
-      {show && <TooltipContent tooltipClass={tooltipClass} position={elPosition} content={content} tooltipPosition={position} />}
+      {show && <TooltipContent position={elPosition} content={content} tooltipPosition={position} />}
       {cloneElement(children, {...children.props, onMouseEnter: getPosition, onMouseLeave: () => setShow(false)})}
     </Fragment>
   );

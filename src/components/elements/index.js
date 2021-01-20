@@ -21,6 +21,8 @@ import Icon from './Icon'
 import Snackbar from './Snackbar'
 import Alert from './Alert'
 import Calendar from './Calendar'
+import Tooltip from './Tooltip'
+import FAB from './FAB'
 export {
     Button, 
     ButtonGroup, 
@@ -44,5 +46,7 @@ export {
     Icon,
     Alert,
     Snackbar,
-    Calendar
+    Calendar,
+    Tooltip,
+    FAB
 }

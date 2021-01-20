@@ -15,13 +15,13 @@ const LabelToggle = styled.label`
 const ToggleSpan = styled.span`
     position: relative;
     display:block;
-    width: 2rem;
-    height: 1.1rem;
+    width: 2.2rem;
+    height: 1.24rem;
 `;
 const StyleInput = styled.input`
     display: none;
     &:checked + .toggle-switch:before{
-        transform: translateX(0.90rem);
+        transform: translateX(0.96rem);
     }
     &:checked ~ .toggle-switch{
         transition: 0.4s;
@@ -40,20 +40,18 @@ const StyleSpan = styled.span`
     background-color: ${props => props.displayMode === "disabled" ? props.theme.color.fill.disabled : getFader(props.theme.color.fill.primary, 0.4)};
     transition: .4s;
     border-radius: 999px;
-    box-shadow: 0px 0px 0.25rem rgba(0,0,0,0.3);
+    box-shadow: ${props => props.theme.shadow};
     overflow: hidden;
-    &:hover {
-        box-shadow: 0px 0px 1rem ${props => getFader(props.theme.color.fill.primary, 0.8)};
-    }
+
     //the dotted
     &:before{
         position: absolute;
         content: "";
-        height: 1rem;
-        width: 1rem;
-        left: 1px;
+        height: 1.1rem;
+        width: 1.1rem;
+        left: 0.07rem;
         border-radius:50%;
-        bottom: 0.05rem;
+        bottom: 0.07rem;
         background-color: ${props => props.theme.color.background.primary};
         box-shadow: 0px 0px 4px rgba(0,0,0,0.64);
         -webkit-transition: .4s;

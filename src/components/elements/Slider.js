@@ -63,7 +63,7 @@ const InputStyle = styled.input`
         transform: scale(1.3, 1.3)
     }
     &::-webkit-slider-thumb:hover {
-        box-shadow: 0px 0px 1rem ${props => props.displayMode === "edit" ? getFader(props.theme.color.fill.primary, 0.8) : "transparent"};
+        box-shadow: 0px 0px 4px ${props => props.displayMode === "edit" ? getFader(props.theme.color.fill.primary, 0.4) : "transparent"};
     }
     &:hover ~ span {
         opacity: 1;
@@ -87,13 +87,14 @@ const SliderValue= styled.span`
     opacity: 0;
     position: absolute;
     transition: opacity 0.15s ease-in;
-    top: 1rem;
-    background: ${props => props.theme.backgroundColor};
+    bottom: 1rem;
+    background: ${props => props.theme.color.background.primary};
     box-shadow: 0px 0px 0.125rem ${props => getFader(props.theme.color.text.primary, 0.8)};
     text-align: center;
     border-radius: 5px;
-    padding: 1px 4px;
+    padding: 2px 4px;
     font-size: ${props => props.theme.textSize.small};
+    z-index: 999;
 `;
 
 const Slider = (props) =>{

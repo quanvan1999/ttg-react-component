@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import React from 'react'
 
 const Table = styled.table`
-    width: ${props => props.width ? 'auto' : '50%'};
+    width: 100%;
     background: ${props => props.theme.color.background.secondary};
     margin: ${props => props.demo ? "8px": "0px"};
     border: 1px solid ${props => props.displayMode === "disabled" ? "var(--fillColor)" : "rgba(34,36,38,.15)"};

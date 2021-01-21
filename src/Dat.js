@@ -21,9 +21,9 @@ export default function Dat() {
   },[])
   const [currentPage, setCurrentPage] = useState(1)
   const rowPerPage = useRef(10)
-  let max = data.length, pageMax = max/rowPerPage.current
 
   // lay so trang
+  let max = data.length, pageMax = max/rowPerPage.current
   var temp = []
   for(let i=1; i<=pageMax; i++){
     temp.push(i)
@@ -40,6 +40,7 @@ export default function Dat() {
       if(currentPage >= pageMax){ setCurrentPage(pageMax) }
       else{ setCurrentPage(currentPage + 1) }
   }
+
   return (
     <ThemeProvider theme = {theme.light}>
       <Container headline = {"Table Component"}>
@@ -68,24 +69,18 @@ export default function Dat() {
               })
             }
           </Table.Body>
-
-          <Table.TableFooter>
-              <Table.HeaderCell>
-                <Menu>
-                  <Menu.Item onClick={()=>handlePre()}><IcoArrowLeft/></Menu.Item>
-                  {
-                    temp.map((value, index)=>{
-                      return(
-                        <Menu.Item onClick={()=>handleSetdata(value)} key={index}>{value}</Menu.Item>
-                      )
-                    })
-                  }
-                  <Menu.Item onClick={()=>handleNext()}><IcoArrowRight/></Menu.Item>
-                </Menu>
-              </Table.HeaderCell>
-          </Table.TableFooter>
-
         </Table>
+        <Menu>
+            <Menu.Item onClick={()=>handlePre()}><IcoArrowLeft/></Menu.Item>
+            {
+              temp.map((value, index)=>{
+                return(
+                  <Menu.Item onClick={()=>handleSetdata(value)} key={index}>{value}</Menu.Item>
+                )
+              })
+            }
+            <Menu.Item onClick={()=>handleNext()}><IcoArrowRight/></Menu.Item>
+          </Menu>
 
       </Container>
     </ThemeProvider>

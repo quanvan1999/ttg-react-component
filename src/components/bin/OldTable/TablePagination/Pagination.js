@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components'
-import Table from '../Table/Table'
+// import Table from '../Table/Table'
 
 const DivPagination = styled.div`
     display: inline-block;
@@ -28,14 +28,15 @@ const ChildPagination = styled.a`
 
 // truyen vao totalPage
 const Pagination = (props) =>{
-    const {totalPage, headers, rows, pageSize, getvalue} = props;
-    var temp_page = [];
-    var size = pageSize;
-    const [pagemax, setPageMax] = useState(size);
-    const [pagemin, setPageMin] = useState(1);
-    for(let i=pagemin - 1; i<pagemax; i++){
-        temp_page.push(rows[i])
-    }
+    console.log(props)
+    const {totalPage, onSelect} = props;
+    // var temp_page = [];
+    // var size = pageSize;
+    // const [pagemax, setPageMax] = useState(size);
+    // const [pagemin, setPageMin] = useState(1);
+    // for(let i=pagemin - 1; i<pagemax; i++){
+    //     temp_page.push(rows[i])
+    // }
 
     useEffect(()=>{
         var search_active = document.querySelectorAll('a');
@@ -49,8 +50,8 @@ const Pagination = (props) =>{
     } //end
 
     const Active = (index)=>{
-        setPageMax(size * index)
-        setPageMin(size * index -size + 1)
+        // setPageMax(size * index)
+        // setPageMin(size * index -size + 1)
         setTimeout(()=>{
             var x = document.querySelectorAll('a');
             for(var i=1; i<x.length - 1; i++){
@@ -72,8 +73,8 @@ const Pagination = (props) =>{
             var next = 0;
             if(temp === x.length - 1){next = x.length - 2}
             else{next = temp}
-            setPageMax(size * next)
-            setPageMin(size * next -size + 1)
+            // setPageMax(size * next)
+            // setPageMin(size * next -size + 1)
             setTimeout(()=>{
                 for(var i=1; i<x.length - 1; i++){
                     if(next === i){
@@ -94,8 +95,8 @@ const Pagination = (props) =>{
             var pre_temp = 0;
             if (temp === 0) { pre_temp = 1 }
             else{ pre_temp = temp }
-            setPageMax(size * pre_temp)
-            setPageMin(size * pre_temp -size + 1)
+            // setPageMax(size * pre_temp)
+            // setPageMin(size * pre_temp -size + 1)
             setTimeout(()=>{
                 for(var i=1; i<x.length - 1; i++){
                     if(pre_temp !== i){
@@ -111,7 +112,7 @@ const Pagination = (props) =>{
     
     return(
         <>
-        <Table headers={headers} rows={temp_page} getvalue={getvalue}/>
+        {/* <Table headers={headers} rows={temp_page} getvalue={getvalue}/> */}
         <DivPagination>
             <ChildPagination onClick={()=>PrePage()} value="pre">&laquo;</ChildPagination>
             {

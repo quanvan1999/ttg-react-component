@@ -1,7 +1,7 @@
 import {ThemeProvider} from 'styled-components'
 import { React } from "react";
 import Container from './components/Container'
-import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB} from './components/elements'
+import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB, Avatar} from './components/elements'
 import IconCheck from './components/icons/IcoCheckCircle';
 import IconError from './components/icons/IcoAlertTriangle';
 import IconPlus from './components/icons/IcoEdit2';
@@ -30,30 +30,9 @@ function Quan() {
     <div>
       <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List "}>
-        <Tooltip position="left" content="lorem dolor sit dasd dasd adamet" >
-          <Button demo>abc</Button>
-        </Tooltip>
-        <Tooltip position="top" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
-          <Button demo>abc</Button>
-        </Tooltip>
-        <Tooltip position="right" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
-          <Button demo>abc</Button>
-        </Tooltip>
-        <Tooltip position="bottom" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
-          <Button demo>abc</Button>
-        </Tooltip>
-        <Tooltip position="left" content="lorem dolor sit dasd dasd adamet" >
-          <Button demo>abc</Button>
-        </Tooltip>
-        <Tooltip position="top" content="lorem  adamet" >
-          <Button demo>abc</Button>
-        </Tooltip>
-        <Tooltip position="right" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
-          <Button demo>abc</Button>
-        </Tooltip>
-        <Tooltip position="bottom" content="lorem dodsad da da aa dadlor sit dasd dasd adamet" >
-          <Button demo>abc</Button>
-        </Tooltip>
+          <List>
+            <ListItem.Avatar></ListItem.Avatar>
+          </List>
          </Container>
       </ThemeProvider>
     </div>

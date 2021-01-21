@@ -36,21 +36,6 @@ const theme = {
             medium: "36px",
             large: "42px"
         },
-        FBSize: {
-            small: "40px",
-            medium: "46px",
-            large: "52px"
-        },
-        svgSize: {
-            small: "18px",
-            medium: "22px",
-            large: "24px"
-        },
-        FBText: {
-            small: "12px",
-            medium: "14px",
-            large: "16px"
-        },
         weight: {
             light: 300,
             normal: 500,
@@ -95,20 +80,49 @@ const theme = {
             medium: "36px",
             large: "42px"
         },
-        FBSize: {
-            small: "40px",
-            medium: "46px",
-            large: "52px"
+        weight: {
+            light: 300,
+            normal: 500,
+            bold: 700
         },
-        svgSize: {
-            small: "18px",
-            medium: "22px",
-            large: "24px"
+        shadow: "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"
+    },
+    custom: {
+        name: "Custom Theme",
+        color: {
+            text: {
+                primary: "#404040",
+                secondary: "#575757",
+                link: "#2F8DE3",
+                visited: "#7B237B",
+                disabled: "#A3A3A3"
+            },
+            fill: {
+                primary: "#015A64",
+                secondary: "#212223",
+                disabled: "#C3C3C3",
+                success: "#0A842F",
+                warning: "#FFA000",
+                danger: "#CC1D33",
+                info: "#256EC2"
+            },
+            background: {
+                primary: "#FFFFFF",
+                secondary: "#E5E5E5"
+            },
+            border: {
+                primary: "#CCCCCC"
+            }
         },
-        FBText: {
-            small: "12px",
-            medium: "14px",
-            large: "16px"
+        textSize: {
+            small: "0.8rem",
+            medium: "1rem",
+            large: "1.2rem"
+        },
+        avatarSize: {
+            small: "30px",
+            medium: "36px",
+            large: "42px"
         },
         weight: {
             light: 300,

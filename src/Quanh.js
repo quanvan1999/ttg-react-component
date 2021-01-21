@@ -30,6 +30,8 @@ import Box from './components/Box'
 import IcoMail from './components/icons/IcoMail'
 import IcoSettings from './components/icons/IcoSettings'
 import IcoX from './components/icons/IcoX'
+import IcoArrowDownCircle from './components/icons/IcoArrowDownCircle'
+import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import Combox from './components/elements/Combox'
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
@@ -69,6 +71,7 @@ function Quanh() {
               <ButtonGroup fullWidth onSelect={x => setTheme(x)}>
                 <Button value="light">Light</Button>
                 <Button value="dark" default>Dark</Button>
+                <Button value="custom">Custom</Button>
               </ButtonGroup>
             </Container>
 
@@ -86,8 +89,12 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-              <FAB><IcoSettings/></FAB>
-              <FAB position><IcoSettings left/>font family</FAB>
+              <FAB size="large" onClick={() => document.documentElement.scrollTop = 0}>
+                <IcoArrowUpCircle/>
+              </FAB>
+              <FAB size="large" onClick={() => document.documentElement.scrollTop = document.body.scrollHeight} position>
+                <IcoArrowDownCircle/>
+              </FAB>
               <Box headline="Snackbar" block>
                 <Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={2000}>
                   <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Infomative message</Alert>

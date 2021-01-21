@@ -54,7 +54,7 @@ const StyledSpan = styled.span`
 `;
 const Input = styled.input`
     color: ${props => props.theme.color.text.primary};
-    padding: 4px 48px 4px 8px;
+    padding: 6px 48px 6px 8px;
     height: 100%;
     width: 100%;
     border: 2px solid ${props => props.focus ? props.theme.color.fill.primary : getFader(props.theme.color.fill.primary, 0.4)};

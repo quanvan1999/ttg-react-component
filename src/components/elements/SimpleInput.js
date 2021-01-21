@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 const StyledInput = styled.input`
     margin: ${props => props.demo? "8px": "0px"};
     color: ${props => props.theme.color.text.primary};
-    padding: 4px 8px;
+    padding: 6px 8px;
     border: 2px solid ${props => getFader(props.theme.color.fill.primary, 0.4)};
     outline: 0;
     border-radius: 5px;

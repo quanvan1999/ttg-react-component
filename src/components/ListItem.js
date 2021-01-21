@@ -7,8 +7,17 @@ import Icon from "./elements/Icon";
 import Button from "./elements/Button"
 import Link from "./elements/Link";
 import { Checkbox, Toggle } from './elements'
-const ripple = keyframes`
-`;
+const pulse = keyframes` 
+    0% {
+      transform: scale(1);
+    }
+    70% {
+      transform: scale(.9);
+    }
+      100% {
+      transform: scale(1);
+    }
+  `;
 const StyleItem = styled.li`
     display:flex;
     margin:5px 0;
@@ -17,22 +26,10 @@ const StyleItem = styled.li`
     background:transparent;
     align-items:center;
     position:relative;
-    &:hover::before{
-        opacity: 1;
-        transform: scale(1, 1);
-    }
-    &::before{
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        opacity: 0;
-        background-color: rgb(200 194 194 / 26%);
-        transition: all 0.5s;
-        transform: scale(0.5, 1);
+    &:hover{
+        transition:all 0.6s;
+        background:#eee;
+        opacity:1;
     }
     & button:last-child, label:last-child{
         position:absolute;

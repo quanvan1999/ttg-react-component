@@ -6,15 +6,22 @@ import Avatar from "./elements/Avatar"
 import Icon from "./elements/Icon";
 import Button from "./elements/Button"
 import Link from "./elements/Link";
-const StyleItem = styled.div`
+const StyleItem = styled.li`
     display:flex;
-    margin:0;
+    margin:5px 0;
     padding: 5px 10px;
     color:#000;
     background:transparent;
-
+    align-items:center;
+    justify-content:space-between;
+    &>p ,>button,>span,>div {
+        margin-right:15px;
+    }    
+    &>p:last-child ,>button:last-child,>span:last-child,>div:last-child {
+        margin-right:0;
+    } 
 `;
-
+const Text= styled.p``;
 
 
 const ListItem = (props) => {
@@ -32,8 +39,6 @@ const ListItem = (props) => {
                     child, 
                     {
                         onSelect: () => handleClick(child.props.value), 
-                        displayMode: props.displayMode,
-                        ingroup: true
                     })
             })
         }
@@ -45,6 +50,7 @@ ListItem.Avatar = Avatar
 ListItem.Icon = Icon
 ListItem.Button=Button
 ListItem.Link=Link
+ListItem.Text=Text
 
 
 ListItem.propTypes = {

@@ -8,6 +8,7 @@ const DivStyle = styled.div`
     border-radius: 50%;
     box-shadow: 0px 0px 5px rgba(0,0,0,1);
     vertical-align: bottom;
+    width:  ${props => props.fluid ? "100%" : props.theme.avatarSize[props.size] || "32px" };
     height:  ${props => props.fluid ? "100%" : props.theme.avatarSize[props.size] || "32px" };
 `;
 const ImgStyle = styled.img`

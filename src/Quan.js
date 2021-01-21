@@ -31,7 +31,17 @@ function Quan() {
       <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List "}>
           <List>
-            <ListItem.Avatar></ListItem.Avatar>
+              <ListItem>
+                <ListItem.Avatar></ListItem.Avatar>
+                <ListItem.Text>Đây là Avatar</ListItem.Text>
+                <ListItem.Button>Đây là Avatar</ListItem.Button>
+              </ListItem>
+              <ListItem>
+                <ListItem.Avatar></ListItem.Avatar>
+              </ListItem>
+              <ListItem>
+                <ListItem.Avatar></ListItem.Avatar>
+              </ListItem>
           </List>
          </Container>
       </ThemeProvider>

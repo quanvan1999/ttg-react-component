@@ -13,6 +13,7 @@ import List from './components/List'
 import ListItem from './components/ListItem'
 import Tooltip from './components/elements/Tooltip';
 import RippleButton from './components/RippleButton';
+import MentionsInput from './components/Mentions';
 
 
 function Quan() {
@@ -24,47 +25,16 @@ function Quan() {
     setRangeValue(parseInt(e.target.value, 10))
   }
   
-  const [open, setOpen] = useState(false)
+  const [tags, setTags] = useState([])
 
-  
   return (
     <div>
       <ThemeProvider theme = {theme.dark}>
         <Container headline = {"Simple List "}>
-          <List>
-              <ListItem>
-                <ListItem.Checkbox value="123"></ListItem.Checkbox>
-                <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button  type="outline" color="warning">Delete</ListItem.Button>
-              </ListItem>
-              <ListItem>
-                <ListItem.Checkbox value="123"></ListItem.Checkbox>
-                <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button type="outline" color="warning">Delete</ListItem.Button>
-              </ListItem>
-              <ListItem>
-                <ListItem.Checkbox value="123"></ListItem.Checkbox>
-                <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button  type="outline" color="warning">Delete</ListItem.Button>
-              </ListItem>
-              </List>
-              <List>
-              <ListItem>
-                <ListItem.Avatar></ListItem.Avatar>
-                <ListItem.Text>Brunch this weekend?
-Ali Connors — I'll be in your neighborhood doing errands this</ListItem.Text>
-                <ListItem.Button color="warning">Delete</ListItem.Button>
-              </ListItem>
-              <ListItem>
-                <ListItem.Avatar></ListItem.Avatar>
-                <ListItem.Link target="_blank" href="https://google.com">Link google new tab</ListItem.Link>
-              </ListItem>
-              <ListItem>
-                <ListItem.Icon><IconInfo/></ListItem.Icon>
-                <ListItem.Link target="_blank" href="https://google.com">Link google</ListItem.Link>
-                <ListItem.Toggle></ListItem.Toggle>
-              </ListItem>
-          </List>
+        <MentionsInput 
+       mentions={tags}
+       onChange={tags => setTags(tags)}
+     />
          </Container>
       </ThemeProvider>
     </div>

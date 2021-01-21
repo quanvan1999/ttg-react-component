@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const StyleList = styled.ul`
-    border-bottom:2px solid #eee;
+    border-bottom:2px solid ${props => props.theme.color.border.primary};
     display:flex;
     padding-bottom:5px;
     flex-direction:column;

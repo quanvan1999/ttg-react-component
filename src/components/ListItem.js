@@ -19,16 +19,17 @@ const pulse = keyframes`
     }
   `;
 const StyleItem = styled.li`
+
     display:flex;
-    margin:5px 0;
-    padding: 15px;
-    color:#000;
+    margin: 0;
+    padding: 15px 10px;
+    color:;
     background:transparent;
     align-items:center;
     position:relative;
     &:hover{
         transition:all 0.6s;
-        background:#eee;
+        background:${props => props.theme.color.border.primary};
         opacity:1;
     }
     & button:last-child, label:last-child{
@@ -36,7 +37,9 @@ const StyleItem = styled.li`
         right:5px;
     }
     & p , a{
-        margin: 0 10px;
+        line-height:1.2;
+        color: ${props => props.theme.color.text.primary};
+        margin: 0 10px 0 12px;
         max-width:150px;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;

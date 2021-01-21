@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import PropTypes from 'prop-types'
 import RippleButton from "./RippleButton"
 import Avatar from "./elements/Avatar"
@@ -7,17 +7,36 @@ import Icon from "./elements/Icon";
 import Button from "./elements/Button"
 import Link from "./elements/Link";
 import { Checkbox, Toggle } from './elements'
+const ripple = keyframes`
+`;
 const StyleItem = styled.li`
     display:flex;
     margin:5px 0;
-    padding: 5px 10px;
+    padding: 15px;
     color:#000;
     background:transparent;
     align-items:center;
     position:relative;
+    &:hover::before{
+        opacity: 1;
+        transform: scale(1, 1);
+    }
+    &::before{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0;
+        background-color: rgb(200 194 194 / 26%);
+        transition: all 0.5s;
+        transform: scale(0.5, 1);
+    }
     & button:last-child, label:last-child{
         position:absolute;
-        right:0;
+        right:5px;
     }
     & p , a{
         margin: 0 10px;

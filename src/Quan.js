@@ -34,17 +34,17 @@ function Quan() {
               <ListItem>
                 <ListItem.Checkbox value="123"></ListItem.Checkbox>
                 <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button color="warning">Delete</ListItem.Button>
+                <ListItem.Button  type="outline" color="warning">Delete</ListItem.Button>
               </ListItem>
               <ListItem>
                 <ListItem.Checkbox value="123"></ListItem.Checkbox>
                 <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button color="warning">Delete</ListItem.Button>
+                <ListItem.Button type="outline" color="warning">Delete</ListItem.Button>
               </ListItem>
               <ListItem>
                 <ListItem.Checkbox value="123"></ListItem.Checkbox>
                 <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button color="warning">Delete</ListItem.Button>
+                <ListItem.Button  type="outline" color="warning">Delete</ListItem.Button>
               </ListItem>
               </List>
               <List>

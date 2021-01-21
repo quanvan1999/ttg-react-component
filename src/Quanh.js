@@ -97,7 +97,7 @@ function Quanh() {
               </FAB>
               <Box headline="Snackbar" block>
                 <Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={2000}>
-                  <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Infomative message</Alert>
+                  <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Informative message</Alert>
                 </Snackbar>
                 <Button onClick={() => setSnackbarState(!snackbarState)}>Toggle Snackbar</Button>
               </Box>

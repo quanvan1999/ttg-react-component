@@ -22,7 +22,8 @@ import {
   Alert,
   Calendar,
   Snackbar,
-  FAB
+  FAB,
+  Tooltip
 } from './components/elements'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
@@ -89,12 +90,12 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-              <FAB size="large" onClick={() => document.documentElement.scrollTop = 0}>
-                <IcoArrowUpCircle/>
-              </FAB>
-              <FAB size="large" onClick={() => document.documentElement.scrollTop = document.body.scrollHeight} position>
-                <IcoArrowDownCircle/>
-              </FAB>
+              <Box headline="Tooltip" block>
+                <Tooltip content="Useful animation about this button">
+                  <Button color="info">Beautiful Button with tooltip</Button>
+                </Tooltip>
+              </Box>
+              
               <Box headline="Snackbar" block>
                 <Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={2000}>
                   <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Informative message</Alert>
@@ -311,6 +312,12 @@ function Quanh() {
               <Box headline="Slide">
                 <Slider displayMode={mode} fullWidth defaultValue={50}/>
               </Box>
+              <FAB size="large" onClick={() => document.documentElement.scrollTop = 0}>
+                <IcoArrowUpCircle/>
+              </FAB>
+              <FAB size="large" onClick={() => document.documentElement.scrollTop = document.body.scrollHeight} position>
+                <IcoArrowDownCircle/>
+              </FAB>
             </Container>
           </Container>
         </FontProvider>

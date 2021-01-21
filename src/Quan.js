@@ -30,6 +30,9 @@ function Quan() {
     <div>
       <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List "}>
+          <Tooltip content="Useful animation about this button" >
+            <Button color="info">Beautiful Button with tooltip</Button>
+          </Tooltip>
           <List>
               <ListItem>
                 <ListItem.Checkbox value="123"></ListItem.Checkbox>
@@ -39,7 +42,7 @@ function Quan() {
               <ListItem>
                 <ListItem.Checkbox value="123"></ListItem.Checkbox>
                 <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button type="outline" color="warning">Delete</ListItem.Button>
+                <ListItem.Button type="outline" color="info ">Delete</ListItem.Button>
               </ListItem>
               <ListItem>
                 <ListItem.Checkbox value="123"></ListItem.Checkbox>

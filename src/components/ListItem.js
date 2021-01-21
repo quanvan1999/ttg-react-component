@@ -6,6 +6,7 @@ import Avatar from "./elements/Avatar"
 import Icon from "./elements/Icon";
 import Button from "./elements/Button"
 import Link from "./elements/Link";
+import { Checkbox, Toggle } from './elements'
 const StyleItem = styled.li`
     display:flex;
     margin:5px 0;
@@ -13,13 +14,20 @@ const StyleItem = styled.li`
     color:#000;
     background:transparent;
     align-items:center;
-    justify-content:space-between;
-    &>p ,>button,>span,>div {
-        margin-right:15px;
-    }    
-    &>p:last-child ,>button:last-child,>span:last-child,>div:last-child {
-        margin-right:0;
-    } 
+    position:relative;
+    & button:last-child, label:last-child{
+        position:absolute;
+        right:0;
+    }
+    & p , a{
+        margin: 0 10px;
+        max-width:150px;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+    }
 `;
 const Text= styled.p``;
 
@@ -49,6 +57,8 @@ const ListItem = (props) => {
 ListItem.Avatar = Avatar
 ListItem.Icon = Icon
 ListItem.Button=Button
+ListItem.Checkbox=Checkbox
+ListItem.Toggle=Toggle
 ListItem.Link=Link
 ListItem.Text=Text
 

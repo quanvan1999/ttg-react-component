@@ -12,7 +12,6 @@ function App() {
       <Quan path="/quan"/>
       <Dat path="/dat"/>
     </Router>
-    
   )
 }
 

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import React from 'react'
 const MenuComponent = styled.div`
     float: right;
-    margin: 0 0 0 .5rem;
+    margin: 0.5rem 0 0 .5rem;
 }
 `;
 
@@ -24,8 +24,8 @@ const Item = styled.a`
     }
 `;
 
-const handleClick = (props)=>{
-    console.log(props)
+const handleClick = ()=>{
+    
 }
 
 const Menu = (props)=>{
@@ -36,7 +36,7 @@ const Menu = (props)=>{
                 return React.cloneElement(
                     child, 
                     {
-                        onSelect: () => handleClick(child.props.value), 
+                        onSelect: () => handleClick(), 
                         displayMode: props.displayMode,
                         ingroup: true
                     })

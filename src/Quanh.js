@@ -95,9 +95,7 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-              <Box headline="Pagination">
-                <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={(x) => setActivePage(x)} activePage={activePage} />
-              </Box>
+                  <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={(x) => setActivePage(x)} activePage={activePage} />
               <Box headline="Tooltip">
                 <Tooltip content="Useful animation about this button">
                   <Button demo color="danger" type="contained">Hover to see tooltip at the bottom</Button>

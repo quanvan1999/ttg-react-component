@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 const PaginationParent = styled.div`
     font-size: 16px;
     line-height: 1.6; 
-    font-family: Marmelad,"Lucida Grande",Arial,"Hiragino Sans GB",Georgia,sans-serif;
-    box-sizing: initial;
     ul{
         li:last-child>a {
             border-radius: 0 3px 3px 0;
@@ -15,14 +13,14 @@ const PaginationParent = styled.div`
 `;
 const PaginationPage = styled.div`
     float: left;
-    //border-top: 1px solid rgba(34,36,38,.15);
-    //border-left: 1px solid rgba(34,36,38,.15);
-    //border-bottom: 1px solid rgba(34,36,38,.15);
     border: 1px solid rgba(34,36,38,.15);
-    -webkit-box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
     box-shadow: 0.5px 2px 2px 2px rgba(34,36,38,.15);
     border-radius: .28571429rem;
     overflow: hidden;
+
+    .active{
+        background: gray;
+    }
 `;
 const Ul = styled.ul`
     float: left;
@@ -33,10 +31,11 @@ const Li = styled.li`
     float: left;
     list-style: none;
     padding: 5px 10px;
-    background: none};
+    background: none;
     position: relative;
-    width: 35px;
+    width: auto;
     text-align: center;
+    width: 2.5em;
     &:hover{
         background: #eee;
         cursor: pointer;
@@ -60,21 +59,21 @@ const A = styled.a``;
 function Pagination(props){
     var {totalPage, boundary, sibling, handleGetValue, activePage} = props
     const [page, setPage] = useState(activePage)
-    
     const hanldeSetPage = (props)=>{
-        if(page !== "..."){
+        if(props !== "..."){
             if(props <= 1){ setPage(1)}
             else if(props >= totalPage){ setPage(totalPage)}
             else{setPage(props)}
         }
     }
-
     var data_middle = []; 
     var data_right = []; 
     var data_left = []
+
     const [paginationMid, setPaginationMid] = useState([])
     const [paginationLeft, setPaginationLeft] = useState([])
     const [paginationRight, setPaginationRight] = useState([])
+
     useEffect(()=>{
         handleGetValue(page)
         if(boundary && sibling){
@@ -86,7 +85,7 @@ function Pagination(props){
             } //end    
         }
 
-        // xét lại pagination nếu totalPage > 10
+        // set lại pagination nếu totalPage > 10
         if(totalPage <= 10){
             setPaginationMid(data_middle)
             setPaginationLeft(data_left)
@@ -95,7 +94,7 @@ function Pagination(props){
             let lefttemp = [], righttemp = [], midtemp = []
             if(page <= boundary + sibling + 1){
                 lefttemp = data_left
-                for(let i=boundary+1; i<=boundary+sibling+2; i++){
+                for(let i=boundary+1; i<=(boundary + 1 + sibling*2 + 1); i++){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
@@ -110,29 +109,21 @@ function Pagination(props){
                 }
                 midtemp.push("...")
             }
-            else if(page >= (totalPage - boundary - sibling) && page < (totalPage - sibling -1 )){
-                lefttemp = data_left
-                midtemp.push("...")
-                for(let i=(totalPage-boundary-sibling); i<=(totalPage - boundary); i++){
-                    midtemp.push(i)
-                }
-                righttemp = data_right
-            }
             else{
                 lefttemp = data_left
                 midtemp.push("...")
-                for(let i=(totalPage - boundary - sibling - 1); i<=(totalPage - boundary); i++){
+                for(let i=(totalPage - boundary - sibling*2 - 1); i<=(totalPage - boundary); i++){
                     midtemp.push(i)
                 }
                 righttemp = data_right
-                console.log("5")
             }
             setPaginationLeft(lefttemp)
             setPaginationMid(midtemp)
             setPaginationRight(righttemp)
         }
     },[page])
-    return(
+
+    return( 
         <PaginationParent>
             <PaginationPage>
                 <Ul>
@@ -140,7 +131,7 @@ function Pagination(props){
                     {
                         paginationLeft.map((value, index)=>{
                             return(
-                                <Li key={index} onClick={()=>hanldeSetPage(value)}>
+                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
                                     <A>{value}</A>
                                 </Li>
                             )
@@ -157,7 +148,7 @@ function Pagination(props){
                     {
                         paginationRight.map((value, index)=>{
                             return(
-                                <Li key={index} onClick={()=>hanldeSetPage(value)}>
+                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
                                     <A>{value}</A>
                                 </Li>
                             )
@@ -172,12 +163,15 @@ function Pagination(props){
 
 Pagination.defaultProps = {
     boundary: 1,
-    sibling: 1
+    sibling: 1,
+    onSelect: (v) => {}
 }
 
 Pagination.propTypes ={
     boundary: PropTypes.number,
-    sibling: PropTypes.number
+    sibling: PropTypes.number,
+    activePage: PropTypes.number.isRequired,
+    onSelect: PropTypes.func
 }
 
 export default Pagination

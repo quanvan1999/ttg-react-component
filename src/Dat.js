@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import Table from './components/Table/Table'
 import Container from './components/Container'
 import theme from './utils/theme'
-import Pagination from './components/elements/Pagination'
+import {Pagination} from './components/elements'
 
 export default function Dat() {
   // const [data, setData] = useState([]);
@@ -29,7 +29,6 @@ export default function Dat() {
   return (
     <ThemeProvider theme = {theme.light}>
       <Container headline = {"Table Component"}>
-        
         <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={handleGetValue} activePage={1} />
       </Container>
     </ThemeProvider>

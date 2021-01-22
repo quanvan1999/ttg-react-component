@@ -1,3 +1,4 @@
+/* global emojione */
 import {ThemeProvider} from 'styled-components'
 import { React } from "react";
 import Container from './components/Container'
@@ -13,7 +14,8 @@ import List from './components/List'
 import ListItem from './components/ListItem'
 import Tooltip from './components/elements/Tooltip';
 import RippleButton from './components/RippleButton';
-import MentionsInput from './components/Mentions';
+import AutoComplete,{Completion} from './components/Mentions/AutoComplete';
+
 
 
 function Quan() {
@@ -25,16 +27,29 @@ function Quan() {
     setRangeValue(parseInt(e.target.value, 10))
   }
   
-  const [tags, setTags] = useState([])
+  const [select, setSelect] = useState()
+ const users = [
+    'ReAnna',
+    'KellyBelly',
+    'kool_panda',
+    'SekshiBot',
+    'DimSum',
+    'hihello59',
+    'Hitagi',
+    'Zacaeus',
+  ];
 
   return (
     <div>
-      <ThemeProvider theme = {theme.dark}>
+      <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List "}>
-        <MentionsInput 
-       mentions={tags}
-       onChange={tags => setTags(tags)}
-     />
+        <AutoComplete width={300} >
+        <Completion
+          trigger="@"
+          completions={users}
+          minLength={1}
+        />
+      </AutoComplete>
          </Container>
       </ThemeProvider>
     </div>

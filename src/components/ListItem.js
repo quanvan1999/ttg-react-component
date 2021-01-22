@@ -26,26 +26,12 @@ const StyleItem = styled.li`
     color:;
     background:transparent;
     align-items:center;
-    position:relative;
-    &:hover{
-        transition:all 0.6s;
-        background:${props => props.theme.color.border.primary};
-        opacity:1;
-    }
-    & button:last-child, label:last-child{
-        position:absolute;
-        right:5px;
-    }
-    & p , a{
-        line-height:1.2;
-        color: ${props => props.theme.color.text.primary};
-        margin: 0 10px 0 12px;
-        max-width:150px;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
+    justify-content:space-between;
+    flex-wrap: wrap;
+    width: auto;
+
+    p{
+        margin: 10px;
     }
 `;
 const Text= styled.p``;

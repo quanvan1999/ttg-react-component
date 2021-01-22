@@ -90,12 +90,12 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-              <Box headline="Tooltip" block>
+              <Box headline="Tooltip">
                 <Tooltip content="Useful animation about this button">
-                  <Button demo color="danger" type="contained">Beautiful Button with tooltip</Button>
+                  <Button demo color="danger" type="contained">Hover to see tooltip at the bottom</Button>
                 </Tooltip>
                 <Tooltip content="Useful animation about this button" position="top">
-                  <Button demo color="danger" type="contained">Beautiful Button with tooltip</Button>
+                  <Button demo color="success" type="contained">Hover to see tooltip at the top</Button>
                 </Tooltip>
               </Box>
               
@@ -103,7 +103,7 @@ function Quanh() {
                 <Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={2000}>
                   <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Informative message</Alert>
                 </Snackbar>
-                <Button onSelect={() => setSnackbarState(!snackbarState)}>Toggle Snackbar</Button>
+                <Button demo onSelect={() => setSnackbarState(!snackbarState)}>Toggle Snackbar</Button>
               </Box>
               <Box headline="Alert">
                 <Alert demo color="success" action={<strong>UNDO</strong>}>
@@ -111,10 +111,6 @@ function Quanh() {
                   This is a success message with a title!
                 </Alert>
                 <Alert demo color="danger" type="contained" action={<IcoX/>}>This is a danger message!</Alert>
-                <Alert demo color="info" action={<IcoX/>}>This is an info message!</Alert>
-                <Alert demo color="warning" action={<IcoX/>}>This is a warning message!</Alert>
-                <Alert demo color="primary" action={<IcoX/>}>This is a primary message!</Alert>
-                <Alert demo color="secondary" action={<IcoX/>}>This is a secondary message!</Alert>
               </Box>
               <Box headline="Combox">
                 <Box.Item>

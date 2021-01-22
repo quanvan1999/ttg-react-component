@@ -20,6 +20,7 @@ const PaginationPage = styled.div`
     box-shadow: 0.5px 2px 2px 2px rgba(34,36,38,.15);
     border-radius: .28571429rem;
     overflow: hidden;
+
     .active{
         background: gray;
     }
@@ -35,8 +36,9 @@ const Li = styled.li`
     padding: 5px 10px;
     background: none;
     position: relative;
-    width: 2.5em;
+    width: auto;
     text-align: center;
+    width: 2.5em;
     &:hover{
         background: #eee;
         cursor: pointer;
@@ -91,16 +93,16 @@ function Pagination(props){
             setPaginationRight(data_right)
         }else{
 
-            //1 vs 2   2*2+1*2+3 =10
+            // sibling*2 + boundary*2 + 3
+            // exp 4+4+3 = 11
             let lefttemp = [], righttemp = [], midtemp = []
             if(page <= boundary + sibling + 1){
                 lefttemp = data_left
-                for(let i=boundary+1; i<=(boundary + sibling*2 + 3); i++){
+                for(let i=boundary+1; i<=(boundary*2 + sibling*2); i++){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
                 righttemp = data_right
-                console.log("1")
             }
             else if(page >= (boundary + sibling - 1) && page <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
@@ -110,7 +112,6 @@ function Pagination(props){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
-                console.log("2")
             }
             else{
                 lefttemp = data_left
@@ -119,7 +120,6 @@ function Pagination(props){
                     midtemp.push(i)
                 }
                 righttemp = data_right
-                console.log("4")
             }
             setPaginationLeft(lefttemp)
             setPaginationMid(midtemp)
@@ -127,7 +127,7 @@ function Pagination(props){
         }
     },[page])
 
-    return(
+    return( 
         <PaginationParent>
             <PaginationPage>
                 <Ul>
@@ -175,4 +175,4 @@ Pagination.propTypes ={
     sibling: PropTypes.number
 }
 
-export default Pagination 
+export default Pagination

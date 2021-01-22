@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components'
 import Table from './components/Table/Table'
 import Container from './components/Container'
 import theme from './utils/theme'
-import Pagination from './components/Table/Pagination'
+import Pagination from './components/elements/Pagination'
 
 export default function Dat() {
   // const [data, setData] = useState([]);

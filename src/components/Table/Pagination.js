@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import { act } from 'react-dom/test-utils';
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const PaginationParent = styled.div`
     font-size: 16px;
@@ -63,8 +63,6 @@ function Pagination(props){
                 else if(i>totalPage - boundary){ data_right.push(i) }
                 else{ data_middle.push(i) }
             } //end    
-        }else{
-            throw new Error ("You have to pass variable boundary and sibling");
         }
 
         // xét lại pagination nếu totalPage > 10
@@ -76,22 +74,39 @@ function Pagination(props){
             let lefttemp = [], righttemp = [], midtemp = []
             if(activePage <= boundary + sibling + 1){
                 lefttemp = data_left
-                midtemp = [boundary + sibling , boundary + sibling + 1, boundary + sibling + 2, "..."]
+                // midtemp = [boundary + sibling , boundary + sibling + 1, boundary + sibling + 2, "..."]
+                for(let i=boundary+1; i<=boundary+sibling+1; i++){
+                    midtemp.push(i)
+                }
+                midtemp.push("...")
                 righttemp = data_right
             }
-            else if(activePage > (boundary + sibling - 1) && activePage <= (totalPage - sibling - boundary - 1)){
+            else if(activePage >= (boundary + sibling - 1) && activePage <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
                 righttemp = data_right
-                midtemp = ["...", activePage-1, activePage, activePage+1,"..."]
+                midtemp.push("...")
+                // midtemp = ["...", activePage-1, activePage, activePage+1,"..."]
+                for(let i=(activePage - sibling); i<=(activePage+sibling); i++){
+                    midtemp.push(i)
+                }
+                midtemp.push("...")
             }
-            else if(activePage >= (totalPage - boundary - sibling - 1) && activePage < (totalPage - boundary )){
+            else if(activePage >= (totalPage - boundary - sibling) && activePage < (totalPage - boundary )){
                 lefttemp = data_left
-                midtemp = ["...",activePage, activePage + 1]
+                // midtemp = ["...",activePage, activePage + 1]
+                midtemp.push("...")
+                for(let i=(totalPage-boundary-sibling); i<=(totalPage - boundary); i++){
+                    midtemp.push(i)
+                }
                 righttemp = data_right
             }
             else{
                 lefttemp = data_left
-                midtemp = ["...",totalPage - boundary -sibling, totalPage - boundary - sibling + 1]
+                // midtemp = ["...",totalPage - boundary -sibling, totalPage - boundary - sibling + 1]
+                midtemp.push("...")
+                for(let i=(totalPage - boundary - sibling); i<=(totalPage - boundary); i++){
+                    midtemp.push(i)
+                }
                 righttemp = data_right
             }
             setPaginationLeft(lefttemp)
@@ -135,6 +150,16 @@ function Pagination(props){
             </PaginationPage>
         </PaginationParent>
     )
+}
+
+Pagination.defaultProps = {
+    boundary: 1,
+    sibling: 1
+}
+
+Pagination.propTypes ={
+    boundary: PropTypes.number,
+    sibling: PropTypes.number
 }
 
 export default Pagination

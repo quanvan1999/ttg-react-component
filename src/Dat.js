@@ -34,7 +34,7 @@ export default function Dat() {
   return (
     <ThemeProvider theme = {theme.light}>
       <Container headline = {"Table Component"}>
-        <Pagination totalPage={15} boundary={2} sibling={1} handleSetActive={handleSetActive} activePage={activePage} />
+        <Pagination totalPage={20} boundary={3} sibling={3} handleSetActive={handleSetActive} activePage={activePage} />
       </Container>
     </ThemeProvider>
   )

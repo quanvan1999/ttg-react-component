@@ -14,12 +14,12 @@ const StyleItem = styled.li`
     background:transparent;
     align-items:center;
     justify-content:space-between;
-    &>p ,>button,>span,>div {
-        margin-right:15px;
-    }    
-    &>p:last-child ,>button:last-child,>span:last-child,>div:last-child {
-        margin-right:0;
-    } 
+    flex-wrap: wrap;
+    width: auto;
+
+    p{
+        margin: 10px;
+    }
 `;
 const Text= styled.p``;
 

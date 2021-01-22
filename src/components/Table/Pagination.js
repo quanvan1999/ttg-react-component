@@ -101,7 +101,6 @@ function Pagination(props){
                 }
                 midtemp.push("...")
                 righttemp = data_right
-                console.log("1")
             }
             else if(page >= (boundary + sibling - 1) && page <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
@@ -111,7 +110,6 @@ function Pagination(props){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
-                console.log("2")
             }
             else{
                 lefttemp = data_left
@@ -120,7 +118,6 @@ function Pagination(props){
                     midtemp.push(i)
                 }
                 righttemp = data_right
-                console.log("4")
             }
             setPaginationLeft(lefttemp)
             setPaginationMid(midtemp)

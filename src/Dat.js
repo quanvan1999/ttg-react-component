@@ -24,16 +24,10 @@ export default function Dat() {
   // const rowPerPage = useRef(10)
   const [activePage, setActive] = useState(1)
 
-  const handleSetActive = (props)=>{
-    if(props !== "..."){
-      console.log(props)
-      if(props === 0 ){
-        setActive(1)
-      }else if(props === 15){
-        setActive(15)
-      }else{
-        setActive(props)
-      }
+  const handleSetActive = (active)=>{
+    if(active !== "..."){
+      console.log(active)
+      setActive(active)
     }
   }
 

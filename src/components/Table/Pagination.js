@@ -51,6 +51,11 @@ function Pagination(props){
     const [paginationLeft, setPaginationLeft] = useState([])
     const [paginationRight, setPaginationRight] = useState([])
     useEffect(()=>{
+        if(activePage === 1){
+            activePage = 1
+        }else if(activePage >= totalPage){
+            activePage = totalPage
+        }
         if(boundary && sibling){
             // lay so page 
             for(let i=1; i <= totalPage; i++){
@@ -69,12 +74,12 @@ function Pagination(props){
             setPaginationRight(data_right)
         }else{
             let lefttemp = [], righttemp = [], midtemp = []
-            if(activePage < boundary + sibling + 1){
+            if(activePage <= boundary + sibling + 1){
                 lefttemp = data_left
                 midtemp = [boundary + sibling , boundary + sibling + 1, boundary + sibling + 2, "..."]
                 righttemp = data_right
             }
-            else if(activePage >= (boundary + sibling + 1) && activePage <= (totalPage - sibling - boundary - 1)){
+            else if(activePage > (boundary + sibling - 1) && activePage <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
                 righttemp = data_right
                 midtemp = ["...", activePage-1, activePage, activePage+1,"..."]
@@ -94,7 +99,6 @@ function Pagination(props){
             setPaginationRight(righttemp)
         }
     },[activePage])
-
     return(
         <PaginationParent>
             <PaginationPage>

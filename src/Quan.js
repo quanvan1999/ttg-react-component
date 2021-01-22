@@ -1,3 +1,4 @@
+/* global emojione */
 import {ThemeProvider} from 'styled-components'
 import { React } from "react";
 import Container from './components/Container'
@@ -13,7 +14,8 @@ import List from './components/List'
 import ListItem from './components/ListItem'
 import Tooltip from './components/elements/Tooltip';
 import RippleButton from './components/RippleButton';
-import MentionsInput from './components/Mentions';
+import AutoComplete,{Completion} from './components/Mentions/AutoComplete';
+
 
 
 function Quan() {
@@ -25,71 +27,29 @@ function Quan() {
     setRangeValue(parseInt(e.target.value, 10))
   }
   
-  const [tags, setTags] = useState([])
+  const [select, setSelect] = useState()
+ const users = [
+    'ReAnna',
+    'KellyBelly',
+    'kool_panda',
+    'SekshiBot',
+    'DimSum',
+    'hihello59',
+    'Hitagi',
+    'Zacaeus',
+  ];
 
   return (
     <div>
-      <ThemeProvider theme = {theme.dark}>
-        <Container>
-          <Tooltip  content="Useful animation about this button" >
-            <Button demo color="info">Beautiful </Button>
-          </Tooltip>
-          <Tooltip  content="Useful animation about this button" >
-            <Button demo color="info">Beautiful </Button>
-          </Tooltip>
-          <Tooltip  content="Useful animation about this button" >
-            <Button demo color="info">Beautiful </Button>
-          </Tooltip>
-          <Tooltip  content="Useful animation about this button" >
-            <Button demo color="info">Beautiful </Button>
-          </Tooltip>
-          <Tooltip  content="Useful animation about this button" >
-            <Button demo color="info">Beautiful </Button>
-          </Tooltip>
-          <Tooltip  content="Useful animation about this button" >
-            <Button demo color="info">Beautiful </Button>
-          </Tooltip>
-          <Tooltip  content="Useful animation about this button" >
-            <Button demo color="info">Beautiful </Button>
-          </Tooltip>
-          <List>
-              <ListItem>
-                <ListItem.Checkbox value="123"></ListItem.Checkbox>
-                <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button  type="outline" color="warning">Delete</ListItem.Button>
-              </ListItem>
-              <ListItem>
-                <ListItem.Checkbox value="123"></ListItem.Checkbox>
-                <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button type="outline" color="info ">Delete</ListItem.Button>
-              </ListItem>
-              <ListItem>
-                <ListItem.Checkbox value="123"></ListItem.Checkbox>
-                <ListItem.Text>List Item 1</ListItem.Text>
-                <ListItem.Button  type="outline" color="warning">Delete</ListItem.Button>
-              </ListItem>
-              </List>
-              <List>
-              <ListItem>
-                <ListItem.Avatar></ListItem.Avatar>
-                <ListItem.Text>Brunch this weekend?
-Ali Connors — I'll be in your neighborhood doing errands this</ListItem.Text>
-                <ListItem.Button color="warning">Delete</ListItem.Button>
-              </ListItem>
-              <ListItem>
-                <ListItem.Avatar></ListItem.Avatar>
-                <ListItem.Link target="_blank" href="https://google.com">Link google new tab</ListItem.Link>
-              </ListItem>
-              <ListItem>
-                <ListItem.Icon><IconInfo/></ListItem.Icon>
-                <ListItem.Link target="_blank" href="https://google.com">Link google</ListItem.Link>
-                <ListItem.Toggle></ListItem.Toggle>
-              </ListItem>
-          </List>
-        <MentionsInput 
-       mentions={tags}
-       onChange={tags => setTags(tags)}
-     />
+      <ThemeProvider theme = {theme.light}>
+        <Container headline = {"Simple List "}>
+        <AutoComplete width={300} >
+        <Completion
+          trigger="@"
+          completions={users}
+          minLength={1}
+        />
+      </AutoComplete>
          </Container>
       </ThemeProvider>
     </div>

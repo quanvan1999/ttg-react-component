@@ -7,7 +7,6 @@ const PaginationParent = styled.div`
     line-height: 1.6; 
     font-family: Marmelad,"Lucida Grande",Arial,"Hiragino Sans GB",Georgia,sans-serif;
     box-sizing: initial;
-    
     ul{
         li:last-child>a {
             border-radius: 0 3px 3px 0;
@@ -16,6 +15,14 @@ const PaginationParent = styled.div`
 `;
 const PaginationPage = styled.div`
     float: left;
+    //border-top: 1px solid rgba(34,36,38,.15);
+    //border-left: 1px solid rgba(34,36,38,.15);
+    //border-bottom: 1px solid rgba(34,36,38,.15);
+    border: 1px solid rgba(34,36,38,.15);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    box-shadow: 0.5px 2px 2px 2px rgba(34,36,38,.15);
+    border-radius: .28571429rem;
+    overflow: hidden;
 `;
 const Ul = styled.ul`
     float: left;
@@ -24,38 +31,52 @@ const Ul = styled.ul`
 `;
 const Li = styled.li`
     float: left;
-    border: 1px solid #aaa;
     list-style: none;
     padding: 5px 10px;
-    background: ${props => props.background ? 'gray' : 'none'};
+    background: none};
+    position: relative;
+    width: 35px;
+    text-align: center;
     &:hover{
         background: #eee;
         cursor: pointer;
     }
-
     &:active{
-        color: black;
-        background: #eee;
+        color: white;
+        background: rgba(34,36,38,.15);
+    }
+    &::before{
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 1px;
+        background: rgba(34,36,38,.1);
     }
 `;
 const A = styled.a``;
 
 function Pagination(props){
-    var {totalPage, boundary, sibling, handleSetActive, activePage} = props
+    var {totalPage, boundary, sibling, handleGetValue, activePage} = props
+    const [page, setPage] = useState(activePage)
+    
+    const hanldeSetPage = (props)=>{
+        if(page !== "..."){
+            if(props <= 1){ setPage(1)}
+            else if(props >= totalPage){ setPage(totalPage)}
+            else{setPage(props)}
+        }
+    }
+
     var data_middle = []; 
     var data_right = []; 
     var data_left = []
-    // const [boundarytemp, setBoundary] = useState(boundary)
-    // const [siblingtemp, setSibling] = useState(sibling)
     const [paginationMid, setPaginationMid] = useState([])
     const [paginationLeft, setPaginationLeft] = useState([])
     const [paginationRight, setPaginationRight] = useState([])
     useEffect(()=>{
-        if(activePage === 1){
-            activePage = 1
-        }else if(activePage >= totalPage){
-            activePage = totalPage
-        }
+        handleGetValue(page)
         if(boundary && sibling){
             // lay so page 
             for(let i=1; i <= totalPage; i++){
@@ -72,28 +93,25 @@ function Pagination(props){
             setPaginationRight(data_right)
         }else{
             let lefttemp = [], righttemp = [], midtemp = []
-            if(activePage <= boundary + sibling + 1){
+            if(page <= boundary + sibling + 1){
                 lefttemp = data_left
-                // midtemp = [boundary + sibling , boundary + sibling + 1, boundary + sibling + 2, "..."]
-                for(let i=boundary+1; i<=boundary+sibling+1; i++){
+                for(let i=boundary+1; i<=boundary+sibling+2; i++){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
                 righttemp = data_right
             }
-            else if(activePage >= (boundary + sibling - 1) && activePage <= (totalPage - sibling - boundary - 1)){
+            else if(page >= (boundary + sibling - 1) && page <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
                 righttemp = data_right
                 midtemp.push("...")
-                // midtemp = ["...", activePage-1, activePage, activePage+1,"..."]
-                for(let i=(activePage - sibling); i<=(activePage+sibling); i++){
+                for(let i=(page - sibling); i<=(page+sibling); i++){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
             }
-            else if(activePage >= (totalPage - boundary - sibling) && activePage < (totalPage - boundary )){
+            else if(page >= (totalPage - boundary - sibling) && page < (totalPage - sibling -1 )){
                 lefttemp = data_left
-                // midtemp = ["...",activePage, activePage + 1]
                 midtemp.push("...")
                 for(let i=(totalPage-boundary-sibling); i<=(totalPage - boundary); i++){
                     midtemp.push(i)
@@ -102,27 +120,27 @@ function Pagination(props){
             }
             else{
                 lefttemp = data_left
-                // midtemp = ["...",totalPage - boundary -sibling, totalPage - boundary - sibling + 1]
                 midtemp.push("...")
-                for(let i=(totalPage - boundary - sibling); i<=(totalPage - boundary); i++){
+                for(let i=(totalPage - boundary - sibling - 1); i<=(totalPage - boundary); i++){
                     midtemp.push(i)
                 }
                 righttemp = data_right
+                console.log("5")
             }
             setPaginationLeft(lefttemp)
             setPaginationMid(midtemp)
             setPaginationRight(righttemp)
         }
-    },[activePage])
+    },[page])
     return(
         <PaginationParent>
             <PaginationPage>
                 <Ul>
-                    <Li onClick={()=>handleSetActive(activePage - 1)}><A>«</A></Li>
+                    <Li onClick={()=>hanldeSetPage(page - 1)}><A>«</A></Li>
                     {
                         paginationLeft.map((value, index)=>{
                             return(
-                                <Li key={index} onClick={()=>handleSetActive(value)}>
+                                <Li key={index} onClick={()=>hanldeSetPage(value)}>
                                     <A>{value}</A>
                                 </Li>
                             )
@@ -130,7 +148,7 @@ function Pagination(props){
                     }
                     { paginationMid.map((value, index)=>{
                             return(
-                                <Li key={index} onClick={()=>handleSetActive(value)} value={value}>
+                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
                                     <A>{value}</A>
                                 </Li>
                             )
@@ -139,13 +157,13 @@ function Pagination(props){
                     {
                         paginationRight.map((value, index)=>{
                             return(
-                                <Li key={index} onClick={()=>handleSetActive(value)}>
+                                <Li key={index} onClick={()=>hanldeSetPage(value)}>
                                     <A>{value}</A>
                                 </Li>
                             )
                         })
                     }
-                    <Li onClick={()=>handleSetActive(activePage + 1)}><A>»</A></Li>
+                    <Li onClick={()=>hanldeSetPage(page + 1)}><A>»</A></Li>
                 </Ul>
             </PaginationPage>
         </PaginationParent>

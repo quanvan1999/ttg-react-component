@@ -15,14 +15,15 @@ const PaginationParent = styled.div`
 `;
 const PaginationPage = styled.div`
     float: left;
-    //border-top: 1px solid rgba(34,36,38,.15);
-    //border-left: 1px solid rgba(34,36,38,.15);
-    //border-bottom: 1px solid rgba(34,36,38,.15);
     border: 1px solid rgba(34,36,38,.15);
     -webkit-box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
     box-shadow: 0.5px 2px 2px 2px rgba(34,36,38,.15);
     border-radius: .28571429rem;
     overflow: hidden;
+
+    .active{
+        background: gray;
+    }
 `;
 const Ul = styled.ul`
     float: left;
@@ -33,9 +34,9 @@ const Li = styled.li`
     float: left;
     list-style: none;
     padding: 5px 10px;
-    background: none};
+    background: none;
     position: relative;
-    width: 35px;
+    width: 2.5em;
     text-align: center;
     &:hover{
         background: #eee;
@@ -60,15 +61,13 @@ const A = styled.a``;
 function Pagination(props){
     var {totalPage, boundary, sibling, handleGetValue, activePage} = props
     const [page, setPage] = useState(activePage)
-    
     const hanldeSetPage = (props)=>{
-        if(page !== "..."){
+        if(props !== "..."){
             if(props <= 1){ setPage(1)}
             else if(props >= totalPage){ setPage(totalPage)}
             else{setPage(props)}
         }
     }
-
     var data_middle = []; 
     var data_right = []; 
     var data_left = []
@@ -92,14 +91,17 @@ function Pagination(props){
             setPaginationLeft(data_left)
             setPaginationRight(data_right)
         }else{
+
+            //1 vs 2   2*2+1*2+3 =10
             let lefttemp = [], righttemp = [], midtemp = []
             if(page <= boundary + sibling + 1){
                 lefttemp = data_left
-                for(let i=boundary+1; i<=boundary+sibling+2; i++){
+                for(let i=boundary+1; i<=(boundary + sibling*2 + 2); i++){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
                 righttemp = data_right
+                console.log("1")
             }
             else if(page >= (boundary + sibling - 1) && page <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
@@ -109,29 +111,23 @@ function Pagination(props){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
-            }
-            else if(page >= (totalPage - boundary - sibling) && page < (totalPage - sibling -1 )){
-                lefttemp = data_left
-                midtemp.push("...")
-                for(let i=(totalPage-boundary-sibling); i<=(totalPage - boundary); i++){
-                    midtemp.push(i)
-                }
-                righttemp = data_right
+                console.log("2")
             }
             else{
                 lefttemp = data_left
                 midtemp.push("...")
-                for(let i=(totalPage - boundary - sibling - 1); i<=(totalPage - boundary); i++){
+                for(let i=(totalPage - boundary - sibling*2 - 1); i<=(totalPage - boundary); i++){
                     midtemp.push(i)
                 }
                 righttemp = data_right
-                console.log("5")
+                console.log("4")
             }
             setPaginationLeft(lefttemp)
             setPaginationMid(midtemp)
             setPaginationRight(righttemp)
         }
     },[page])
+
     return(
         <PaginationParent>
             <PaginationPage>
@@ -140,7 +136,7 @@ function Pagination(props){
                     {
                         paginationLeft.map((value, index)=>{
                             return(
-                                <Li key={index} onClick={()=>hanldeSetPage(value)}>
+                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
                                     <A>{value}</A>
                                 </Li>
                             )
@@ -157,7 +153,7 @@ function Pagination(props){
                     {
                         paginationRight.map((value, index)=>{
                             return(
-                                <Li key={index} onClick={()=>hanldeSetPage(value)}>
+                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
                                     <A>{value}</A>
                                 </Li>
                             )

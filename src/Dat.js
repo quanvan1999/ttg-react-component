@@ -25,15 +25,22 @@ export default function Dat() {
   const [activePage, setActive] = useState(1)
 
   const handleSetActive = (props)=>{
-    setActive(props)
-    console.log(props)
-
+    if(props !== "..."){
+      console.log(props)
+      if(props === 0 ){
+        setActive(1)
+      }else if(props === 15){
+        setActive(15)
+      }else{
+        setActive(props)
+      }
+    }
   }
 
   return (
     <ThemeProvider theme = {theme.light}>
       <Container headline = {"Table Component"}>
-        <Pagination totalPage={15} boundary={2} sibling={1} handleSetActive={handleSetActive} activePage={6} />
+        <Pagination totalPage={15} boundary={2} sibling={1} handleSetActive={handleSetActive} activePage={activePage} />
       </Container>
     </ThemeProvider>
   )

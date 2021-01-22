@@ -50,7 +50,6 @@ function Pagination(props){
     const [paginationMid, setPaginationMid] = useState([])
     const [paginationLeft, setPaginationLeft] = useState([])
     const [paginationRight, setPaginationRight] = useState([])
-    console.log(boundary, sibling, totalPage)
     useEffect(()=>{
         if(boundary && sibling){
             // lay so page 
@@ -63,6 +62,7 @@ function Pagination(props){
             throw new Error ("You have to pass variable boundary and sibling");
         }
 
+        // xét lại pagination nếu totalPage > 10
         if(totalPage <= 10){
             setPaginationMid(data_middle)
             setPaginationLeft(data_left)
@@ -73,20 +73,27 @@ function Pagination(props){
                 lefttemp = data_left
                 midtemp = [boundary + sibling , boundary + sibling + 1, boundary + sibling + 2, "..."]
                 righttemp = data_right
-                console.log(lefttemp,midtemp,righttemp)
             }
-            else if(activePage > (boundary + sibling + 1) & activePage < (totalPage - sibling - boundary - 1)){
+            else if(activePage >= (boundary + sibling + 1) && activePage <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
                 righttemp = data_right
                 midtemp = ["...", activePage-1, activePage, activePage+1,"..."]
-                console.log("2")
+            }
+            else if(activePage >= (totalPage - boundary - sibling - 1) && activePage < (totalPage - boundary )){
+                lefttemp = data_left
+                midtemp = ["...",activePage, activePage + 1]
+                righttemp = data_right
+            }
+            else{
+                lefttemp = data_left
+                midtemp = ["...",totalPage - boundary -sibling, totalPage - boundary - sibling + 1]
+                righttemp = data_right
             }
             setPaginationLeft(lefttemp)
             setPaginationMid(midtemp)
             setPaginationRight(righttemp)
-            console.log(paginationMid)
         }
-    },[])
+    },[activePage])
 
     return(
         <PaginationParent>

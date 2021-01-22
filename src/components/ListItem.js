@@ -1,24 +1,60 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import PropTypes from 'prop-types'
 import RippleButton from "./RippleButton"
 import Avatar from "./elements/Avatar"
 import Icon from "./elements/Icon";
 import Button from "./elements/Button"
 import Link from "./elements/Link";
+import { Checkbox, Toggle } from './elements'
+const pulse = keyframes` 
+    0% {
+      transform: scale(1);
+    }
+    70% {
+      transform: scale(.9);
+    }
+      100% {
+      transform: scale(1);
+    }
+  `;
 const StyleItem = styled.li`
+
     display:flex;
-    margin:5px 0;
-    padding: 5px 10px;
-    color:#000;
+    margin: 0;
+    padding: 15px 10px;
+    color:;
     background:transparent;
     align-items:center;
+<<<<<<< HEAD
     justify-content:space-between;
     flex-wrap: wrap;
     width: auto;
 
     p{
         margin: 10px;
+=======
+    position:relative;
+    &:hover{
+        transition:all 0.6s;
+        background:${props => props.theme.color.border.primary};
+        opacity:1;
+    }
+    & button:last-child, label:last-child{
+        position:absolute;
+        right:5px;
+    }
+    & p , a{
+        line-height:1.2;
+        color: ${props => props.theme.color.text.primary};
+        margin: 0 10px 0 12px;
+        max-width:150px;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+>>>>>>> 51944e9794eba939349656c9ae055ac9360bbb4b
     }
 `;
 const Text= styled.p``;
@@ -49,6 +85,8 @@ const ListItem = (props) => {
 ListItem.Avatar = Avatar
 ListItem.Icon = Icon
 ListItem.Button=Button
+ListItem.Checkbox=Checkbox
+ListItem.Toggle=Toggle
 ListItem.Link=Link
 ListItem.Text=Text
 

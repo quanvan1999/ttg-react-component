@@ -12,6 +12,8 @@ import {useState,useRef} from 'react'
 import List from './components/List'
 import ListItem from './components/ListItem'
 import Tooltip from './components/elements/Tooltip';
+import RippleButton from './components/RippleButton';
+import MentionsInput from './components/Mentions';
 
 
 function Quan() {
@@ -23,26 +25,16 @@ function Quan() {
     setRangeValue(parseInt(e.target.value, 10))
   }
   
-  const [open, setOpen] = useState(false)
+  const [tags, setTags] = useState([])
 
-  
   return (
     <div>
-      <ThemeProvider theme = {theme.light}>
+      <ThemeProvider theme = {theme.dark}>
         <Container headline = {"Simple List "}>
-          <List>
-              <ListItem>
-                <ListItem.Avatar></ListItem.Avatar>
-                <ListItem.Text>Đây là Avatar</ListItem.Text>
-                <ListItem.Button>Đây là Avatar</ListItem.Button>
-              </ListItem>
-              <ListItem>
-                <ListItem.Avatar></ListItem.Avatar>
-              </ListItem>
-              <ListItem>
-                <ListItem.Avatar></ListItem.Avatar>
-              </ListItem>
-          </List>
+        <MentionsInput 
+       mentions={tags}
+       onChange={tags => setTags(tags)}
+     />
          </Container>
       </ThemeProvider>
     </div>

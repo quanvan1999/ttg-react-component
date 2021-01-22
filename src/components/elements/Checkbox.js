@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import {getFader} from '../../utils/color'
-import {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
 const LabelCheckbox = styled.label`
@@ -61,18 +60,8 @@ const SpanChkName= styled.span`
 
 
 const Checkbox = (props) => {
-    const [mount, setMount] = useState(false)
-    const [checked, setChecked] = useState(props.default)
-
-    useEffect(() => {
-        if (!mount) {
-            props.onSelect(checked)
-            setMount(true)
-        }
-    },[mount, checked, props])
 
     const handleSelect = (e) => {
-        setChecked(e.target.checked)
         props.onSelect(e.target.checked)
     }
 
@@ -91,9 +80,7 @@ const Checkbox = (props) => {
     )
 }
 Checkbox.propTypes = {
-    className: PropTypes.string,
     disabled: PropTypes.bool,
-    onChange: PropTypes.func,
     default: PropTypes.bool,
     displayMode: PropTypes.oneOf(["edit", "view", "disabled"]),
     name:PropTypes.string,
@@ -101,7 +88,7 @@ Checkbox.propTypes = {
     onSelect: PropTypes.func
 }
 Checkbox.defaultProps = {
-    onSelect: (x) => console.log(x),
+    onSelect: (x) => {},
     default: false,
     displayMode: "edit",
     disabled: false

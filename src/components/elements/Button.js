@@ -46,8 +46,9 @@ const StyledButton = styled.button`
 `;
 
 const Button = (props) => {
+    let isDisabled = props.displayMode === "disabled" || props.disabled
     return (
-        <StyledButton {...props} disabled={props.displayMode === "disabled" || props.disabled}>
+        <StyledButton {...props} disabled={isDisabled} onClick={props.onSelect}>
         {props.children}
         </StyledButton>
     )
@@ -59,7 +60,8 @@ Button.defaultProps = {
     displayMode: "edit",
     size: "medium",
     disabled: false,
-    onClick: () => {}
+    onSelect: (e) => {},
+    default: false
 }
 
 Button.propTypes ={
@@ -70,6 +72,7 @@ Button.propTypes ={
     displayMode: PropTypes.oneOf(["edit", "view", "disabled"]),
     fullWidth: PropTypes.bool,
     type: PropTypes.string,
-    onClick:PropTypes.func
+    onSelect:PropTypes.func,
+    default: PropTypes.bool
 }
 export default Button

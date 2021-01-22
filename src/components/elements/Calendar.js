@@ -5,6 +5,7 @@ import IcoChevronRight from '../icons/IcoChevronRight'
 import {getFader} from '../../utils/color'
 import useClickOutside from '../../hooks/useClickOutside'
 import useKeyEvent from '../../hooks/useKeyEvent'
+import PropTypes from 'prop-types'
 const calendarData = {
     dayName: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
     months: [
@@ -242,9 +243,13 @@ function Calendar(props) {
             </StyledCalendar>
             }
         </Container>
-        
     )
 }
+
+Calendar.propTypes = {
+    onSelect: PropTypes.func
+}
+
 Calendar.defaultProps = {
     onSelect: (date) => console.log(date)
 }

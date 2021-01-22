@@ -30,10 +30,27 @@ function Quan() {
   return (
     <div>
       <ThemeProvider theme = {theme.dark}>
-        <Container headline = {"Simple List "}>
-<<<<<<< HEAD
-          <Tooltip content="Useful animation about this button" >
-            <Button color="info">Beautiful Button with tooltip</Button>
+        <Container>
+          <Tooltip  content="Useful animation about this button" >
+            <Button demo color="info">Beautiful </Button>
+          </Tooltip>
+          <Tooltip  content="Useful animation about this button" >
+            <Button demo color="info">Beautiful </Button>
+          </Tooltip>
+          <Tooltip  content="Useful animation about this button" >
+            <Button demo color="info">Beautiful </Button>
+          </Tooltip>
+          <Tooltip  content="Useful animation about this button" >
+            <Button demo color="info">Beautiful </Button>
+          </Tooltip>
+          <Tooltip  content="Useful animation about this button" >
+            <Button demo color="info">Beautiful </Button>
+          </Tooltip>
+          <Tooltip  content="Useful animation about this button" >
+            <Button demo color="info">Beautiful </Button>
+          </Tooltip>
+          <Tooltip  content="Useful animation about this button" >
+            <Button demo color="info">Beautiful </Button>
           </Tooltip>
           <List>
               <ListItem>
@@ -69,12 +86,10 @@ Ali Connors — I'll be in your neighborhood doing errands this</ListItem.Text>
                 <ListItem.Toggle></ListItem.Toggle>
               </ListItem>
           </List>
-=======
         <MentionsInput 
        mentions={tags}
        onChange={tags => setTags(tags)}
      />
->>>>>>> 51944e9794eba939349656c9ae055ac9360bbb4b
          </Container>
       </ThemeProvider>
     </div>

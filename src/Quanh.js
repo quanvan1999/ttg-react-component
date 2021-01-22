@@ -71,7 +71,7 @@ function Quanh() {
             <Container headline="Theme" >
               <ButtonGroup fullWidth onSelect={x => setTheme(x)}>
                 <Button value="light">Light</Button>
-                <Button value="dark" default>Dark</Button>
+                <Button value="dark">Dark</Button>
                 <Button value="custom">Custom</Button>
               </ButtonGroup>
             </Container>
@@ -92,7 +92,10 @@ function Quanh() {
             <Container headline={"Elements"} fullWidth>
               <Box headline="Tooltip" block>
                 <Tooltip content="Useful animation about this button">
-                  <Button color="info">Beautiful Button with tooltip</Button>
+                  <Button demo color="danger" type="contained">Beautiful Button with tooltip</Button>
+                </Tooltip>
+                <Tooltip content="Useful animation about this button" position="top">
+                  <Button demo color="danger" type="contained">Beautiful Button with tooltip</Button>
                 </Tooltip>
               </Box>
               
@@ -100,7 +103,7 @@ function Quanh() {
                 <Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={2000}>
                   <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Informative message</Alert>
                 </Snackbar>
-                <Button onClick={() => setSnackbarState(!snackbarState)}>Toggle Snackbar</Button>
+                <Button onSelect={() => setSnackbarState(!snackbarState)}>Toggle Snackbar</Button>
               </Box>
               <Box headline="Alert">
                 <Alert demo color="success" action={<strong>UNDO</strong>}>
@@ -208,11 +211,11 @@ function Quanh() {
                 <Modal visible={modalState} onClickOutside={() => setModalState(false)} title="Great Title">
                   {text}
                 </Modal>
-                <Button demo onClick={() => setModalState(true)}>Open Modal With Title</Button>
+                <Button demo onSelect={() => setModalState(true)}>Open Modal With Title</Button>
                 <Modal visible={modalState2} onClickOutside={() => setModalState2(false)}>
                   {text}
                 </Modal>
-                <Button color="secondary" demo onClick={() => setModalState2(true)}>Open Modal With No Title</Button>
+                <Button color="secondary" demo onSelect={() => setModalState2(true)}>Open Modal With No Title</Button>
               </Box>
               <Box headline="Link">
                 <Box.Item>Very beautiful <Link href="https://google.com">link</Link></Box.Item>
@@ -247,12 +250,14 @@ function Quanh() {
               <Box headline="Toggle">
                 <Box.Item>
                   <p>Toggle</p>
-                  <Toggle displayMode={mode}>Awesome</Toggle>
+                  <Toggle displayMode={mode} onSelect={v => console.log(v)}>Awesome</Toggle>
+                  <p>Default true</p>
+                  <Toggle displayMode={mode} onSelect={v => console.log(v)} default>Awesome</Toggle>
                 </Box.Item>
                 <Box.Item>
                   <p>Toggle Group</p>
-                  <ToggleGroup displayMode={mode}>
-                    <Toggle value={1}>One</Toggle>
+                  <ToggleGroup displayMode={mode} onSelect={v => console.log(v)}>
+                    <Toggle value={1} default>One</Toggle>
                     <Toggle value={2}>Two</Toggle>
                   </ToggleGroup>
                 </Box.Item>
@@ -267,12 +272,12 @@ function Quanh() {
               <Box headline="Checkbox">
                 <Box.Item>
                   <p>Checkbox</p>
-                  <Checkbox displayMode={mode}>Awesome</Checkbox>
+                  <Checkbox displayMode={mode} onSelect={v => console.log(v)} default>Awesome</Checkbox>
                 </Box.Item>
                 <Box.Item>
                   <p>Checkbox Group</p>
-                  <CheckboxGroup displayMode={mode}>
-                    <Checkbox value={1}>One</Checkbox>
+                  <CheckboxGroup displayMode={mode} onSelect={x => console.log(x)}>
+                    <Checkbox value={1} default>One</Checkbox>
                     <Checkbox value={2}>Two</Checkbox>
                   </CheckboxGroup>
                 </Box.Item>
@@ -288,7 +293,7 @@ function Quanh() {
                 <Box.Item>
                   <p>Radio Group</p>
                   <RadioGroup displayMode={mode}>
-                    <Radio value={1}>One</Radio>
+                    <Radio value={1} default>One</Radio>
                     <Radio value={2}>Two</Radio>
                     <Radio value={3}>Three</Radio>
                   </RadioGroup>
@@ -304,7 +309,7 @@ function Quanh() {
               </Box>
               <Box headline="Button Group">
                 <ButtonGroup displayMode={mode}>
-                  <Button value={1}>One</Button>
+                  <Button value={1} default>One</Button>
                   <Button value={2}>Two</Button>
                   <Button value={3}>Three</Button>
                 </ButtonGroup>

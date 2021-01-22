@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import RadioButton from './Radio'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
@@ -24,13 +24,6 @@ const RadioGroup = (props) => {
     const handleClick = (value) => {
         props.onSelect(value)
     }
-
-    useEffect(() => {
-        let defElement = props.children.find(child => child.props.default)
-        if (defElement) {
-            props.onSelect(defElement.props.value)
-        }
-    }, [props])
 
     return (
         <StyledRadioGroup {...props}>
@@ -58,7 +51,7 @@ RadioGroup.propTypes = {
     horizontal: PropTypes.bool
 }
 RadioGroup.defaultProps = {
-    onSelect: (x) => console.log(x),
+    onSelect: (x) => {},
     displayMode: "edit",
     fullWidth: false,
     horizontal:false

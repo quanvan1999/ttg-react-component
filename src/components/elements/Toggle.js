@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import styled from 'styled-components'
 import {getFader} from '../../utils/color'
@@ -66,18 +66,8 @@ const StyleName= styled.span`
     color: ${props => props.displayMode === "disabled" ? props.theme.color.text.disabled: props.theme.color.text.primary};
 `;
 const Toggle = (props) => {
-    const [mount, setMount] = useState(false)
-    const [checked, setChecked] = useState(props.default)
-
-    useEffect(() => {
-        if (!mount) {
-            props.onSelect(checked)
-            setMount(true)
-        }
-    },[mount, checked, props])
 
     const handleSelect = (e) => {
-        setChecked(e.target.checked)
         props.onSelect(e.target.checked)
     }
 
@@ -105,12 +95,11 @@ Toggle.propTypes = {
     className: PropTypes.string,
     onSelect: PropTypes.func,
     name:PropTypes.string,
-    onChange: PropTypes.func,
     displayMode: PropTypes.oneOf(["edit", "view", "disabled"]),
     theme:PropTypes.string
 }
 Toggle.defaultProps = {
-    onSelect: (x) => console.log(x),
+    onSelect: (x) => {},
     default: false,
     displayMode: "edit",
     disabled:false

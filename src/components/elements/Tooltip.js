@@ -4,72 +4,64 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
 const StyleToolTip = styled.div`
-
     position: absolute;
     padding:  5px;
     border-radius:4px;
-    background-color: #525050;
-    color: #fff;
-    font-size:14px;
-    max-width:200px;
-    opacity: ${props => props.pos.opa};
+    background-color: ${props => props.theme.color.background.secondary};
+    color: ${props => props.theme.color.text.primary};
+    font-size: ${props => props.theme.textSize.small};
+    max-width: ${props => props.maxWidth+"px"};
+    opacity: 0;
     transform-origin: center center;
     text-align: center;
     transition: opacity 0.6s;
-    top:  ${props => props.pos.top};
-    left: ${props => props.pos.left};
-    transform: ${props => props.pos.transform};
+    z-index: 999;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: black; //${props => props.theme.color.background.secondary};;
+      
+      transform: rotate(45deg) translate(-50%, -50%);
+      left: 50%;
+      top: 10%;
+    }
+
 `;
 
 const TooltipContent = ({ content, position, tooltipPosition }) => {
   const tooltipEl = useRef();
-  const ttPosition = useRef({left: 0, top: 0, transform: ""})
-  const [pos, setPos] = useState({left: 0, top: 0, transform: ""})
   const targetEl = document.getElementById('root');
-  const [display, setDisplay] = useState(false)
+  const maxWidth = useRef(position.width)
 
   useEffect(() => {
     const el = tooltipEl.current;
     const rect = el.getBoundingClientRect();
     if(el) {
-      console.log("Position:")
-      console.log(position)
       setTimeout(() => {
         if(tooltipPosition === 'top') {
-          el.style.top = position.top > rect.height ? position.top - el.clientHeight : position.top + "px"
-          el.style.left = position.left > rect.width/2 ? position.left : 0 + "px"
-          el.style.transform = `translate(${position.left > rect.width/2 ? "-50%" : "0"} , ${position.top > rect.height ? "-15px" : "45px"})`;
+          el.style.top = `${position.top > rect.height + 8 ? position.top - rect.height : position.top + rect.height}px`;
+          el.style.left = `${position.left + position.width/2}px`;
+          el.style.transform = `translate(-50% , ${position.top > rect.height + 8 ? "-8px" : "0%"})`;
         }
         else if(tooltipPosition === 'bottom' ) {
-          ttPosition.current.top = `${position.top}px`;
-          ttPosition.current.left = `${position.left > rect.width ? position.left : 0}px`;
-          ttPosition.current.transform = `translate(${position.left > rect.width ? "-50%" : "0"} , 15px)`;
-          setPos({
-            top: `${position.top}px`,
-            left: `${position.left > rect.width ? position.left : 0}px`,
-            transform: `translate(${position.left > rect.width ? "-50%" : "0"} , 15px)`,
-            opa: 1
-          })
-          console.log(ttPosition.current)
-          setDisplay(true)
-        }
-        else if(tooltipPosition === 'left') {
-          el.style.top = `${position.top}px`;
-          el.style.left = `${position.left > rect.width ? position.left - el.clientWidth : 0}px`;
-          el.style.transform = `translate(${position.left > rect.width ? "-15px" : "15px"},${position.left > rect.width ? "-50%" : "50%"})`;
-        }
-        else if(tooltipPosition === 'right') {
-          el.style.top = `${position.top}px`;
-          el.style.left = `${position.left}px`;
-          el.style.transform = `translate(15px,-50%)`;
+          let winHeight = window.innerHeight
+          let scrollY = window.scrollY
+  
+          el.style.top = `${(scrollY + winHeight - position.top - position.height) > rect.height + 8 ? position.top + position.height + 8: position.top - rect.height - 8}px`;
+          el.style.left = `${position.left + position.width/2}px`;
+          el.style.transform = `translateX(-50%)`;
         }
         el.style.opacity = '1';
-      }, 20);
+      }, 300);
     }
     // eslint-disable-next-line
   }, []);
 
-  return ReactDOM.createPortal(<StyleToolTip ref={tooltipEl} pos={pos}>{content}</StyleToolTip>, targetEl)
+  const output = <StyleToolTip ref={tooltipEl} maxWidth={maxWidth.current} pos={tooltipPosition}>{content}</StyleToolTip>
+
+  return targetEl ? ReactDOM.createPortal(output, targetEl) : output;
 }
 
 TooltipContent.propTypes = {
@@ -82,46 +74,30 @@ TooltipContent.propTypes = {
 }
 
 // Tooltip
-const Tooltip = ({position, content, children}) => {
-  const elePosition = useRef({ top: 0, left: 0 });
-  const tooltipRef = useRef()
+const Tooltip = ({ children, position, content}) => {
+  const [elPosition, setElPosition] = useState({ top: 0, left: 0 });
   const [show, setShow] = useState(false);
-  const ttPosition = useRef({left: 0, top: 0, transform: ""})
+
   const getPosition = (e) => {
     const pos = e.currentTarget.getBoundingClientRect();
-    console.log(pos)
-    if(position === 'top') {
-      elePosition.current = { top: pos.top + window.pageYOffset, left: pos.left + (pos.width / 2) + window.pageXOffset }
-    }
-    else if(position === 'bottom') {
-      elePosition.current = { top: pos.bottom + window.pageYOffset, left: pos.left + (pos.width / 2) + window.pageXOffset }
-      ttPosition.current.top = `${elePosition.current.top}px`;
-      ttPosition.current.left = `${elePosition.current.left > rect.width ? position.left : 0}px`;
-      ttPosition.current.transform = `translate(${position.left > rect.width ? "-50%" : "0"} , 15px)`;
-    }
-    else if(position === 'left') {
-      elePosition.current = { top: pos.top + (pos.height / 2) + window.pageYOffset, left: pos.left + window.pageXOffset }
-    }
-    else if(position === 'right') {
-      elePosition.current = { top: pos.top + (pos.height / 2) + window.pageYOffset, left: pos.left + pos.width + window.pageXOffset }
-    }
+    setElPosition({ top: pos.top + window.pageYOffset, left: pos.left + window.pageXOffset, width: pos.width, height: pos.height});
     setShow(true);
   }
   return(
     <Fragment>
-      {show && <TooltipContent ref={tooltipRef} position={elePosition.current} content={content} tooltipPosition={position} />}
+      {show && <TooltipContent position={elPosition} content={content} tooltipPosition={position} />}
       {cloneElement(children, {...children.props, onMouseEnter: getPosition, onMouseLeave: () => setShow(false)})}
     </Fragment>
   );
 }
-
+Tooltip.defaultProps= {
+    position: 'bottom',
+    content: ""
+}
 Tooltip.propTypes = {
   children: PropTypes.element.isRequired,
   content: PropTypes.any.isRequired,
   position: PropTypes.oneOf(['top', 'bottom', 'left', 'right']).isRequired,
 }
-Tooltip.defaultProps = {
-  position: "bottom",
-  content: ""
-}
+
 export default Tooltip;

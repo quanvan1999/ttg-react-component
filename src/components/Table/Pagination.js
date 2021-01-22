@@ -86,19 +86,16 @@ function Pagination(props){
             } //end    
         }
 
-        // xét lại pagination nếu totalPage > 10
+        // set lại pagination nếu totalPage > 10
         if(totalPage <= 10){
             setPaginationMid(data_middle)
             setPaginationLeft(data_left)
             setPaginationRight(data_right)
         }else{
-
-            // sibling*2 + boundary*2 + 3
-            // exp 4+4+3 = 11
             let lefttemp = [], righttemp = [], midtemp = []
             if(page <= boundary + sibling + 1){
                 lefttemp = data_left
-                for(let i=boundary+1; i<=(boundary*2 + sibling*2); i++){
+                for(let i=boundary+1; i<=(boundary + 1 + sibling*2 + 1); i++){
                     midtemp.push(i)
                 }
                 midtemp.push("...")

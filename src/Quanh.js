@@ -36,6 +36,8 @@ import IcoX from './components/icons/IcoX'
 import IcoArrowDownCircle from './components/icons/IcoArrowDownCircle'
 import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import Combox from './components/elements/Combox'
+import IcoChevronLeft from './components/icons/IcoChevronLeft'
+import IcoChevronRight from './components/icons/IcoChevronRight'
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
 `;
@@ -209,15 +211,19 @@ function Quanh() {
                 <Badge demo icon={<IcoMail/>} value={0} max={10} showZero/>
                 <Badge demo icon={<IcoMail/>} value={0} max={10}/>
               </Box>
-              <Box headline="Modal" block>
-                <Modal visible={modalState} onClickOutside={() => setModalState(false)} title="Great Title">
-                  {text}
-                </Modal>
-                <Button demo onSelect={() => setModalState(true)}>Open Modal With Title</Button>
-                <Modal visible={modalState2} onClickOutside={() => setModalState2(false)}>
-                  {text}
-                </Modal>
-                <Button color="secondary" demo onSelect={() => setModalState2(true)}>Open Modal With No Title</Button>
+              <Box headline="Modal">
+                <Box.Item>
+                  <Modal visible={modalState} onClickOutside={() => setModalState(false)} title="Great Title">
+                    {text}
+                  </Modal>
+                  <Button demo onSelect={() => setModalState(true)}>Open Modal With Title</Button>
+                </Box.Item>
+                <Box.Item>
+                  <Modal visible={modalState2} onClickOutside={() => setModalState2(false)}>
+                    {text}
+                  </Modal>
+                  <Button color="secondary" demo onSelect={() => setModalState2(true)}>Open Modal With No Title</Button>
+                </Box.Item>
               </Box>
               <Box headline="Link">
                 <Box.Item>Very beautiful <Link href="https://google.com">link</Link></Box.Item>
@@ -310,11 +316,30 @@ function Quanh() {
                 </Box.Item>
               </Box>
               <Box headline="Button Group">
-                <ButtonGroup displayMode={mode}>
-                  <Button value={1} default>One</Button>
-                  <Button value={2}>Two</Button>
-                  <Button value={3}>Three</Button>
-                </ButtonGroup>
+                <Box.Item>
+                  <ButtonGroup displayMode={mode}>
+                    <Button value={1} default>One</Button>
+                    <Button value={2}>Two</Button>
+                    <Button value={3}>Three</Button>
+                  </ButtonGroup>
+                </Box.Item>
+                <Box.Item>
+                  <ButtonGroup displayMode={mode}>
+                    <Button value={1} default><IcoChevronLeft/></Button>
+                    <Button value={2}><IcoSettings/></Button>
+                    <Button value={3}><IcoChevronRight/></Button>
+                  </ButtonGroup>
+                </Box.Item>
+                <Box.Item>
+                  <ButtonGroup displayMode={mode} fullWidth equalSize>
+                    <Button value={1} default>Apple</Button>
+                    <Button value={2}>Orange</Button>
+                    <Button value={3}>Strawberry</Button>
+                    <Button value={4}>Mango</Button>
+                    <Button value={5}>Avocado</Button>
+                  </ButtonGroup>
+                </Box.Item>
+
               </Box>              
               <Box headline="Slide">
                 <Slider displayMode={mode} fullWidth defaultValue={50}/>

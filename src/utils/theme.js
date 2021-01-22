@@ -14,7 +14,7 @@ const theme = {
                 secondary: "#212223",
                 disabled: "#C3C3C3",
                 success: "#0A842F",
-                warning: "#FFA000",
+                warning: "#FEBA00",
                 danger: "#CC1D33",
                 info: "#256EC2"
             },

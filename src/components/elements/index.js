@@ -23,6 +23,8 @@ import Alert from './Alert'
 import Calendar from './Calendar'
 import Tooltip from './Tooltip'
 import FAB from './FAB'
+import Pagination from './Pagination'
+import Label from './Label'
 export {
     Button, 
     ButtonGroup, 
@@ -48,5 +50,7 @@ export {
     Snackbar,
     Calendar,
     Tooltip,
-    FAB
+    FAB,
+    Pagination,
+    Label
 }

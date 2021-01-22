@@ -8,13 +8,14 @@ const Item = styled.div`
 `;
 
 const StyledBox = styled.div`
-    border: 1px solid #333;
-    border-radius: 8px;
+    border: 1px solid ${props => props.theme.color.background.secondary};
+    border-radius: 2px;
     margin-bottom: 8px;
     & h4 {
-        border-bottom: 1px solid #333;
+        border-bottom: 1px solid ${props => props.theme.color.background.secondary};
         padding: 4px 12px;
-        background: linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.3))
+        background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.05));
+        
     }
     & .flex {
         display: flex;

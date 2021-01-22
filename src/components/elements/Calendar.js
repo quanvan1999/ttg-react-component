@@ -5,6 +5,7 @@ import IcoChevronRight from '../icons/IcoChevronRight'
 import {getFader} from '../../utils/color'
 import useClickOutside from '../../hooks/useClickOutside'
 import useKeyEvent from '../../hooks/useKeyEvent'
+import PropTypes from 'prop-types'
 const calendarData = {
     dayName: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
     months: [
@@ -46,8 +47,8 @@ const StyledSpan = styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    border-left: 2px solid ${props => getFader(props.theme.color.fill.primary, 0.4)};
+    padding: 2px 0.25rem;
+    border-left: 1px solid ${props => props.focus ? props.theme.color.fill.primary : props.theme.color.background.secondary};
     svg {
         padding: 0 2px;
     }
@@ -57,7 +58,8 @@ const Input = styled.input`
     padding: 6px 48px 6px 8px;
     height: 100%;
     width: 100%;
-    border: 2px solid ${props => props.focus ? props.theme.color.fill.primary : getFader(props.theme.color.fill.primary, 0.4)};
+    border: 1px solid ${props => props.focus ? props.theme.color.fill.primary : props.theme.color.background.secondary};
+    box-shadow: 0 0 1px ${props => props.focus ? "4px" : "0px"} ${props => getFader(props.theme.color.fill.primary, 0.15)};
     outline: 0;
     border-radius: 5px;
     font-size: ${props => props.theme.textSize.medium};
@@ -211,7 +213,7 @@ function Calendar(props) {
                 type="text" 
                 value={myDate.date.toLocaleString(undefined, {minimumIntegerDigits: 2}) + " / " + (myDate.month+1).toLocaleString(undefined, {minimumIntegerDigits: 2}) +  " / " + myDate.year}
             />
-            <StyledSpan onClick={clickIcon}>
+            <StyledSpan onClick={clickIcon} focus={popup}>
                 <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
             </StyledSpan>
             {popup && 
@@ -242,9 +244,13 @@ function Calendar(props) {
             </StyledCalendar>
             }
         </Container>
-        
     )
 }
+
+Calendar.propTypes = {
+    onSelect: PropTypes.func
+}
+
 Calendar.defaultProps = {
     onSelect: (date) => console.log(date)
 }

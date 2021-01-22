@@ -25,7 +25,7 @@ const StyledButton = styled.button`
     flex: ${props => props.equalSize ? "1" : "none"};
     border-style: solid;
     border-color: ${props => props.ingroup ? props.theme.color.border.primary : "var(--fillColor)"};
-    border-width: ${props => props.ingroup === "left" ? "0 0.5px 0 0" : props.ingroup === "right" ? "0 0 0 0.5px" : props.ingroup === "middle" ? "0 0.5px 0 0.5px" : props.type === "outline" ? "1px": "2px"};
+    border-width: ${props => props.ingroup === "left" ? "0 0.5px 0 0" : props.ingroup === "right" ? "0 0 0 0.5px" : props.ingroup === "middle" ? "0 0.5px 0 0.5px" : props.type === "outline" ? "2px": "0px"};
     border-radius: ${props => props.ingroup ? "0" : "4px"};
     display: ${props => props.fullWidth ? "block" : "inline-block"};
     width: ${props => props.fullWidth ? "100%": "auto"};
@@ -46,8 +46,9 @@ const StyledButton = styled.button`
 `;
 
 const Button = (props) => {
+    let isDisabled = props.displayMode === "disabled" || props.disabled
     return (
-        <StyledButton {...props} disabled={props.displayMode === "disabled" || props.disabled}>
+        <StyledButton {...props} disabled={isDisabled} onClick={props.onSelect}>
         {props.children}
         </StyledButton>
     )
@@ -59,7 +60,8 @@ Button.defaultProps = {
     displayMode: "edit",
     size: "medium",
     disabled: false,
-    onClick: () => {}
+    onSelect: (e) => {},
+    default: false
 }
 
 Button.propTypes ={
@@ -70,6 +72,7 @@ Button.propTypes ={
     displayMode: PropTypes.oneOf(["edit", "view", "disabled"]),
     fullWidth: PropTypes.bool,
     type: PropTypes.string,
-    onClick:PropTypes.func
+    onSelect:PropTypes.func,
+    default: PropTypes.bool
 }
 export default Button

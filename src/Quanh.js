@@ -22,7 +22,10 @@ import {
   Alert,
   Calendar,
   Snackbar,
-  FAB
+  FAB,
+  Tooltip,
+  Pagination,
+  Label
 } from './components/elements'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
@@ -54,6 +57,7 @@ function Quanh() {
   const [modalState2, setModalState2] = useState(false)
   const [snackbarState, setSnackbarState] = useState(false)
   const [font, setFont] = useState("")
+  const [activePage, setActivePage] = useState(1)
   return (
     <div>
       <ThemeProvider theme={theme[myTheme] || theme.light}>
@@ -70,7 +74,7 @@ function Quanh() {
             <Container headline="Theme" >
               <ButtonGroup fullWidth onSelect={x => setTheme(x)}>
                 <Button value="light">Light</Button>
-                <Button value="dark" default>Dark</Button>
+                <Button value="dark">Dark</Button>
                 <Button value="custom">Custom</Button>
               </ButtonGroup>
             </Container>
@@ -89,17 +93,23 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-              <FAB size="large" onClick={() => document.documentElement.scrollTop = 0}>
-                <IcoArrowUpCircle/>
-              </FAB>
-              <FAB size="large" onClick={() => document.documentElement.scrollTop = document.body.scrollHeight} position>
-                <IcoArrowDownCircle/>
-              </FAB>
+              <Box headline="Pagination">
+                <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={(x) => setActivePage(x)} activePage={activePage} />
+              </Box>
+              <Box headline="Tooltip">
+                <Tooltip content="Useful animation about this button">
+                  <Button demo color="danger" type="contained">Hover to see tooltip at the bottom</Button>
+                </Tooltip>
+                <Tooltip content="Useful animation about this button" position="top">
+                  <Button demo color="success" type="contained">Hover to see tooltip at the top</Button>
+                </Tooltip>
+              </Box>
+              
               <Box headline="Snackbar" block>
                 <Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={2000}>
-                  <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Infomative message</Alert>
+                  <Alert color="info" action={<IcoX onClick={() => setSnackbarState(!snackbarState)}/>}>Informative message</Alert>
                 </Snackbar>
-                <Button onClick={() => setSnackbarState(!snackbarState)}>Toggle Snackbar</Button>
+                <Button demo onSelect={() => setSnackbarState(!snackbarState)}>Toggle Snackbar</Button>
               </Box>
               <Box headline="Alert">
                 <Alert demo color="success" action={<strong>UNDO</strong>}>
@@ -107,14 +117,10 @@ function Quanh() {
                   This is a success message with a title!
                 </Alert>
                 <Alert demo color="danger" type="contained" action={<IcoX/>}>This is a danger message!</Alert>
-                <Alert demo color="info" action={<IcoX/>}>This is an info message!</Alert>
-                <Alert demo color="warning" action={<IcoX/>}>This is a warning message!</Alert>
-                <Alert demo color="primary" action={<IcoX/>}>This is a primary message!</Alert>
-                <Alert demo color="secondary" action={<IcoX/>}>This is a secondary message!</Alert>
               </Box>
               <Box headline="Combox">
                 <Box.Item>
-                  <p>Select One</p>
+                  <Label>Select One</Label>
                   <Combox demo>
                   {ComboxData.map((data) => 
                     <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
@@ -122,7 +128,7 @@ function Quanh() {
                   </Combox>
                 </Box.Item>
                 <Box.Item>
-                  <p>Select Multiple</p>
+                  <Label>Select Multiple</Label>
                   <Combox demo multiple>
                   {ComboxData.map((data) => 
                     <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
@@ -130,7 +136,7 @@ function Quanh() {
                   </Combox>
                 </Box.Item>
                 <Box.Item>
-                  <p>Select Multiple with Search</p>
+                  <Label>Select Multiple with Search</Label>
                   <Combox demo multiple searchable>
                   {ComboxData.map((data) => 
                     <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
@@ -207,11 +213,11 @@ function Quanh() {
                 <Modal visible={modalState} onClickOutside={() => setModalState(false)} title="Great Title">
                   {text}
                 </Modal>
-                <Button demo onClick={() => setModalState(true)}>Open Modal With Title</Button>
+                <Button demo onSelect={() => setModalState(true)}>Open Modal With Title</Button>
                 <Modal visible={modalState2} onClickOutside={() => setModalState2(false)}>
                   {text}
                 </Modal>
-                <Button color="secondary" demo onClick={() => setModalState2(true)}>Open Modal With No Title</Button>
+                <Button color="secondary" demo onSelect={() => setModalState2(true)}>Open Modal With No Title</Button>
               </Box>
               <Box headline="Link">
                 <Box.Item>Very beautiful <Link href="https://google.com">link</Link></Box.Item>
@@ -220,11 +226,11 @@ function Quanh() {
               </Box>
               <Box headline="Text Input">
                 <Box.Item>
-                  <p>Auto Width Input</p>
+                  <Label>Auto Width Input</Label>
                   <SimpleInput displayMode={mode} defaultValue="my default text is here" onChange={(v) => setTextValue(v)} value={textValue}/>
                 </Box.Item>
                 <Box.Item>
-                  <p>Full Width Input</p>
+                  <Label>Full Width Input</Label>
                   <SimpleInput fullWidth displayMode={mode} defaultValue="my default text is here" onChange={(v) => setTextValue(v)} value={textValue}/>
                 </Box.Item>
                 
@@ -245,18 +251,20 @@ function Quanh() {
               </Box>
               <Box headline="Toggle">
                 <Box.Item>
-                  <p>Toggle</p>
-                  <Toggle displayMode={mode}>Awesome</Toggle>
+                  <Label>Toggle</Label>
+                  <Toggle displayMode={mode} onSelect={v => console.log(v)}>Awesome</Toggle>
+                  <Label>Default true</Label>
+                  <Toggle displayMode={mode} onSelect={v => console.log(v)} default>Awesome</Toggle>
                 </Box.Item>
                 <Box.Item>
-                  <p>Toggle Group</p>
-                  <ToggleGroup displayMode={mode}>
-                    <Toggle value={1}>One</Toggle>
+                  <Label>Toggle Group</Label>
+                  <ToggleGroup displayMode={mode} onSelect={v => console.log(v)}>
+                    <Toggle value={1} default>One</Toggle>
                     <Toggle value={2}>Two</Toggle>
                   </ToggleGroup>
                 </Box.Item>
                 <Box.Item>
-                  <p>Toggle Group Horizontal</p>
+                  <Label>Toggle Group Horizontal</Label>
                   <ToggleGroup horizontal displayMode={mode}>
                     <Toggle value={1}>One</Toggle>
                     <Toggle value={2}>Two</Toggle>
@@ -265,18 +273,18 @@ function Quanh() {
               </Box>
               <Box headline="Checkbox">
                 <Box.Item>
-                  <p>Checkbox</p>
-                  <Checkbox displayMode={mode}>Awesome</Checkbox>
+                  <Label>Checkbox</Label>
+                  <Checkbox displayMode={mode} onSelect={v => console.log(v)} default>Awesome</Checkbox>
                 </Box.Item>
                 <Box.Item>
-                  <p>Checkbox Group</p>
-                  <CheckboxGroup displayMode={mode}>
-                    <Checkbox value={1}>One</Checkbox>
+                  <Label>Checkbox Group</Label>
+                  <CheckboxGroup displayMode={mode} onSelect={x => console.log(x)}>
+                    <Checkbox value={1} default>One</Checkbox>
                     <Checkbox value={2}>Two</Checkbox>
                   </CheckboxGroup>
                 </Box.Item>
                 <Box.Item>
-                  <p>Checkbox Group Horizontal</p>
+                  <Label>Checkbox Group Horizontal</Label>
                   <CheckboxGroup horizontal displayMode={mode}>
                     <Checkbox value={1}>One</Checkbox>
                     <Checkbox value={2}>Two</Checkbox>
@@ -285,15 +293,15 @@ function Quanh() {
               </Box>
               <Box headline="Radio Group">
                 <Box.Item>
-                  <p>Radio Group</p>
+                  <Label>Radio Group</Label>
                   <RadioGroup displayMode={mode}>
-                    <Radio value={1}>One</Radio>
+                    <Radio value={1} default>One</Radio>
                     <Radio value={2}>Two</Radio>
                     <Radio value={3}>Three</Radio>
                   </RadioGroup>
                 </Box.Item>
                 <Box.Item>
-                  <p>Radio Group Horizontal</p>
+                  <Label>Radio Group Horizontal</Label>
                   <RadioGroup horizontal displayMode={mode}>
                     <Radio value={1}>One</Radio>
                     <Radio value={2}>Two</Radio>
@@ -303,7 +311,7 @@ function Quanh() {
               </Box>
               <Box headline="Button Group">
                 <ButtonGroup displayMode={mode}>
-                  <Button value={1}>One</Button>
+                  <Button value={1} default>One</Button>
                   <Button value={2}>Two</Button>
                   <Button value={3}>Three</Button>
                 </ButtonGroup>
@@ -311,6 +319,12 @@ function Quanh() {
               <Box headline="Slide">
                 <Slider displayMode={mode} fullWidth defaultValue={50}/>
               </Box>
+              <FAB size="large" onClick={() => document.documentElement.scrollTop = 0}>
+                <IcoArrowUpCircle/>
+              </FAB>
+              <FAB size="large" onClick={() => document.documentElement.scrollTop = document.body.scrollHeight} position>
+                <IcoArrowDownCircle/>
+              </FAB>
             </Container>
           </Container>
         </FontProvider>

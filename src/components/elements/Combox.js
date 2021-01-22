@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import styled, {keyframes} from 'styled-components'
 import useClickOutside from '../../hooks/useClickOutside'
-
+import {getFader} from '../../utils/color'
 const Option = (props) => <div>{props.children}</div>
 
 const StyledSpan = styled.span`
@@ -59,7 +59,8 @@ const Bar = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
-    border: 2px solid ${props => props.open ? props.theme.color.fill.primary : props.theme.color.border.primary};
+    border: 1px solid ${props => props.open ? props.theme.color.fill.primary : props.theme.color.border.primary};
+    box-shadow: 0 0 1px ${props => props.open ? "4px" : "0px"} ${props => getFader(props.theme.color.fill.primary, 0.15)};
     border-radius: 5px;
     transition: border 0.15s linear;
 `;
@@ -94,7 +95,7 @@ const slideDown = keyframes`
     to {max-height: 15rem; opacity: 1;}
 `;
 const SelectContainer = styled.div`
-    border: 2px solid ${props => props.theme.color.border.primary};
+    border: 1px solid ${props => props.theme.color.border.primary};
     background: ${props => props.theme.color.background.primary};
     max-height: 15rem;
     position: absolute;

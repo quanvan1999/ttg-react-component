@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import Button from './Button';
 import PropTypes from 'prop-types'
@@ -16,13 +16,19 @@ const StyledButtonGroup = styled.div`
 `;
 
 const ButtonGroup = (props) => {
-    let {onSelect, children} = props
-    const [value, setValue] = useState(children.find(child => child.props.default) ? children.find(child => child.props.default).props.value : "")
+    let byClick = useRef(false)
+    let {children, onSelect} = props
+    let defaultChild = children.find(child => child.props.default)
+    const [value, setValue] = useState(defaultChild ? defaultChild.props.value : "")
+    
     const handleClick = (value) => {
         setValue(value)
+        if (!byClick.current)
+            byClick.current = true
     }
     useEffect(() => {
-        onSelect(value)
+        if (byClick.current)
+            onSelect(value)
     }, [onSelect, value])
 
     useEffect(() => {
@@ -37,8 +43,6 @@ const ButtonGroup = (props) => {
             throw Error("Cannot have more than one default value")
     }, [children])
 
-    
-
     return (
         <StyledButtonGroup {...props}>
             {React.Children.map(props.children, (child, idx) => {
@@ -52,14 +56,13 @@ const ButtonGroup = (props) => {
                         color: props.color,
                         ingroup: idx === 0 ? "left" : idx === props.children.length - 1 ? "right" : "middle", 
                         type: value === child.props.value ? "contained": "outline", 
-                        onClick: () => handleClick(child.props.value)})
+                        onSelect: () => handleClick(child.props.value)})
             })}
         </StyledButtonGroup>
     )
 }
 ButtonGroup.propTypes ={
     displayMode: PropTypes.oneOf(["edit", "view", "disabled"]),
-    onClick:PropTypes.func,
     onSelect:PropTypes.func,
     fullWidth: PropTypes.bool,
     theme:PropTypes.string,
@@ -67,7 +70,7 @@ ButtonGroup.propTypes ={
     equalSize: PropTypes.bool
 }
 ButtonGroup.defaultProps = {
-    onSelect: (x) => console.log(x),
+    onSelect: (x) => {},
     fullWidth: false,
     displayMode: "edit",
     color: "primary"

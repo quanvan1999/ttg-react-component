@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useRef} from 'react'
 import styled from 'styled-components'
 import Checkbox from './Checkbox'
 import PropTypes from 'prop-types'
@@ -8,8 +8,13 @@ const StyleChkGroup = styled.div`
     flex-direction: ${props => props.horizontal ? "row" : "column"};
 `;
 const CheckboxGroup = (props) =>{
+    let byClick = useRef(false)
     useEffect(() => {
-        props.onSelect(value)
+        if (byClick.current)
+            props.onSelect(value.filter(c => c.checked).map(c => c.value))
+    })
+    //Error checking
+    useEffect(() => {
         props.children.forEach(child => {
             if (child.type !== Checkbox)
                 throw Error("Children of CheckboxGroup must be Checkbox")
@@ -22,6 +27,8 @@ const CheckboxGroup = (props) =>{
 
     const handleClick = (obj) => {
         setValue([...value.filter(x => x.value !== obj.value), obj])
+        if (!byClick.current)
+            byClick.current = true
     }
 
     return (
@@ -40,7 +47,6 @@ const CheckboxGroup = (props) =>{
     )
 }
 CheckboxGroup.propTypes= {
-    className: PropTypes.string,
     onSelect: PropTypes.func,
     displayMode: PropTypes.oneOf(["edit", "view", "disabled"]),
     name:PropTypes.string,
@@ -48,7 +54,7 @@ CheckboxGroup.propTypes= {
     horizontal: PropTypes.bool
 }
 CheckboxGroup.defaultProps = {
-    onSelect: (x) => console.log(x),
+    onSelect: (x) => {},
     displayMode: "edit",
     fullWidth: false,
     horizontal: false

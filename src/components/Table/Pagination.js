@@ -20,7 +20,6 @@ const PaginationPage = styled.div`
     box-shadow: 0.5px 2px 2px 2px rgba(34,36,38,.15);
     border-radius: .28571429rem;
     overflow: hidden;
-
     .active{
         background: gray;
     }
@@ -96,11 +95,12 @@ function Pagination(props){
             let lefttemp = [], righttemp = [], midtemp = []
             if(page <= boundary + sibling + 1){
                 lefttemp = data_left
-                for(let i=boundary+1; i<=(boundary + sibling*2 + 2); i++){
+                for(let i=boundary+1; i<=(boundary + sibling*2 + 3); i++){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
                 righttemp = data_right
+                console.log("1")
             }
             else if(page >= (boundary + sibling - 1) && page <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
@@ -110,6 +110,7 @@ function Pagination(props){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
+                console.log("2")
             }
             else{
                 lefttemp = data_left
@@ -118,6 +119,7 @@ function Pagination(props){
                     midtemp.push(i)
                 }
                 righttemp = data_right
+                console.log("4")
             }
             setPaginationLeft(lefttemp)
             setPaginationMid(midtemp)
@@ -173,4 +175,4 @@ Pagination.propTypes ={
     sibling: PropTypes.number
 }
 
-export default Pagination
+export default Pagination 

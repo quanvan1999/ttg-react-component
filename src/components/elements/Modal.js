@@ -12,6 +12,8 @@ const StyledModal = styled.div`
     display: ${props => props.visible ? "block" : "none"};
     transition: opacity 200ms linear;
     opacity: ${props => props.ani ? 1: 0};
+    z-index: 995;
+    
 `;
 const ExitIcon = styled.div`
     --clr: ${props => props.theme.color.fill.danger};
@@ -22,6 +24,7 @@ const ExitIcon = styled.div`
     height: 24px;
     position: absolute;
     transition: all 0.3s ease-in-out;
+
     &:hover {
         transform: translate(-140%, -50%) rotate(225deg);
         cursor: pointer;
@@ -78,8 +81,8 @@ const StyledContainer = styled.div`
     width: ${props => props.width || "auto"};
     transform: ${props => props.ani ? "translate(-50%, -50%)" : "translate(-50%, 700px)"};
     animation: ${modalEnter} 0.5s ease-out 0s 1 forwards normal;
-    z-index: 2;
-    box-shadow: 0px 0px 8px ${props => getDarker(props.theme.color.border.primary)};
+    z-index: 999;
+    box-shadow: ${props => props.theme.shadow};
 `;
 const StyledTitle = styled.h1`
     position: relative;

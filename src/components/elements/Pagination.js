@@ -1,119 +1,183 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
-const DivPagination = styled.div`
-    display: inline-block;
-    background: white;
-    .active{
-        background: #8080804f;
+const PaginationParent = styled.div`
+    font-size: 16px;
+    line-height: 1.6; 
+    font-family: Marmelad,"Lucida Grande",Arial,"Hiragino Sans GB",Georgia,sans-serif;
+    box-sizing: initial;
+    ul{
+        li:last-child>a {
+            border-radius: 0 3px 3px 0;
+        }
     }
 `;
-
-const ChildPagination = styled.a`
-    color: black;
+const PaginationPage = styled.div`
     float: left;
-    padding: 8px 16px;
-    -webkit-text-decoration: none;
-    text-decoration: none;
-    border-right: 1px solid rgba(0,0,0,.05);
-    background: rgba(0,0,0,.05);
-    cursor: pointer;
-
+    //border-top: 1px solid rgba(34,36,38,.15);
+    //border-left: 1px solid rgba(34,36,38,.15);
+    //border-bottom: 1px solid rgba(34,36,38,.15);
+    border: 1px solid rgba(34,36,38,.15);
+    -webkit-box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    box-shadow: 0.5px 2px 2px 2px rgba(34,36,38,.15);
+    border-radius: .28571429rem;
+    overflow: hidden;
+`;
+const Ul = styled.ul`
+    float: left;
+    margin: 0;
+    padding: 0;
+`;
+const Li = styled.li`
+    float: left;
+    list-style: none;
+    padding: 5px 10px;
+    background: none};
+    position: relative;
+    width: 35px;
+    text-align: center;
+    &:hover{
+        background: #eee;
+        cursor: pointer;
+    }
     &:active{
         color: white;
+        background: rgba(34,36,38,.15);
     }
-
-    &:hover{
-        background: #8080804f;
+    &::before{
+        position: absolute;
+        content: '';
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 1px;
+        background: rgba(34,36,38,.1);
     }
 `;
+const A = styled.a``;
 
-// truyen vao totalPage
-const Pagination = (props) =>{
-    // lay so trang
-    var page = [];
-    for(var i=1; i<=props.totalPage; i++){
-        page.push(i)
-    } //end
+function Pagination(props){
+    var {totalPage, boundary, sibling, handleGetValue, activePage} = props
+    const [page, setPage] = useState(activePage)
+    
+    const hanldeSetPage = (props)=>{
+        if(page !== "..."){
+            if(props <= 1){ setPage(1)}
+            else if(props >= totalPage){ setPage(totalPage)}
+            else{setPage(props)}
+        }
+    }
 
+    var data_middle = []; 
+    var data_right = []; 
+    var data_left = []
+    const [paginationMid, setPaginationMid] = useState([])
+    const [paginationLeft, setPaginationLeft] = useState([])
+    const [paginationRight, setPaginationRight] = useState([])
     useEffect(()=>{
-        var x = document.querySelectorAll('a');
-        x[1].classList.add('active')
-    })
+        handleGetValue(page)
+        if(boundary && sibling){
+            // lay so page 
+            for(let i=1; i <= totalPage; i++){
+                if(i<=boundary){ data_left.push(i) }
+                else if(i>totalPage - boundary){ data_right.push(i) }
+                else{ data_middle.push(i) }
+            } //end    
+        }
 
-    const Active = (index)=>{
-        var x = document.querySelectorAll('a');
-        for(var i=1; i<x.length - 1; i++){
-            if(index === i){
-                x[index].classList.add('active');
+        // xét lại pagination nếu totalPage > 10
+        if(totalPage <= 10){
+            setPaginationMid(data_middle)
+            setPaginationLeft(data_left)
+            setPaginationRight(data_right)
+        }else{
+            let lefttemp = [], righttemp = [], midtemp = []
+            if(page <= boundary + sibling + 1){
+                lefttemp = data_left
+                for(let i=boundary+1; i<=boundary+sibling+2; i++){
+                    midtemp.push(i)
+                }
+                midtemp.push("...")
+                righttemp = data_right
+            }
+            else if(page >= (boundary + sibling - 1) && page <= (totalPage - sibling - boundary - 1)){
+                lefttemp = data_left
+                righttemp = data_right
+                midtemp.push("...")
+                for(let i=(page - sibling); i<=(page+sibling); i++){
+                    midtemp.push(i)
+                }
+                midtemp.push("...")
+            }
+            else if(page >= (totalPage - boundary - sibling) && page < (totalPage - sibling -1 )){
+                lefttemp = data_left
+                midtemp.push("...")
+                for(let i=(totalPage-boundary-sibling); i<=(totalPage - boundary); i++){
+                    midtemp.push(i)
+                }
+                righttemp = data_right
             }
             else{
-                x[i].classList.remove('active');
+                lefttemp = data_left
+                midtemp.push("...")
+                for(let i=(totalPage - boundary - sibling - 1); i<=(totalPage - boundary); i++){
+                    midtemp.push(i)
+                }
+                righttemp = data_right
+                console.log("5")
             }
+            setPaginationLeft(lefttemp)
+            setPaginationMid(midtemp)
+            setPaginationRight(righttemp)
         }
-    }
-    const NextPage = ()=>{
-        var x = document.querySelectorAll('a');
-        var classActive = document.getElementsByClassName('active');
-        if(classActive.length > 0){
-            var temp = Number(classActive[0].getAttribute('value')) + 1;
-            var index = 0;
-            if(temp === x.length -1){
-                index = x.length -2;
-            }
-            else{
-                index = temp
-            }
-            for(var i=1; i<x.length - 1; i++){
-                if(index === i){
-                    x[i].classList.add('active')
-                }
-                else{
-                    x[i].classList.remove('active')
-                }
-            }
-        }
-    }   
-    const PrePage = ()=>{
-        var x = document.querySelectorAll('a');
-        var classActive = document.getElementsByClassName('active');
-        if(classActive.length > 0){
-            var temp = Number(classActive[0].getAttribute('value')) - 1;
-            var index = 0;
-            if(temp > 1){
-                index = temp
-            }
-            else{
-                index = 1
-            }
-            for(var i=1; i<x.length - 1; i++){
-                if(index === i){
-                    x[i].classList.add('active')
-                }
-                else{
-                    x[i].classList.remove('active')
-                }
-            }
-        }
-    }
+    },[page])
     return(
-        <DivPagination>
-            <ChildPagination onClick={()=>PrePage()} value="pre">&laquo;</ChildPagination>
-            {
-                page.map((item, index)=>{
-                    return(
-                        <ChildPagination 
-                            onClick={()=>Active(item)} 
-                            value={item} 
-                            key={index}
-                            >{item}
-                        </ChildPagination>
-                    )
-                })
-            }
-            <ChildPagination onClick={()=>NextPage()} value="next">&raquo;</ChildPagination>
-        </DivPagination>
+        <PaginationParent>
+            <PaginationPage>
+                <Ul>
+                    <Li onClick={()=>hanldeSetPage(page - 1)}><A>«</A></Li>
+                    {
+                        paginationLeft.map((value, index)=>{
+                            return(
+                                <Li key={index} onClick={()=>hanldeSetPage(value)}>
+                                    <A>{value}</A>
+                                </Li>
+                            )
+                        })
+                    }
+                    { paginationMid.map((value, index)=>{
+                            return(
+                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
+                                    <A>{value}</A>
+                                </Li>
+                            )
+                        })
+                    }
+                    {
+                        paginationRight.map((value, index)=>{
+                            return(
+                                <Li key={index} onClick={()=>hanldeSetPage(value)}>
+                                    <A>{value}</A>
+                                </Li>
+                            )
+                        })
+                    }
+                    <Li onClick={()=>hanldeSetPage(page + 1)}><A>»</A></Li>
+                </Ul>
+            </PaginationPage>
+        </PaginationParent>
     )
+}
+
+Pagination.defaultProps = {
+    boundary: 1,
+    sibling: 1
+}
+
+Pagination.propTypes ={
+    boundary: PropTypes.number,
+    sibling: PropTypes.number
 }
 
 export default Pagination

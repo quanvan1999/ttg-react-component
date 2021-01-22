@@ -23,7 +23,9 @@ import {
   Calendar,
   Snackbar,
   FAB,
-  Tooltip
+  Tooltip,
+  Pagination,
+  Label
 } from './components/elements'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
@@ -55,6 +57,7 @@ function Quanh() {
   const [modalState2, setModalState2] = useState(false)
   const [snackbarState, setSnackbarState] = useState(false)
   const [font, setFont] = useState("")
+  const [activePage, setActivePage] = useState(1)
   return (
     <div>
       <ThemeProvider theme={theme[myTheme] || theme.light}>
@@ -90,6 +93,9 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
+              <Box headline="Pagination">
+                <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={(x) => setActivePage(x)} activePage={activePage} />
+              </Box>
               <Box headline="Tooltip">
                 <Tooltip content="Useful animation about this button">
                   <Button demo color="danger" type="contained">Hover to see tooltip at the bottom</Button>
@@ -114,7 +120,7 @@ function Quanh() {
               </Box>
               <Box headline="Combox">
                 <Box.Item>
-                  <p>Select One</p>
+                  <Label>Select One</Label>
                   <Combox demo>
                   {ComboxData.map((data) => 
                     <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
@@ -122,7 +128,7 @@ function Quanh() {
                   </Combox>
                 </Box.Item>
                 <Box.Item>
-                  <p>Select Multiple</p>
+                  <Label>Select Multiple</Label>
                   <Combox demo multiple>
                   {ComboxData.map((data) => 
                     <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
@@ -130,7 +136,7 @@ function Quanh() {
                   </Combox>
                 </Box.Item>
                 <Box.Item>
-                  <p>Select Multiple with Search</p>
+                  <Label>Select Multiple with Search</Label>
                   <Combox demo multiple searchable>
                   {ComboxData.map((data) => 
                     <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
@@ -220,11 +226,11 @@ function Quanh() {
               </Box>
               <Box headline="Text Input">
                 <Box.Item>
-                  <p>Auto Width Input</p>
+                  <Label>Auto Width Input</Label>
                   <SimpleInput displayMode={mode} defaultValue="my default text is here" onChange={(v) => setTextValue(v)} value={textValue}/>
                 </Box.Item>
                 <Box.Item>
-                  <p>Full Width Input</p>
+                  <Label>Full Width Input</Label>
                   <SimpleInput fullWidth displayMode={mode} defaultValue="my default text is here" onChange={(v) => setTextValue(v)} value={textValue}/>
                 </Box.Item>
                 
@@ -245,20 +251,20 @@ function Quanh() {
               </Box>
               <Box headline="Toggle">
                 <Box.Item>
-                  <p>Toggle</p>
+                  <Label>Toggle</Label>
                   <Toggle displayMode={mode} onSelect={v => console.log(v)}>Awesome</Toggle>
-                  <p>Default true</p>
+                  <Label>Default true</Label>
                   <Toggle displayMode={mode} onSelect={v => console.log(v)} default>Awesome</Toggle>
                 </Box.Item>
                 <Box.Item>
-                  <p>Toggle Group</p>
+                  <Label>Toggle Group</Label>
                   <ToggleGroup displayMode={mode} onSelect={v => console.log(v)}>
                     <Toggle value={1} default>One</Toggle>
                     <Toggle value={2}>Two</Toggle>
                   </ToggleGroup>
                 </Box.Item>
                 <Box.Item>
-                  <p>Toggle Group Horizontal</p>
+                  <Label>Toggle Group Horizontal</Label>
                   <ToggleGroup horizontal displayMode={mode}>
                     <Toggle value={1}>One</Toggle>
                     <Toggle value={2}>Two</Toggle>
@@ -267,18 +273,18 @@ function Quanh() {
               </Box>
               <Box headline="Checkbox">
                 <Box.Item>
-                  <p>Checkbox</p>
+                  <Label>Checkbox</Label>
                   <Checkbox displayMode={mode} onSelect={v => console.log(v)} default>Awesome</Checkbox>
                 </Box.Item>
                 <Box.Item>
-                  <p>Checkbox Group</p>
+                  <Label>Checkbox Group</Label>
                   <CheckboxGroup displayMode={mode} onSelect={x => console.log(x)}>
                     <Checkbox value={1} default>One</Checkbox>
                     <Checkbox value={2}>Two</Checkbox>
                   </CheckboxGroup>
                 </Box.Item>
                 <Box.Item>
-                  <p>Checkbox Group Horizontal</p>
+                  <Label>Checkbox Group Horizontal</Label>
                   <CheckboxGroup horizontal displayMode={mode}>
                     <Checkbox value={1}>One</Checkbox>
                     <Checkbox value={2}>Two</Checkbox>
@@ -287,7 +293,7 @@ function Quanh() {
               </Box>
               <Box headline="Radio Group">
                 <Box.Item>
-                  <p>Radio Group</p>
+                  <Label>Radio Group</Label>
                   <RadioGroup displayMode={mode}>
                     <Radio value={1} default>One</Radio>
                     <Radio value={2}>Two</Radio>
@@ -295,7 +301,7 @@ function Quanh() {
                   </RadioGroup>
                 </Box.Item>
                 <Box.Item>
-                  <p>Radio Group Horizontal</p>
+                  <Label>Radio Group Horizontal</Label>
                   <RadioGroup horizontal displayMode={mode}>
                     <Radio value={1}>One</Radio>
                     <Radio value={2}>Two</Radio>

@@ -53,7 +53,7 @@ function Quanh() {
   ]
   const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit mattis arcu semper elementum. Nullam accumsan erat vitae quam sagittis placerat. In sodales mi eros, id commodo nulla fermentum in. Cras vehicula, sapien id fringilla lobortis, erat nisl rhoncus ante, et maximus libero tellus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus justo nunc, sed molestie tortor dictum vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris maximus est quis ligula ullamcorper semper. Integer tempus orci dui, a lacinia lorem tempus ut. Donec sapien leo, sodales eu odio molestie, cursus lacinia quam. Aenean rhoncus rhoncus erat, nec volutpat nulla ullamcorper sit amet. Maecenas finibus, ante in suscipit rhoncus, massa lorem posuere est, vel faucibus turpis neque sit amet augue. Nulla sit amet mauris sit amet augue pharetra luctus vitae nec turpis. Duis sollicitudin commodo nisi quis mollis."
   const [mode, setMode] = useState("edit")
-  const [myTheme, setTheme] = useState("light")
+  const [myTheme, setTheme] = useState("dark")
   const [textValue, setTextValue] = useState("")
   const [modalState, setModalState] = useState(false)
   const [modalState2, setModalState2] = useState(false)
@@ -95,7 +95,6 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-                  <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={(x) => setActivePage(x)} activePage={activePage} />
               <Box headline="Tooltip">
                 <Tooltip content="Useful animation about this button">
                   <Button demo color="danger" type="contained">Hover to see tooltip at the bottom</Button>

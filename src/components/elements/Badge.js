@@ -9,13 +9,13 @@ const Amount = styled.span`
     user-select: none;
     position: absolute;
     font-size: ${props => props.theme.textSize.small};
-    border-radius: 10px;
+    border-radius: 999px;
     color: ${props => props.theme.color.background.primary};
     background-color: ${props => props.theme.color.fill.danger};
     top: 0%;
     left: 100%;
-    padding: 0px 4px;
-    transform: translate(-50%, -50%);
+    padding: 1px 4px;
+    transform: translate(-50%, -45%);
 `;
 const Dot = styled.span`
     background-color: ${props => props.theme.color.fill.danger};
@@ -45,7 +45,7 @@ const Badge = (props) => {
                 {
                     props.dot ? 
                     props.value > 0 ? <Dot/> : "" : 
-                    <Amount>{display()}</Amount>
+                    display() && <Amount>{display()}</Amount>
                 }
             </SpanParent>
     )

@@ -37,6 +37,8 @@ import IcoArrowDownCircle from './components/icons/IcoArrowDownCircle'
 import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import Combox from './components/elements/Combox'
 import Table from './components/Table/Table'
+import IcoChevronLeft from './components/icons/IcoChevronLeft'
+import IcoChevronRight from './components/icons/IcoChevronRight'
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
 `;
@@ -94,8 +96,9 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
+
               <Box headline="Table">
-                <Table>
+                <Table width="50%">
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell>ID</Table.HeaderCell>

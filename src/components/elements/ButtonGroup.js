@@ -10,7 +10,7 @@ const StyledButtonGroup = styled.div`
     display: ${props => props.fullWidth ? "flex" : "inline-flex"};
     border-radius: 4px;
     overflow: hidden;
-    background: ${props => props.theme.color.background.secondary};
+    background: transparent; //${props => props.theme.color.background.secondary};
     border: 0px solid ${props => props.displayMode === "disabled" ? "#A3A3A3" : "var(--fillColor)"};
     box-shadow: ${props => props.theme.shadow};
 `;

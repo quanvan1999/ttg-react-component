@@ -21,7 +21,6 @@ const StyleToolTip = styled.div`
     font-size: ${props => props.theme.textSize.small};
     max-width: ${props => props.maxWidth+"px"};
     animation: ${props => props.out ? opav : opa} 300ms ease-out 0s 1 normal forwards;
-    transform-origin: center center;
     text-align: center;
     transition: opacity 0.6s;
     z-index: 999;
@@ -61,7 +60,7 @@ const TooltipContent = ({ content, position, tooltipPosition, out }) => {
           el.style.left = `${position.left + position.width/2}px`;
           el.style.transform = `translate(-50%,${(scrollY + winHeight - position.top - position.height) > rect.height + 12 ? "8px" : "-8px"})`;
         }
-      }, 500);
+      }, 200);
     }
     // eslint-disable-next-line
   }, []);
@@ -97,7 +96,7 @@ const Tooltip = ({ children, position, content}) => {
       setTimeout(() => {
         setShow(false)
       }, 300)
-    }, 500)
+    }, 200)
   }
   return(
     <Fragment>

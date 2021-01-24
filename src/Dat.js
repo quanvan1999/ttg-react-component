@@ -56,7 +56,7 @@ export default function Dat() {
         </Table.Body>
       </Table>
       <Container headline = {"Table Component"}>
-        <Pagination totalPage={20} boundary={3} sibling={3}  handleGetValue={handleGetValue} activePage={1} />
+        <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={handleGetValue} activePage={1} />
       </Container>
     </ThemeProvider>
   )

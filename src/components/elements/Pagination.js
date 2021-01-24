@@ -5,8 +5,6 @@ import PropTypes from 'prop-types'
 const PaginationParent = styled.div`
     font-size: 16px;
     line-height: 1.6; 
-    font-family: Marmelad,"Lucida Grande",Arial,"Hiragino Sans GB",Georgia,sans-serif;
-    box-sizing: initial;
     ul{
         li:last-child>a {
             border-radius: 0 3px 3px 0;
@@ -16,7 +14,6 @@ const PaginationParent = styled.div`
 const PaginationPage = styled.div`
     float: left;
     border: 1px solid rgba(34,36,38,.15);
-    -webkit-box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
     box-shadow: 0.5px 2px 2px 2px rgba(34,36,38,.15);
     border-radius: .28571429rem;
     overflow: hidden;
@@ -72,9 +69,11 @@ function Pagination(props){
     var data_middle = []; 
     var data_right = []; 
     var data_left = []
+
     const [paginationMid, setPaginationMid] = useState([])
     const [paginationLeft, setPaginationLeft] = useState([])
     const [paginationRight, setPaginationRight] = useState([])
+
     useEffect(()=>{
         handleGetValue(page)
         if(boundary && sibling){
@@ -164,12 +163,15 @@ function Pagination(props){
 
 Pagination.defaultProps = {
     boundary: 1,
-    sibling: 1
+    sibling: 1,
+    onSelect: (v) => {}
 }
 
 Pagination.propTypes ={
     boundary: PropTypes.number,
-    sibling: PropTypes.number
+    sibling: PropTypes.number,
+    activePage: PropTypes.number.isRequired,
+    onSelect: PropTypes.func
 }
 
 export default Pagination

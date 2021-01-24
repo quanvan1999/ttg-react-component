@@ -67,8 +67,7 @@ const TableFooter = styled.tfoot`
 `;
 
 const handleClick = (props)=>{
-    var x = document.querySelectorAll('a');
-    console.log(x)
+    console.log(props)
 }
 function Table(props){
     return(

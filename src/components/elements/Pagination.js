@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 const PaginationParent = styled.div`
-    font-size: 16px;
+    font-size: ${props => props.theme.textSize[props.size] || "1rem" };
+    font-weight: ${props => props.theme.weight[props.fontWeight] || 500};
     line-height: 1.6; 
     ul{
         li:last-child>a {
@@ -23,12 +24,12 @@ const PaginationPage = styled.div`
     }
 `;
 const Ul = styled.ul`
+    display: flex;
     float: left;
     margin: 0;
     padding: 0;
 `;
 const Li = styled.li`
-    float: left;
     list-style: none;
     padding: 5px 10px;
     background: none;
@@ -39,10 +40,11 @@ const Li = styled.li`
     &:hover{
         background: #eee;
         cursor: pointer;
+        color: black;
     }
     &:active{
-        color: white;
-        background: rgba(34,36,38,.15);
+        color: ${props => props.type === "contained" ? "var(--fillColor)" : props.type === "outline" ? "var(--textColor)" : "var(--lightFillColor)"};
+        background: ${props => props.type === "contained" ? "var(--textColor)" : props.type === "outline" ? "var(--fillColor)" : "transparent"};
     }
     &::before{
         position: absolute;
@@ -57,6 +59,7 @@ const Li = styled.li`
 const A = styled.a``;
 
 function Pagination(props){
+    let isDisabled = props.displayMode === "disabled" || props.disabled
     var {totalPage, boundary, sibling, handleGetValue, activePage} = props
     const [page, setPage] = useState(activePage)
     const hanldeSetPage = (props)=>{
@@ -124,7 +127,7 @@ function Pagination(props){
     },[page])
 
     return( 
-        <PaginationParent>
+        <PaginationParent disabled={isDisabled}>
             <PaginationPage>
                 <Ul>
                     <Li onClick={()=>hanldeSetPage(page - 1)}><A>«</A></Li>
@@ -137,7 +140,8 @@ function Pagination(props){
                             )
                         })
                     }
-                    { paginationMid.map((value, index)=>{
+                    { 
+                        paginationMid.map((value, index)=>{
                             return(
                                 <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
                                     <A>{value}</A>

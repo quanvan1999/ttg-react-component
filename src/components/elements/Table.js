@@ -4,8 +4,11 @@ import React from 'react'
 const TableComponent = styled.table`
     width: ${props => props.width ? props.width : '100%'};
     background: ${props => props.theme.color.background.secondary};
+    padding: ${props => props.ingroup ? "6px 16px" : props.type === "outline" ? "5px 15px" : "6px 16px"};
     margin: ${props => props.demo ? "8px": "0px"};
     border: 1px solid ${props => props.displayMode === "disabled" ? "var(--fillColor)" : "rgba(34,36,38,.15)"};
+    font-size: ${props => props.theme.textSize[props.size] || "1rem" };
+    font-weight: ${props => props.theme.weight[props.fontWeight] || 500};
     -webkit-box-shadow: none;
     box-shadow: none;
     border-radius: .28571429rem; 
@@ -18,7 +21,7 @@ const TableComponent = styled.table`
         cursor: auto;
         background: #f9fafb;
         text-align: inherit;
-        color: rgba(0,0,0,.87);
+        color: ${props => props.theme.color.text.primary};
         padding: .92857143em .78571429em;
         vertical-align: inherit;
         font-style: none;
@@ -41,18 +44,19 @@ const Row = styled.tr`
     width: 100%;
     background: #fff;
     margin: 1em 0;
-    border: 1px solid rgba(34,36,38,.15);
+    border: 1px solid;
+    border-color: ${props => props.ingroup ? props.theme.color.border.primary : "var(--fillColor)"};
     -webkit-box-shadow: none;
     box-shadow: none;
     border-radius: .28571429rem;
     text-align: left;
-    color: rgba(0,0,0,.87);
+    color: ${props => props.theme.color.text.secondary};
     border-collapse: separate;
     border-spacing: 0;
 
     &:hover{
-        background: rgba(0,0,0,.05)!important;
-        color: rgba(0,0,0,.95)!important;
+        color: ${props => props.theme.color.text.primary    }
+        background: ${props => props.theme.color.text.visited};
     }
 `;
 const HeaderCell = styled.th``;
@@ -65,10 +69,6 @@ const TableFooter = styled.tfoot`
         background: transparent;
     }
 `;
-
-const handleClick = (props)=>{
-    console.log(props)
-}
 function Table(props){
     return(
         <TableComponent {...props}>
@@ -77,7 +77,7 @@ function Table(props){
                 return React.cloneElement(
                     child, 
                     {
-                        onSelect: () => handleClick(child.props.value)
+                        onSelect: () => props.onSelect
                     })
             })
         }
@@ -91,6 +91,14 @@ Table.HeaderCell = HeaderCell
 Table.Body = Body
 Table.Cell = Cell
 Table.TableFooter = TableFooter
+
+Table.defaultProps = {
+    displayMode: "edit",
+    size: "medium",
+    disabled: false,
+    onSelect: (e) => {},
+    default: false
+}
 
 
 export default Table

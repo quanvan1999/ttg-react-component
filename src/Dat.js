@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { ThemeProvider } from 'styled-components'
-import Table from './components/Table/Table'
+import Table from './components/elements/Table'
 import Container from './components/Container'
 import theme from './utils/theme'
 import Pagination from './components/elements/Pagination'
-import { Tab } from './components/elements'
 
 export default function Dat() {
   // const [data, setData] = useState([]);

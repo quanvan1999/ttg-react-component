@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types';
 const DivContainer = styled.div`
     margin: auto;
-    color: white;
+    color: black;
     height: auto;
     @media(min-width: 1400px){
         width: 1320px;
@@ -19,8 +19,11 @@ const DivContainer = styled.div`
     @media screen and (min-device-width: 576px) and (max-device-width: 767px){
         width: 540px;
     }
-    @media (max-width: 575px){
-        width: 100%;
+    @media screen and (min-device-width: 498px) (max-device-width: 575px){
+        width: 520px;
+    }
+    @media screen and (max-device-width: 499px){
+        width: 350px;
     }
 `;
 const DivContainerFluid = styled.div`
@@ -28,12 +31,17 @@ const DivContainerFluid = styled.div`
     height: auto;
 `;
 const DivRow = styled.div`
-    width: 100%;
-    background: red;
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
     display: flex;
+    flex-wrap: wrap;
 `;
 const DivCol = styled.div`
-    background: gray;
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    padding-left: .75rem;
+    background-color: white;
+    border: 1px solid rgba(39,41,43,0.1);
     @media(min-width: 1400px){
         ${props => props.col === 1 ? 'min-width: 110px;' : 'auto;'}
         ${props => props.col === 2 ? 'min-width: 220px;' : 'auto;'}
@@ -104,18 +112,60 @@ const DivCol = styled.div`
         ${props => props.col === 11 ? 'width: 495px;' : 'auto;'}
         ${props => props.col === 12 ? 'width: 540px;' : 'auto;'}
     }
-    @media (max-width: 575px){
-        ${props => props.col === 1 ? 'width: 8,33%;' : 'auto;'}
-        ${props => props.col === 2 ? 'width: 16,66%;' : 'auto;'}
-        ${props => props.col === 3 ? 'width: 24,99%;' : 'auto;'}
-        ${props => props.col === 4 ? 'width: 33,32%;' : 'auto;'}
-        ${props => props.col === 5 ? 'width: 41,65%;' : 'auto;'}
-        ${props => props.col === 6 ? 'width: 49,98%;' : 'auto;'}
-        ${props => props.col === 7 ? 'width: 58,31%;' : 'auto;'}
-        ${props => props.col === 8 ? 'width: 66,64%;' : 'auto;'}
-        ${props => props.col === 9 ? 'width: 74,97%;' : 'auto;'}
-        ${props => props.col === 10 ? 'width: 83,3% ;' : 'auto;'}
-        ${props => props.col === 11 ? 'width: 91,63%;' : 'auto;'}
+    @media screen and (min-device-width: 499px) and (max-device-width: 575px){
+        ${props => props.col === 1 ? 'width: 8.33%;' : 'auto;'}
+        ${props => props.col === 2 ? 'width: 16.66%;' : 'auto;'}
+        ${props => props.col === 3 ? 'width: 24.99%;' : 'auto;'}
+        ${props => props.col === 4 ? 'width: 33.32%;' : 'auto;'}
+        ${props => props.col === 5 ? 'width: 41.65%;' : 'auto;'}
+        ${props => props.col === 6 ? 'width: 49.98%;' : 'auto;'}
+        ${props => props.col === 7 ? 'width: 58.31%;' : 'auto;'}
+        ${props => props.col === 8 ? 'width: 66.64%;' : 'auto;'}
+        ${props => props.col === 9 ? 'width: 74.97%;' : 'auto;'}
+        ${props => props.col === 10 ? 'width: 83.3%;' : 'auto;'}
+        ${props => props.col === 11 ? 'width: 91.63%;' : 'auto;'}
+        ${props => props.col === 12 ? 'width: 100%;' : 'auto;'}
+    }
+    @media screen and (max-device-width: 499px){
+        ${props => props.col === 1 ? 'width: 9.2%;' : 'auto;'}
+        ${props => props.col === 2 ? 'width: 16.66%;' : 'auto;'}
+        ${props => props.col === 3 ? 'width: 25.99%;' : 'auto;'}
+        ${props => props.col === 4 ? 'width: 33.32%;' : 'auto;'}
+        ${props => props.col === 5 ? 'width: 40.5%;' : 'auto;'}
+        ${props => props.col === 6 ? 'width: 49.98%;' : 'auto;'}
+        ${props => props.col === 7 ? 'width: 57%;' : 'auto;'}
+        ${props => props.col === 8 ? 'width: 66.64%;' : 'auto;'}
+        ${props => props.col === 9 ? 'width: 74.97%;' : 'auto;'}
+        ${props => props.col === 10 ? 'width: 83.3%;' : 'auto;'}
+        ${props => props.col === 11 ? 'width: 91.63%;' : 'auto;'}
+        ${props => props.col === 12 ? 'width: 100%;' : 'auto;'}
+    }
+    @media screen and (max-device-width: 320px) and (min-device-width: 270px){
+        ${props => props.col === 1 ? 'width: 9.33%;' : 'auto;'}
+        ${props => props.col === 2 ? 'width: 16.6%;' : 'auto;'}
+        ${props => props.col === 3 ? 'width: 25.99%;' : 'auto;'}
+        ${props => props.col === 4 ? 'width: 33.32%;' : 'auto;'}
+        ${props => props.col === 5 ? 'width: 40.5%;' : 'auto;'}
+        ${props => props.col === 6 ? 'width: 49.98%;' : 'auto;'}
+        ${props => props.col === 7 ? 'width: 57%;' : 'auto;'}
+        ${props => props.col === 8 ? 'width: 66.64%;' : 'auto;'}
+        ${props => props.col === 9 ? 'width: 74.97%;' : 'auto;'}
+        ${props => props.col === 10 ? 'width: 83.3%;' : 'auto;'}
+        ${props => props.col === 11 ? 'width: 91.63%;' : 'auto;'}
+        ${props => props.col === 12 ? 'width: 100%;' : 'auto;'}
+    }
+    @media screen and (max-device-width: 280px){
+        ${props => props.col === 1 ? 'width: 9.33%;' : 'auto;'}
+        ${props => props.col === 2 ? 'width: 16.66%;' : 'auto;'}
+        ${props => props.col === 3 ? 'width: 25.99%;' : 'auto;'}
+        ${props => props.col === 4 ? 'width: 33.32%;' : 'auto;'}
+        ${props => props.col === 5 ? 'width: 40.5%;' : 'auto;'}
+        ${props => props.col === 6 ? 'width: 49.98%;' : 'auto;'}
+        ${props => props.col === 7 ? 'width: 57%;' : 'auto;'}
+        ${props => props.col === 8 ? 'width: 66.64%;' : 'auto;'}
+        ${props => props.col === 9 ? 'width: 74.97%;' : 'auto;'}
+        ${props => props.col === 10 ? 'width: 83.3%;' : 'auto;'}
+        ${props => props.col === 11 ? 'width: 91.63%;' : 'auto;'}
         ${props => props.col === 12 ? 'width: 100%;' : 'auto;'}
     }
 `;
@@ -125,8 +175,6 @@ DivCol.PropTypes={
 DivCol.defaultProps={
     col: 1
 }
-
-
 const Container = (props)=>{
     return(
         <DivContainer {...props}>

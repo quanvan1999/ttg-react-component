@@ -27,8 +27,9 @@ import {
   Pagination,
   Label,
   Combox,
-  Table
+  Table,
 } from './components/elements'
+import {H1, H2, H3, H4, H5, H6, P, HL} from './components/elements/Typography'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
 import Box from './components/Box'
@@ -92,7 +93,6 @@ function Quanh() {
               <ButtonGroup fullWidth onSelect={x => setTheme(x)}>
                 <Button value="light">Light</Button>
                 <Button value="dark">Dark</Button>
-                <Button value="custom">Custom</Button>
               </ButtonGroup>
             </Container>
 
@@ -110,7 +110,19 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-
+              <Box headline="Typography">
+                <Box.Item>
+                  <H1>The biggest header.</H1>
+                  <H2 color="secondary">Secondary color, very nice.</H2>
+                  <H3 color="success">Success, you made it.</H3>
+                  <H4 color="warning">Something may go wrong.</H4>
+                  <H5 color="danger">Beware, very dangerous.</H5>
+                  <H6>Almost before we knew it, we had left the ground.</H6>
+                  <P>Almost before we knew it, we had left the ground.</P>
+                  <P lead>A lead paragraph, make it stands out.</P>
+                  <P>This <HL>beautiful text</HL> is highlighted</P>
+                </Box.Item>
+              </Box>
               <Box headline="Table">
                 <Table>
                   <Table.Header>
@@ -148,7 +160,7 @@ function Quanh() {
 
               <Box headline="Pagination" block>
                 <Box.Item>
-                  <Label>{"Active Page: " + activePage}</Label>
+                  <Label>Active Page: <strong>{activePage}</strong></Label>
                   <Pagination totalPage={Math.ceil(todoData.length / 3)} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
                 </Box.Item>
               </Box>

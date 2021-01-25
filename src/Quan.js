@@ -15,6 +15,8 @@ import ListItem from './components/ListItem'
 import Tooltip from './components/elements/Tooltip';
 import RippleButton from './components/RippleButton';
 import AutoComplete,{Completion} from './components/Mentions/AutoComplete';
+import MultiMentions from './components/Mentions/MultiMentions';
+
 
 
 
@@ -28,34 +30,48 @@ function Quan() {
   }
   
   const [select, setSelect] = useState()
- const users = [
-    'ReAnna',
-    'KellyBelly',
-    'kool_panda',
-    'SekshiBot',
-    'DimSum',
-    'hihello59',
-    'Hitagi',
-    'Zacaeus',
+  const data = [
+    {
+      id: "walter",
+      display: "Walter White"
+    },
+    {
+      id: "jesse",
+      display: "Jesse Pinkman"
+    },
+    {
+      id: "gus",
+      display: 'Gustavo "Gus" Fring'
+    },
+    {
+      id: "saul",
+      display: "Saul Goodman"
+    },
+    {
+      id: "hank",
+      display: "Hank Schrader"
+    },
+    {
+      id: "skyler",
+      display: "Skyler White"
+    },
+    {
+      id: "mike",
+      display: "Mike Ehrmantraut"
+    }
   ];
+  const emailRegex = /(([^\s@]+@[^\s@]+\.[^\s@]+))$/;
 
   return (
     <div>
       <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List "}>
-        <AutoComplete width={300} >
-        <Completion
-          trigger="@"
-          completions={users}
-          minLength={1}
-        />
-      </AutoComplete>
-         </Container>
+          <MultiMentions width={700} data={data}/>
+        </Container>
       </ThemeProvider>
     </div>
   )
 }
-
 
 
 export default Quan;

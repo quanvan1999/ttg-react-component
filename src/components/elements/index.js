@@ -27,6 +27,7 @@ import Pagination from './Pagination'
 import Label from './Label'
 import Combox from './Combox'
 import Table from './Table'
+import Typography from './Typography'
 export {
     Button, 
     ButtonGroup, 
@@ -56,5 +57,6 @@ export {
     Pagination,
     Label,
     Combox,
-    Table
+    Table,
+    Typography
 }

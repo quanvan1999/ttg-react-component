@@ -26,6 +26,7 @@ import FAB from './FAB'
 import Pagination from './Pagination'
 import Label from './Label'
 import Combox from './Combox'
+import Table from './Table'
 export {
     Button, 
     ButtonGroup, 
@@ -54,5 +55,6 @@ export {
     FAB,
     Pagination,
     Label,
-    Combox
+    Combox,
+    Table
 }

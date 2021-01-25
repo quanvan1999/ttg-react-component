@@ -26,7 +26,8 @@ import {
   Tooltip,
   Pagination,
   Label,
-  Combox
+  Combox,
+  Table
 } from './components/elements'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
@@ -36,7 +37,6 @@ import IcoSettings from './components/icons/IcoSettings'
 import IcoX from './components/icons/IcoX'
 import IcoArrowDownCircle from './components/icons/IcoArrowDownCircle'
 import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
-import Table from './components/Table/Table'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
 const FontProvider = styled.div`

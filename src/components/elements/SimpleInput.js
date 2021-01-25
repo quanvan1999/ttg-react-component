@@ -7,7 +7,7 @@ const StyledInput = styled.input`
     margin: ${props => props.demo? "8px": "0px"};
     color: ${props => props.theme.color.text.primary};
     padding: 6px 8px;
-    border: 1px solid ${props => props.theme.color.background.secondary};
+    border: 1px solid ${props => props.theme.color.border.primary};
     //border: 2px solid ${props => getFader(props.theme.color.fill.primary, 0.4)};
     border-radius: 4px;
     font-size: ${props => props.theme.textSize.medium};

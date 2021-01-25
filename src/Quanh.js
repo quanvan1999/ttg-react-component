@@ -39,10 +39,22 @@ import IcoArrowDownCircle from './components/icons/IcoArrowDownCircle'
 import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
+import IcoCheck from './components/icons/IcoCheck'
+
+
+
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
 `;
 function Quanh() {
+  const [todoData, setTodoData] = useState([])
+  const [users, setUsers] = useState([])
+  const [post, setPost] = useState([])
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json()).then(data => setUsers(data))
+    fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json()).then(data => setTodoData(data))
+    fetch('https://jsonplaceholder.typicode.com/post').then(res => res.json()).then(data => setPost(data))
+  }, [])
   useEffect(() => {
     document.title = "Theme: " + theme[myTheme].name
   })
@@ -101,24 +113,33 @@ function Quanh() {
                 <Table>
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>ID</Table.HeaderCell>
-                      <Table.HeaderCell>Job</Table.HeaderCell>
-                      <Table.HeaderCell>Name</Table.HeaderCell>
-                      <Table.HeaderCell cellWidth="40px">More</Table.HeaderCell>
+                      <Table.HeaderCell width="5%">ID</Table.HeaderCell>
+                      <Table.HeaderCell width="25%">Name</Table.HeaderCell>
+                      <Table.HeaderCell>Title</Table.HeaderCell>
+                      <Table.HeaderCell width="15%">Completed</Table.HeaderCell>
+                      <Table.HeaderCell width="5%">More</Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
-                    {ComboxData.map(d => 
+                    {todoData.slice((activePage-1)*3, (activePage-1)*3 + 3).map(d => 
                       <Table.Row>
                         <Table.Cell textAlign="center">{d.id}</Table.Cell>
-                        <Table.Cell textAlign="center">{d.job}</Table.Cell>
-                        <Table.Cell textAlign="center">{d.name}</Table.Cell>
-                        <Table.Cell textAlign="center" onClick={() => alert(d.name)}><IcoSettings size="small"/></Table.Cell>
+                        <Table.Cell textAlign="center">{users.find(user => user.id === d.userId).name || "Unknown"}</Table.Cell>
+                        <Table.Cell textAlign="center">{d.title}</Table.Cell>
+                        <Table.Cell textAlign="center">
+                          {d.completed ? <Button type="text" color="success"><IcoCheck/></Button> : <Button type="text" color="danger"><IcoX/></Button>}
+                        </Table.Cell>
+                        <Table.Cell textAlign="center"><Button type="text" color="info" round><IcoChevronRight/></Button></Table.Cell>
                       </Table.Row>
                       )}
                   </Table.Body>
                   <Table.Footer>
-                    Awesome
+                    <Table.Cell colSpan="2" textAlign="center">
+                      {"Total Row: " + todoData.length}
+                    </Table.Cell>
+                    <Table.Cell colSpan="99" textAlign="right">
+                      <Pagination totalPage={Math.ceil(todoData.length / 3)} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
+                    </Table.Cell>
                   </Table.Footer>
                 </Table>
               </Box>
@@ -126,7 +147,7 @@ function Quanh() {
               <Box headline="Pagination" block>
                 <Box.Item>
                   <Label>{"Active Page: " + activePage}</Label>
-                  <Pagination totalPage={20} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
+                  <Pagination totalPage={Math.ceil(todoData.length / 3)} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
                 </Box.Item>
               </Box>
               <Box headline="Tooltip">

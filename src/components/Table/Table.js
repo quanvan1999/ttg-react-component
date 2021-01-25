@@ -1,86 +1,66 @@
 import styled from 'styled-components'
 import React from 'react'
-
+import PropTypes from 'prop-types'
 const TableComponent = styled.table`
-    width: ${props => props.width ? props.width : '100%'};
+    width: ${props => props.width || '100%'};
     background: ${props => props.theme.color.background.secondary};
     margin: ${props => props.demo ? "8px": "0px"};
-    border: 1px solid ${props => props.displayMode === "disabled" ? "var(--fillColor)" : "rgba(34,36,38,.15)"};
-    -webkit-box-shadow: none;
+    border: 1px solid ${props => props.displayMode === "disabled" ? "var(--fillColor)" : props.theme.color.border.secondary};
     box-shadow: none;
-    border-radius: .28571429rem; 
-    text-align: left;
-    color: rgba(0,0,0,.87);
-    border-collapse: separate; 
-    border-spacing: 0;  
+    border-collapse: collapse; 
     position: relative;
-    th{
-        cursor: auto;
-        background: #f9fafb;
-        text-align: inherit;
-        color: rgba(0,0,0,.87);
-        padding: .92857143em .78571429em;
-        vertical-align: inherit;
-        font-style: none;
-        font-weight: 700;
-        text-transform: none;
-        border-bottom: 1px solid rgba(34,36,38,.1);
-        border-left: none;
-        border-left: 1px solid rgba(34,36,38,.1);
-    }
-
-    td{
-        padding: .78571429em .78571429em;
-        text-align: inherit;
-        border-left: 1px solid rgba(34,36,38,.1);
-        border-bottom: 1px solid rgba(34,36,38,.1);
-    }
 `;
-const Header = styled.thead``;
+const Header = styled.thead`
+    
+`;
+
 const Row = styled.tr`
-    width: 100%;
-    background: #fff;
-    margin: 1em 0;
-    border: 1px solid rgba(34,36,38,.15);
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-radius: .28571429rem;
-    text-align: left;
-    color: rgba(0,0,0,.87);
-    border-collapse: separate;
-    border-spacing: 0;
-
-    &:hover{
-        background: rgba(0,0,0,.05)!important;
-        color: rgba(0,0,0,.95)!important;
+    cursor: pointer;
+    background: ${props => props.theme.color.background.primary};
+    transition: all 150ms ease-in;
+    &:hover {
+        background: ${props => !props.footer && props.theme.color.background.secondary};
     }
 `;
-const HeaderCell = styled.th``;
-const Body = styled.tbody``;
-const Cell = styled.td``;
-const TableFooter = styled.tfoot`
-    right: 0;
-    position: absolute;
-    &:hover{
-        background: transparent;
-    }
+const HeaderCell = styled.th`
+    cursor: pointer;
+    background: ${props => props.theme.color.background.secondary};
+    color: ${props => props.theme.color.text.primary};
+    padding: 0.5rem 1rem;
+    font-weight: ${props => props.theme.weight.bold};
+    border: 1px solid ${props => props.theme.color.border.primary};
+    width: ${props => props.cellWidth || "auto"};
+    text-align: ${props => props.textAlign || "center"};
 `;
-
-const handleClick = (props)=>{
-    console.log(props)
+HeaderCell.propTypes = {
+    cellWidth: PropTypes.string,
+    textAlign: PropTypes.string
 }
+const Body = styled.tbody``;
+
+const Cell = styled.td`
+    padding: 0.5rem 1rem;
+    border: 1px solid ${props => props.theme.color.border.primary};
+    text-align: ${props => props.textAlign || "left"};
+`;
+Cell.propTypes = {
+    textAlign: PropTypes.string
+}
+
+const Footer = (props) => {
+    return (
+        <tfoot>
+            <Row footer>
+                <Cell colSpan={99}>{props.children}</Cell>
+            </Row>
+        </tfoot>
+    )
+}
+
 function Table(props){
     return(
         <TableComponent {...props}>
-        {
-            React.Children.map(props.children, child => {
-                return React.cloneElement(
-                    child, 
-                    {
-                        onSelect: () => handleClick(child.props.value)
-                    })
-            })
-        }
+            {props.children}
         </TableComponent>
     )
 };
@@ -90,7 +70,10 @@ Table.Row = Row
 Table.HeaderCell = HeaderCell
 Table.Body = Body
 Table.Cell = Cell
-Table.TableFooter = TableFooter
+Table.Footer = Footer
 
+Table.propTypes = {
+    cellWidth: PropTypes.string
+}
 
 export default Table

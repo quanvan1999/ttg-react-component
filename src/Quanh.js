@@ -25,7 +25,8 @@ import {
   FAB,
   Tooltip,
   Pagination,
-  Label
+  Label,
+  Combox
 } from './components/elements'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
@@ -35,7 +36,6 @@ import IcoSettings from './components/icons/IcoSettings'
 import IcoX from './components/icons/IcoX'
 import IcoArrowDownCircle from './components/icons/IcoArrowDownCircle'
 import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
-import Combox from './components/elements/Combox'
 import Table from './components/Table/Table'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
@@ -54,7 +54,7 @@ function Quanh() {
   ]
   const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit mattis arcu semper elementum. Nullam accumsan erat vitae quam sagittis placerat. In sodales mi eros, id commodo nulla fermentum in. Cras vehicula, sapien id fringilla lobortis, erat nisl rhoncus ante, et maximus libero tellus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus justo nunc, sed molestie tortor dictum vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris maximus est quis ligula ullamcorper semper. Integer tempus orci dui, a lacinia lorem tempus ut. Donec sapien leo, sodales eu odio molestie, cursus lacinia quam. Aenean rhoncus rhoncus erat, nec volutpat nulla ullamcorper sit amet. Maecenas finibus, ante in suscipit rhoncus, massa lorem posuere est, vel faucibus turpis neque sit amet augue. Nulla sit amet mauris sit amet augue pharetra luctus vitae nec turpis. Duis sollicitudin commodo nisi quis mollis."
   const [mode, setMode] = useState("edit")
-  const [myTheme, setTheme] = useState("dark")
+  const [myTheme, setTheme] = useState("light")
   const [textValue, setTextValue] = useState("")
   const [modalState, setModalState] = useState(false)
   const [modalState2, setModalState2] = useState(false)
@@ -98,31 +98,28 @@ function Quanh() {
             <Container headline={"Elements"} fullWidth>
 
               <Box headline="Table">
-                <Table width="50%">
+                <Table>
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell>ID</Table.HeaderCell>
+                      <Table.HeaderCell>Job</Table.HeaderCell>
                       <Table.HeaderCell>Name</Table.HeaderCell>
-                      <Table.HeaderCell>Age</Table.HeaderCell>
+                      <Table.HeaderCell cellWidth="40px">More</Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
-                    <Table.Row>
-                      <Table.Cell>1</Table.Cell>
-                      <Table.Cell>Apple</Table.Cell>
-                      <Table.Cell>10</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell>2</Table.Cell>
-                      <Table.Cell>Banana</Table.Cell>
-                      <Table.Cell>11</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell>3</Table.Cell>
-                      <Table.Cell>Orange</Table.Cell>
-                      <Table.Cell>12</Table.Cell>
-                    </Table.Row>
+                    {ComboxData.map(d => 
+                      <Table.Row>
+                        <Table.Cell textAlign="center">{d.id}</Table.Cell>
+                        <Table.Cell textAlign="center">{d.job}</Table.Cell>
+                        <Table.Cell textAlign="center">{d.name}</Table.Cell>
+                        <Table.Cell textAlign="center" onClick={() => alert(d.name)}><IcoSettings size="small"/></Table.Cell>
+                      </Table.Row>
+                      )}
                   </Table.Body>
+                  <Table.Footer>
+                    Awesome
+                  </Table.Footer>
                 </Table>
               </Box>
 

@@ -4,7 +4,6 @@ import {Table} from './components/elements'
 import Container from './components/Container'
 import theme from './utils/theme'
 import Pagination from './components/elements/Pagination'
-import { Tab } from './components/elements'
 
 export default function Dat() {
   // const [data, setData] = useState([]);

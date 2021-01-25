@@ -1,66 +1,86 @@
 import styled from 'styled-components'
 import React from 'react'
-import PropTypes from 'prop-types'
-const TableComponent = styled.table`
-    width: ${props => props.width || '100%'};
-    background: ${props => props.theme.color.background.secondary};
-    margin: ${props => props.demo ? "8px": "0px"};
-    border: 1px solid ${props => props.displayMode === "disabled" ? "var(--fillColor)" : props.theme.color.border.secondary};
-    box-shadow: none;
-    border-collapse: collapse; 
-    position: relative;
-`;
-const Header = styled.thead`
-    
-`;
 
-const Row = styled.tr`
-    cursor: pointer;
-    background: ${props => props.theme.color.background.primary};
-    transition: all 150ms ease-in;
-    &:hover {
-        background: ${props => !props.footer && props.theme.color.background.secondary};
+const TableComponent = styled.table`
+    width: ${props => props.width ? props.width : '100%'};
+    background: ${props => props.theme.color.background.secondary};
+    padding: ${props => props.ingroup ? "6px 16px" : props.type === "outline" ? "5px 15px" : "6px 16px"};
+    margin: ${props => props.demo ? "8px": "0px"};
+    border: 1px solid ${props => props.displayMode === "disabled" ? "var(--fillColor)" : "rgba(34,36,38,.15)"};
+    font-size: ${props => props.theme.textSize[props.size] || "1rem" };
+    font-weight: ${props => props.theme.weight[props.fontWeight] || 500};
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: .28571429rem; 
+    text-align: left;
+    color: rgba(0,0,0,.87);
+    border-collapse: separate; 
+    border-spacing: 0;  
+    position: relative;
+    th{
+        cursor: auto;
+        background: #f9fafb;
+        text-align: inherit;
+        color: ${props => props.theme.color.text.primary};
+        padding: .92857143em .78571429em;
+        vertical-align: inherit;
+        font-style: none;
+        font-weight: 700;
+        text-transform: none;
+        border-bottom: 1px solid rgba(34,36,38,.1);
+        border-left: none;
+        border-left: 1px solid rgba(34,36,38,.1);
+    }
+
+    td{
+        padding: .78571429em .78571429em;
+        text-align: inherit;
+        border-left: 1px solid rgba(34,36,38,.1);
+        border-bottom: 1px solid rgba(34,36,38,.1);
     }
 `;
-const HeaderCell = styled.th`
-    cursor: pointer;
-    background: ${props => props.theme.color.background.secondary};
-    color: ${props => props.theme.color.text.primary};
-    padding: 0.5rem 1rem;
-    font-weight: ${props => props.theme.weight.bold};
-    border: 1px solid ${props => props.theme.color.border.primary};
-    width: ${props => props.cellWidth || "auto"};
-    text-align: ${props => props.textAlign || "center"};
+const Header = styled.thead``;
+const Row = styled.tr`
+    width: 100%;
+    background: #fff;
+    margin: 1em 0;
+    border: 1px solid;
+    border-color: ${props => props.ingroup ? props.theme.color.border.primary : "var(--fillColor)"};
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: .28571429rem;
+    text-align: left;
+    color: ${props => props.theme.color.text.secondary};
+    border-collapse: separate;
+    border-spacing: 0;
+
+    &:hover{
+        color: ${props => props.theme.color.text.primary    }
+        background: ${props => props.theme.color.text.visited};
+    }
 `;
-HeaderCell.propTypes = {
-    cellWidth: PropTypes.string,
-    textAlign: PropTypes.string
-}
+const HeaderCell = styled.th``;
 const Body = styled.tbody``;
-
-const Cell = styled.td`
-    padding: 0.5rem 1rem;
-    border: 1px solid ${props => props.theme.color.border.primary};
-    text-align: ${props => props.textAlign || "left"};
+const Cell = styled.td``;
+const TableFooter = styled.tfoot`
+    right: 0;
+    position: absolute;
+    &:hover{
+        background: transparent;
+    }
 `;
-Cell.propTypes = {
-    textAlign: PropTypes.string
-}
-
-const Footer = (props) => {
-    return (
-        <tfoot>
-            <Row footer>
-                <Cell colSpan={99}>{props.children}</Cell>
-            </Row>
-        </tfoot>
-    )
-}
-
 function Table(props){
     return(
         <TableComponent {...props}>
-            {props.children}
+        {
+            React.Children.map(props.children, child => {
+                return React.cloneElement(
+                    child, 
+                    {
+                        onSelect: () => props.onSelect
+                    })
+            })
+        }
         </TableComponent>
     )
 };
@@ -70,10 +90,15 @@ Table.Row = Row
 Table.HeaderCell = HeaderCell
 Table.Body = Body
 Table.Cell = Cell
-Table.Footer = Footer
+Table.TableFooter = TableFooter
 
-Table.propTypes = {
-    cellWidth: PropTypes.string
+Table.defaultProps = {
+    displayMode: "edit",
+    size: "medium",
+    disabled: false,
+    onSelect: (e) => {},
+    default: false
 }
+
 
 export default Table

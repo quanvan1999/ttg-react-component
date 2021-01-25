@@ -12,7 +12,7 @@ const StyledButton = styled.button`
     --disabledTextColor: ${props => props.theme.color.text.disabled};
     --disabledFillColor: ${props => props.theme.color.fill.disabled};
     margin: ${props => props.demo? "8px": "0px"};
-    padding: ${props => props.ingroup ? "6px 16px" : props.type === "outline" ? "5px 15px" : "6px 16px"};
+    padding: ${props => props.ingroup ? "5px 15px" : props.round ? "2px" : props.type === "outline" ? "5px 15px" : "6px 16px"};
     transition: background 0.15s linear;
     font-size: ${props => props.theme.textSize[props.size] || "1rem" };
     font-weight: ${props => props.theme.weight[props.fontWeight] || 500};
@@ -26,7 +26,7 @@ const StyledButton = styled.button`
     border-style: solid;
     border-color: ${props => props.ingroup ? props.theme.color.border.primary : "var(--fillColor)"};
     border-width: ${props => props.ingroup === "left" ? "0 0.5px 0 0" : props.ingroup === "right" ? "0 0 0 0.5px" : props.ingroup === "middle" ? "0 0.5px 0 0.5px" : props.type === "outline" ? "1px": "0px"};
-    border-radius: ${props => props.ingroup ? "0" : "4px"};
+    border-radius: ${props => props.ingroup ? "0" : props => props.round ? "999px" : "4px"};
     display: ${props => props.fullWidth ? "block" : "inline-block"};
     width: ${props => props.fullWidth ? "100%": "auto"};
     box-shadow: ${props => props.ingroup ? "none" : props.type === "contained" ? props.theme.shadow : "none"};
@@ -73,6 +73,7 @@ Button.propTypes ={
     fullWidth: PropTypes.bool,
     type: PropTypes.string,
     onSelect:PropTypes.func,
-    default: PropTypes.bool
+    default: PropTypes.bool,
+    round: PropTypes.bool
 }
 export default Button

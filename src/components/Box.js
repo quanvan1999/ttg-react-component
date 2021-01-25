@@ -8,11 +8,11 @@ const Item = styled.div`
 `;
 
 const StyledBox = styled.div`
-    border: 1px solid ${props => props.theme.color.background.secondary};
+    border: 1px solid ${props => props.theme.color.border.primary};
     border-radius: 2px;
     margin-bottom: 8px;
     & h4 {
-        border-bottom: 1px solid ${props => props.theme.color.background.secondary};
+        border-bottom: 1px solid ${props => props.theme.color.border.primary};
         padding: 4px 12px;
         background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.05));
         

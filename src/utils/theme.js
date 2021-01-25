@@ -20,10 +20,10 @@ const theme = {
             },
             background: {
                 primary: "#FFFFFF",
-                secondary: "#E5E5E5"
+                secondary: "#F9F9F9"
             },
             border: {
-                primary: "#CCCCCC"
+                primary: "#E3E3E3"
             }
         },
         textSize: {
@@ -38,8 +38,8 @@ const theme = {
         },
         weight: {
             light: 300,
-            normal: 500,
-            bold: 700
+            normal: 400,
+            bold: 600
         },
         shadow: "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"
     },
@@ -67,7 +67,7 @@ const theme = {
                 secondary: "#313233" //Pewter 800 
             },
             border: {
-                primary: "#555555"
+                primary: "#333333"
             }
         },
         textSize: {
@@ -82,8 +82,8 @@ const theme = {
         },
         weight: {
             light: 300,
-            normal: 500,
-            bold: 700
+            normal: 400,
+            bold: 500
         },
         shadow: "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"
     },
@@ -126,8 +126,8 @@ const theme = {
         },
         weight: {
             light: 300,
-            normal: 500,
-            bold: 700
+            normal: 400,
+            bold: 500
         },
         shadow: "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)"
     }

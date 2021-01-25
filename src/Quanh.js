@@ -25,7 +25,9 @@ import {
   FAB,
   Tooltip,
   Pagination,
-  Label
+  Label,
+  Combox,
+  Table
 } from './components/elements'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
@@ -35,13 +37,24 @@ import IcoSettings from './components/icons/IcoSettings'
 import IcoX from './components/icons/IcoX'
 import IcoArrowDownCircle from './components/icons/IcoArrowDownCircle'
 import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
-import Combox from './components/elements/Combox'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
+import IcoCheck from './components/icons/IcoCheck'
+
+
+
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
 `;
 function Quanh() {
+  const [todoData, setTodoData] = useState([])
+  const [users, setUsers] = useState([])
+  const [post, setPost] = useState([])
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json()).then(data => setUsers(data))
+    fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json()).then(data => setTodoData(data))
+    fetch('https://jsonplaceholder.typicode.com/post').then(res => res.json()).then(data => setPost(data))
+  }, [])
   useEffect(() => {
     document.title = "Theme: " + theme[myTheme].name
   })
@@ -53,7 +66,7 @@ function Quanh() {
   ]
   const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit mattis arcu semper elementum. Nullam accumsan erat vitae quam sagittis placerat. In sodales mi eros, id commodo nulla fermentum in. Cras vehicula, sapien id fringilla lobortis, erat nisl rhoncus ante, et maximus libero tellus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus justo nunc, sed molestie tortor dictum vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris maximus est quis ligula ullamcorper semper. Integer tempus orci dui, a lacinia lorem tempus ut. Donec sapien leo, sodales eu odio molestie, cursus lacinia quam. Aenean rhoncus rhoncus erat, nec volutpat nulla ullamcorper sit amet. Maecenas finibus, ante in suscipit rhoncus, massa lorem posuere est, vel faucibus turpis neque sit amet augue. Nulla sit amet mauris sit amet augue pharetra luctus vitae nec turpis. Duis sollicitudin commodo nisi quis mollis."
   const [mode, setMode] = useState("edit")
-  const [myTheme, setTheme] = useState("dark")
+  const [myTheme, setTheme] = useState("light")
   const [textValue, setTextValue] = useState("")
   const [modalState, setModalState] = useState(false)
   const [modalState2, setModalState2] = useState(false)
@@ -95,6 +108,48 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
+
+              <Box headline="Table">
+                <Table>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.HeaderCell width="5%">ID</Table.HeaderCell>
+                      <Table.HeaderCell width="25%">Name</Table.HeaderCell>
+                      <Table.HeaderCell>Title</Table.HeaderCell>
+                      <Table.HeaderCell width="15%">Completed</Table.HeaderCell>
+                      <Table.HeaderCell width="5%">More</Table.HeaderCell>
+                    </Table.Row>
+                  </Table.Header>
+                  <Table.Body>
+                    {todoData.slice((activePage-1)*3, (activePage-1)*3 + 3).map(d => 
+                      <Table.Row>
+                        <Table.Cell textAlign="center">{d.id}</Table.Cell>
+                        <Table.Cell textAlign="center">{users.find(user => user.id === d.userId).name || "Unknown"}</Table.Cell>
+                        <Table.Cell textAlign="center">{d.title}</Table.Cell>
+                        <Table.Cell textAlign="center">
+                          {d.completed ? <Button type="text" color="success"><IcoCheck/></Button> : <Button type="text" color="danger"><IcoX/></Button>}
+                        </Table.Cell>
+                        <Table.Cell textAlign="center"><Button type="text" color="info" round><IcoChevronRight/></Button></Table.Cell>
+                      </Table.Row>
+                      )}
+                  </Table.Body>
+                  <Table.Footer>
+                    <Table.Cell colSpan="2" textAlign="center">
+                      {"Total Row: " + todoData.length}
+                    </Table.Cell>
+                    <Table.Cell colSpan="99" textAlign="right">
+                      <Pagination totalPage={Math.ceil(todoData.length / 3)} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
+                    </Table.Cell>
+                  </Table.Footer>
+                </Table>
+              </Box>
+
+              <Box headline="Pagination" block>
+                <Box.Item>
+                  <Label>{"Active Page: " + activePage}</Label>
+                  <Pagination totalPage={Math.ceil(todoData.length / 3)} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
+                </Box.Item>
+              </Box>
               <Box headline="Tooltip">
                 <Tooltip content="Useful animation about this button">
                   <Button demo color="danger" type="contained">Hover to see tooltip at the bottom</Button>

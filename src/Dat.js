@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { ThemeProvider } from 'styled-components'
-import Table from './components/Table/Table'
+import {Table} from './components/elements'
 import Container from './components/Container'
 import theme from './utils/theme'
-import {Pagination} from './components/elements'
+import Pagination from './components/elements/Pagination'
 
 export default function Dat() {
   // const [data, setData] = useState([]);
@@ -28,6 +28,32 @@ export default function Dat() {
 
   return (
     <ThemeProvider theme = {theme.light}>
+      <Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>ID</Table.HeaderCell>
+            <Table.HeaderCell>Name</Table.HeaderCell>
+            <Table.HeaderCell>Age</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>1</Table.Cell>
+            <Table.Cell>Apple</Table.Cell>
+            <Table.Cell>10</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>2</Table.Cell>
+            <Table.Cell>Banana</Table.Cell>
+            <Table.Cell>11</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>3</Table.Cell>
+            <Table.Cell>Orange</Table.Cell>
+            <Table.Cell>12</Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
       <Container headline = {"Table Component"}>
         <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={handleGetValue} activePage={1} />
       </Container>

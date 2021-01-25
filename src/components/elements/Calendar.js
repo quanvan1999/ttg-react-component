@@ -48,7 +48,7 @@ const StyledSpan = styled.span`
     justify-content: center;
     align-items: center;
     padding: 2px 0.25rem;
-    border-left: 1px solid ${props => props.focus ? props.theme.color.fill.primary : props.theme.color.background.secondary};
+    border-left: 1px solid ${props => props.focus ? props.theme.color.fill.primary : props.theme.color.border.primary};
     svg {
         padding: 0 2px;
     }
@@ -58,7 +58,7 @@ const Input = styled.input`
     padding: 6px 48px 6px 8px;
     height: 100%;
     width: 100%;
-    border: 1px solid ${props => props.focus ? props.theme.color.fill.primary : props.theme.color.background.secondary};
+    border: 1px solid ${props => props.focus ? props.theme.color.fill.primary : props.theme.color.border.primary};
     box-shadow: 0 0 1px ${props => props.focus ? "4px" : "0px"} ${props => getFader(props.theme.color.fill.primary, 0.15)};
     outline: 0;
     border-radius: 5px;

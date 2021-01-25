@@ -25,6 +25,8 @@ import Tooltip from './Tooltip'
 import FAB from './FAB'
 import Pagination from './Pagination'
 import Label from './Label'
+import Combox from './Combox'
+import Table from './Table'
 export {
     Button, 
     ButtonGroup, 
@@ -52,5 +54,7 @@ export {
     Tooltip,
     FAB,
     Pagination,
-    Label
+    Label,
+    Combox,
+    Table
 }

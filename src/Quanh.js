@@ -49,11 +49,13 @@ const FontProvider = styled.div`
 function Quanh() {
   const [todoData, setTodoData] = useState([])
   const [users, setUsers] = useState([])
-  const [post, setPost] = useState([])
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json()).then(data => setUsers(data))
-    fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json()).then(data => setTodoData(data))
-    fetch('https://jsonplaceholder.typicode.com/post').then(res => res.json()).then(data => setPost(data))
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => {
+        setUsers(data)
+        fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json()).then(data => setTodoData(data))
+      })
   }, [])
   useEffect(() => {
     document.title = "Theme: " + theme[myTheme].name

@@ -11,7 +11,7 @@ const StyledBox = styled.div`
     border: 1px solid ${props => props.theme.color.border.primary};
     border-radius: 2px;
     margin-bottom: 8px;
-    & h4 {
+    .headline {
         border-bottom: 1px solid ${props => props.theme.color.border.primary};
         padding: 4px 12px;
         background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.05));
@@ -33,7 +33,7 @@ const StyledBox = styled.div`
 const Box = (props) => {
     return (
         <StyledBox {...props}>
-            <h4>{props.headline}</h4>
+            <h4 class="headline">{props.headline}</h4>
             <div className="flex">
                 {props.children}
             </div>

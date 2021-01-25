@@ -123,8 +123,11 @@ function Quanh() {
                 </Table>
               </Box>
 
-              <Box headline="Pagination">
-                <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={(x) => setActivePage(x)} activePage={activePage} />
+              <Box headline="Pagination" block>
+                <Box.Item>
+                  <Label>{"Active Page: " + activePage}</Label>
+                  <Pagination totalPage={20} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
+                </Box.Item>
               </Box>
               <Box headline="Tooltip">
                 <Tooltip content="Useful animation about this button">

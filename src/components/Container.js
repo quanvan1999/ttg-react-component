@@ -6,7 +6,7 @@ const StyledContainer = styled.div`
     color: ${props => props.theme.color.text.primary};
     display: ${props => props.fullWidth ? "block" : "inline-block"};
     padding: 8px;
-    border: 1px solid ${props => props.theme.color.background.secondary};
+    border: 1px solid ${props => props.theme.color.border.primary};
     border-radius: 8px;
     margin: 8px;
     transition: background 0.2s linear;

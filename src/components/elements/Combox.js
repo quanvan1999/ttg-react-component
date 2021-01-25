@@ -109,9 +109,9 @@ const SelectContainer = styled.div`
 `;
 const Selection = styled.div`
     padding: 0.5rem;
-    background-color: ${props => props.selected ? props.theme.color.background.secondary: "transparent"};
+    background-color: ${props => props.selected ? props.theme.color.border.primary: "transparent"};
     &:hover {
-        background-color: ${props => props.theme.color.border.primary};
+        background-color: ${props => props.theme.color.background.secondary};
     }
 `;
 const StyledItem = styled.div`

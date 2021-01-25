@@ -25,8 +25,11 @@ import {
   FAB,
   Tooltip,
   Pagination,
-  Label
+  Label,
+  Combox,
+  Table,
 } from './components/elements'
+import {H1, H2, H3, H4, H5, H6, P, HL} from './components/elements/Typography'
 import theme from './utils/theme'
 import {useState, useEffect} from 'react'
 import Box from './components/Box'
@@ -35,14 +38,27 @@ import IcoSettings from './components/icons/IcoSettings'
 import IcoX from './components/icons/IcoX'
 import IcoArrowDownCircle from './components/icons/IcoArrowDownCircle'
 import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
-import Combox from './components/elements/Combox'
-import Table from './components/Table/Table'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
+import IcoCheck from './components/icons/IcoCheck'
+import Code from './components/Code'
+
+
+
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
 `;
 function Quanh() {
+  const [todoData, setTodoData] = useState([])
+  const [users, setUsers] = useState([])
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(res => res.json())
+      .then(data => {
+        setUsers(data)
+        fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json()).then(data => setTodoData(data))
+      })
+  }, [])
   useEffect(() => {
     document.title = "Theme: " + theme[myTheme].name
   })
@@ -54,7 +70,7 @@ function Quanh() {
   ]
   const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit mattis arcu semper elementum. Nullam accumsan erat vitae quam sagittis placerat. In sodales mi eros, id commodo nulla fermentum in. Cras vehicula, sapien id fringilla lobortis, erat nisl rhoncus ante, et maximus libero tellus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus justo nunc, sed molestie tortor dictum vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris maximus est quis ligula ullamcorper semper. Integer tempus orci dui, a lacinia lorem tempus ut. Donec sapien leo, sodales eu odio molestie, cursus lacinia quam. Aenean rhoncus rhoncus erat, nec volutpat nulla ullamcorper sit amet. Maecenas finibus, ante in suscipit rhoncus, massa lorem posuere est, vel faucibus turpis neque sit amet augue. Nulla sit amet mauris sit amet augue pharetra luctus vitae nec turpis. Duis sollicitudin commodo nisi quis mollis."
   const [mode, setMode] = useState("edit")
-  const [myTheme, setTheme] = useState("dark")
+  const [myTheme, setTheme] = useState("light")
   const [textValue, setTextValue] = useState("")
   const [modalState, setModalState] = useState(false)
   const [modalState2, setModalState2] = useState(false)
@@ -78,7 +94,6 @@ function Quanh() {
               <ButtonGroup fullWidth onSelect={x => setTheme(x)}>
                 <Button value="light">Light</Button>
                 <Button value="dark">Dark</Button>
-                <Button value="custom">Custom</Button>
               </ButtonGroup>
             </Container>
 
@@ -96,38 +111,59 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-
+              <Box headline="Typography">
+                <Box.Item>
+                  <H1>The biggest header.</H1>
+                  <H2 color="secondary">Secondary color, very nice.</H2>
+                  <H3 color="success">Success, you made it.</H3>
+                  <H4 color="warning">Something may go wrong.</H4>
+                  <H5 color="danger">Beware, very dangerous.</H5>
+                  <H6>Almost before we knew it, we had left the ground.</H6>
+                  <P>Almost before we knew it, we had left the ground.</P>
+                  <P lead>A lead paragraph, make it stands out.</P>
+                  <P>This <HL>beautiful text</HL> is highlighted</P>
+                </Box.Item>
+              </Box>
               <Box headline="Table">
-                <Table width="50%">
+                <Table>
                   <Table.Header>
                     <Table.Row>
-                      <Table.HeaderCell>ID</Table.HeaderCell>
-                      <Table.HeaderCell>Name</Table.HeaderCell>
-                      <Table.HeaderCell>Age</Table.HeaderCell>
+                      <Table.HeaderCell width="5%">ID</Table.HeaderCell>
+                      <Table.HeaderCell width="25%">Name</Table.HeaderCell>
+                      <Table.HeaderCell>Title</Table.HeaderCell>
+                      <Table.HeaderCell width="15%">Completed</Table.HeaderCell>
+                      <Table.HeaderCell width="5%">More</Table.HeaderCell>
                     </Table.Row>
                   </Table.Header>
                   <Table.Body>
-                    <Table.Row>
-                      <Table.Cell>1</Table.Cell>
-                      <Table.Cell>Apple</Table.Cell>
-                      <Table.Cell>10</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell>2</Table.Cell>
-                      <Table.Cell>Banana</Table.Cell>
-                      <Table.Cell>11</Table.Cell>
-                    </Table.Row>
-                    <Table.Row>
-                      <Table.Cell>3</Table.Cell>
-                      <Table.Cell>Orange</Table.Cell>
-                      <Table.Cell>12</Table.Cell>
-                    </Table.Row>
+                    {todoData.slice((activePage-1)*3, (activePage-1)*3 + 3).map(d => 
+                      <Table.Row>
+                        <Table.Cell textAlign="center">{d.id}</Table.Cell>
+                        <Table.Cell textAlign="center">{users.find(user => user.id === d.userId).name || "Unknown"}</Table.Cell>
+                        <Table.Cell textAlign="center">{d.title}</Table.Cell>
+                        <Table.Cell textAlign="center">
+                          {d.completed ? <Button type="text" color="success"><IcoCheck/></Button> : <Button type="text" color="danger"><IcoX/></Button>}
+                        </Table.Cell>
+                        <Table.Cell textAlign="center"><Button type="text" color="info" round><IcoChevronRight/></Button></Table.Cell>
+                      </Table.Row>
+                      )}
                   </Table.Body>
+                  <Table.Footer>
+                    <Table.Cell colSpan="2" textAlign="center">
+                      {"Total Row: " + todoData.length}
+                    </Table.Cell>
+                    <Table.Cell colSpan="99" textAlign="right">
+                      <Pagination totalPage={Math.ceil(todoData.length / 3)} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
+                    </Table.Cell>
+                  </Table.Footer>
                 </Table>
               </Box>
 
-              <Box headline="Pagination">
-                <Pagination totalPage={20} boundary={1} sibling={1}  handleGetValue={(x) => setActivePage(x)} activePage={activePage} />
+              <Box headline="Pagination" block>
+                <Box.Item>
+                  <Label>{"Active Page: " + activePage}</Label>
+                  <Pagination totalPage={Math.ceil(todoData.length / 3)} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
+                </Box.Item>
               </Box>
               <Box headline="Tooltip">
                 <Tooltip content="Useful animation about this button">

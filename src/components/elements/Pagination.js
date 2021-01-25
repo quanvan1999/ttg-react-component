@@ -2,80 +2,73 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-const PaginationParent = styled.div`
-    font-size: 16px;
-    line-height: 1.6; 
-    ul{
-        li:last-child>a {
-            border-radius: 0 3px 3px 0;
-        }
-    }
-`;
-const PaginationPage = styled.div`
-    float: left;
-    border: 1px solid rgba(34,36,38,.15);
-    box-shadow: 0.5px 2px 2px 2px rgba(34,36,38,.15);
-    border-radius: .28571429rem;
+const StyledSpan = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+`
+
+const ChevLeft = () => {
+    return (
+        <StyledSpan>
+            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </StyledSpan>
+    )
+}
+const ChevRight = () => {
+    return (
+        <StyledSpan>
+            <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </StyledSpan>
+    )
+}
+
+const Container = styled.ul`
+    display: ${props => props.stretch ? "flex" : "inline-flex"};
+    justify-content: center;
+    align-items: center;
+    border: 1px solid ${props => props.theme.color.border.primary};
+    border-radius: 4px;
     overflow: hidden;
 
-    .active{
-        background: gray;
-    }
 `;
-const Ul = styled.ul`
-    float: left;
-    margin: 0;
-    padding: 0;
-`;
-const Li = styled.li`
-    float: left;
+const Item = styled.li`
+    cursor: pointer;
     list-style: none;
-    padding: 5px 10px;
-    background: none;
-    position: relative;
-    width: auto;
     text-align: center;
-    width: 2.5em;
+    width: 2.5rem;
+    height: 2rem;
+    flex: 1;
+    line-height: 2rem;
+    border-left: 0.5px solid ${props => props.theme.color.border.primary};
+    border-right: 0.5px solid ${props => props.theme.color.border.primary};
+    user-select: none;
+    color: ${props => props.active ? props.theme.color.background.primary : props.theme.color.text.primary};
+    background: ${props => props.active ? props.theme.color.fill.primary : "transparent"};
     &:hover{
-        background: #eee;
-        cursor: pointer;
-    }
-    &:active{
-        color: white;
-        background: rgba(34,36,38,.15);
-    }
-    &::before{
-        position: absolute;
-        content: '';
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: 1px;
-        background: rgba(34,36,38,.1);
+        background: ${props => props.active ? "auto" : props.theme.color.border.primary};
     }
 `;
-const A = styled.a``;
 
 function Pagination(props){
-    var {totalPage, boundary, sibling, handleGetValue, activePage} = props
-    const [page, setPage] = useState(activePage)
-    const hanldeSetPage = (props)=>{
-        if(props !== "..."){
-            if(props <= 1){ setPage(1)}
-            else if(props >= totalPage){ setPage(totalPage)}
-            else{setPage(props)}
-        }
+    let {totalPage, boundary, sibling, onSelect, activePage} = props
+    
+    const selectPage = (page)=>{
+        if(page === "...") return
+        else if(page <= 1) onSelect(1)
+        else if(page >= totalPage) onSelect(totalPage)
+        else onSelect(page)
     }
-    var data_middle = []; 
-    var data_right = []; 
-    var data_left = []
+    
 
     const [paginationMid, setPaginationMid] = useState([])
     const [paginationLeft, setPaginationLeft] = useState([])
     const [paginationRight, setPaginationRight] = useState([])
 
     useEffect(()=>{
-        handleGetValue(page)
+        let data_middle = [], data_right = [], data_left = []
+
         if(boundary && sibling){
             // lay so page 
             for(let i=1; i <= totalPage; i++){
@@ -86,13 +79,13 @@ function Pagination(props){
         }
 
         // set lại pagination nếu totalPage > 10
-        if(totalPage <= 10){
+        if (totalPage <= 10) {
             setPaginationMid(data_middle)
             setPaginationLeft(data_left)
             setPaginationRight(data_right)
-        }else{
+        } else {
             let lefttemp = [], righttemp = [], midtemp = []
-            if(page <= boundary + sibling + 1){
+            if(activePage <= boundary + sibling + 1){
                 lefttemp = data_left
                 for(let i=boundary+1; i<=(boundary + 1 + sibling*2 + 1); i++){
                     midtemp.push(i)
@@ -100,11 +93,11 @@ function Pagination(props){
                 midtemp.push("...")
                 righttemp = data_right
             }
-            else if(page >= (boundary + sibling - 1) && page <= (totalPage - sibling - boundary - 1)){
+            else if(activePage >= (boundary + sibling - 1) && activePage <= (totalPage - sibling - boundary - 1)){
                 lefttemp = data_left
                 righttemp = data_right
                 midtemp.push("...")
-                for(let i=(page - sibling); i<=(page+sibling); i++){
+                for(let i=(activePage - sibling); i<=(activePage+sibling); i++){
                     midtemp.push(i)
                 }
                 midtemp.push("...")
@@ -121,43 +114,40 @@ function Pagination(props){
             setPaginationMid(midtemp)
             setPaginationRight(righttemp)
         }
-    },[page])
+    },[activePage, boundary, sibling, totalPage])
 
     return( 
-        <PaginationParent>
-            <PaginationPage>
-                <Ul>
-                    <Li onClick={()=>hanldeSetPage(page - 1)}><A>«</A></Li>
-                    {
-                        paginationLeft.map((value, index)=>{
-                            return(
-                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
-                                    <A>{value}</A>
-                                </Li>
-                            )
-                        })
-                    }
-                    { paginationMid.map((value, index)=>{
-                            return(
-                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
-                                    <A>{value}</A>
-                                </Li>
-                            )
-                        })
-                    }
-                    {
-                        paginationRight.map((value, index)=>{
-                            return(
-                                <Li key={index} onClick={()=>hanldeSetPage(value)} value={value}>
-                                    <A>{value}</A>
-                                </Li>
-                            )
-                        })
-                    }
-                    <Li onClick={()=>hanldeSetPage(page + 1)}><A>»</A></Li>
-                </Ul>
-            </PaginationPage>
-        </PaginationParent>
+        <Container>
+            <Item onClick={()=>selectPage(activePage - 1)}><ChevLeft/></Item>
+            {
+                paginationLeft.map((value, index)=>{
+                    return(
+                        <Item key={index} onClick={()=>selectPage(value)} value={value} active={value === activePage}>
+                            {value}
+                        </Item>
+                    )
+                })
+            }
+            { 
+                paginationMid.map((value, index)=>{
+                    return(
+                        <Item key={index} onClick={()=>selectPage(value)} value={value} active={value === activePage}>
+                            {value}
+                        </Item>
+                    )
+                })
+            }
+            {
+                paginationRight.map((value, index)=>{
+                    return(
+                        <Item key={index} onClick={()=>selectPage(value)} value={value} active={value === activePage}>
+                            {value}
+                        </Item>
+                    )
+                })
+            }
+            <Item onClick={()=>selectPage(activePage + 1)}><ChevRight/></Item>
+        </Container>
     )
 }
 

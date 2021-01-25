@@ -41,7 +41,6 @@ import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
 import IcoCheck from './components/icons/IcoCheck'
-import Code from './components/Code'
 
 
 
@@ -161,7 +160,7 @@ function Quanh() {
 
               <Box headline="Pagination" block>
                 <Box.Item>
-                  <Label>{"Active Page: " + activePage}</Label>
+                  <Label>Active Page: <strong>{activePage}</strong></Label>
                   <Pagination totalPage={Math.ceil(todoData.length / 3)} boundary={1} sibling={1} onSelect={(x) => setActivePage(x)} activePage={activePage} />
                 </Box.Item>
               </Box>

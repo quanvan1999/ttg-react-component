@@ -7,6 +7,7 @@ const generalStyle = props => `
     font-weight: 500;
     line-height: 1.2;
     color: ${props.theme.color.text[props.color] || props.theme.color.text.primary};
+    text-align: ${props.textAlign || "left"};
 `
 
 export const H1 = styled.h1`
@@ -34,6 +35,7 @@ export const H6 = styled.h6`
     font-size: 1.1rem;
 `
 export const P = styled.p`
+    ${generalStyle}
     color: ${props => props.theme.color.text[props.color] || props.theme.color.text.primary};
     font-size: 1rem;
     font-weight: 400;

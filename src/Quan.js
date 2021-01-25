@@ -66,7 +66,7 @@ function Quan() {
     <div>
       <ThemeProvider theme = {theme.light}>
         <Container headline = {"Simple List "}>
-          <MultiMentions width={300} data={data}/>
+          <MultiMentions width={700} data={data}/>
         </Container>
       </ThemeProvider>
     </div>

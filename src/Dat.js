@@ -19,7 +19,7 @@ export default function Dat() {
           <Col col={5}>
             Hello Micky
           </Col>
-          
+
           <Col col={7}>
             Hi guys
           </Col>
@@ -43,7 +43,9 @@ export default function Dat() {
           </Col>
         </Row>
       </Container>
-      <ContainerFluid></ContainerFluid>
+      <ContainerFluid>
+      
+      </ContainerFluid>
     </>
   )
 }

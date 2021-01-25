@@ -23,7 +23,7 @@ const DivContainer = styled.div`
         width: 520px;
     }
     @media screen and (max-device-width: 499px){
-        width: 350px;
+        width: 348px;
     }
 `;
 const DivContainerFluid = styled.div`
@@ -129,11 +129,11 @@ const DivCol = styled.div`
     @media screen and (max-device-width: 499px){
         ${props => props.col === 1 ? 'width: 9.2%;' : 'auto;'}
         ${props => props.col === 2 ? 'width: 16.66%;' : 'auto;'}
-        ${props => props.col === 3 ? 'width: 25.99%;' : 'auto;'}
+        ${props => props.col === 3 ? 'width: 26%;' : 'auto;'}
         ${props => props.col === 4 ? 'width: 33.32%;' : 'auto;'}
-        ${props => props.col === 5 ? 'width: 40.5%;' : 'auto;'}
+        ${props => props.col === 5 ? 'width: 40.6%;' : 'auto;'}
         ${props => props.col === 6 ? 'width: 49.98%;' : 'auto;'}
-        ${props => props.col === 7 ? 'width: 57%;' : 'auto;'}
+        ${props => props.col === 7 ? 'width: 57.2%;' : 'auto;'}
         ${props => props.col === 8 ? 'width: 66.64%;' : 'auto;'}
         ${props => props.col === 9 ? 'width: 74.97%;' : 'auto;'}
         ${props => props.col === 10 ? 'width: 83.3%;' : 'auto;'}
@@ -155,6 +155,7 @@ const DivCol = styled.div`
         ${props => props.col === 12 ? 'width: 100%;' : 'auto;'}
     }
     @media screen and (max-device-width: 280px){
+        font-size: 8px;
         ${props => props.col === 1 ? 'width: 9.33%;' : 'auto;'}
         ${props => props.col === 2 ? 'width: 16.66%;' : 'auto;'}
         ${props => props.col === 3 ? 'width: 25.99%;' : 'auto;'}

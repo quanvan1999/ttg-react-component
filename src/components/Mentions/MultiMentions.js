@@ -3,7 +3,8 @@ import React from "react";
 import  Mention  from '../Mention/Mention';
 import MentionsInput  from '../Mention/MentionsInput';
 
-import  provideExampleValue  from "../Mention/higher-order/provideExampleValue";
+// import provideExampleValue  from "../Mention/higher-order/provideExampleValue";
+import provideExampleValue from '../Mention/higher-order/provideExampleValue';
 
 import defaultStyle from "./defaultStyle";
 

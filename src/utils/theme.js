@@ -72,7 +72,7 @@ const theme = {
             },
             background: {
                 primary: "#212223", //Obsidian 900
-                secondary: "#313233" //Pewter 800 
+                secondary: "#252627" //Pewter 800 
             },
             border: {
                 primary: "#333333"

@@ -41,7 +41,7 @@ import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
 import IcoCheck from './components/icons/IcoCheck'
-
+import {ContainerFluid, Row, Col} from './layouts/Grid'
 
 
 const FontProvider = styled.div`
@@ -110,6 +110,31 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
+              <Box headline="Layout" block>
+                <ContainerFluid>
+                  <Row>
+                    <Col col={1}>Col1</Col>
+                    <Col col={2}>Col2</Col>
+                    <Col col={3}>Col3</Col>
+                    <Col col={4}>Col4</Col>
+                    <Col col={5}>Col5</Col>
+                    <Col col={6}>Col6</Col>
+                    <Col col={7}>Col7</Col>
+                    <Col col={8}>Col8</Col>
+                    <Col col={9}>Col9</Col>
+                    <Col col={10}>Col10</Col>
+                    <Col col={11}>Col11</Col>
+                    <Col col={12}>Col12</Col>
+                  </Row>
+                  <Row>
+                    <Col>Auto col</Col>
+                    <Col>Auto col</Col>
+                    <Col>Auto col</Col>
+                    <Col>Auto col</Col>
+                    <Col>Auto col</Col>
+                  </Row>
+                </ContainerFluid>
+              </Box>
               <Box headline="Typography">
                 <Box.Item>
                   <H1>The biggest header.</H1>

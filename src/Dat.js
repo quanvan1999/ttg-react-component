@@ -16,8 +16,11 @@ export default function Dat() {
           <Col col={2}>
             Hello
           </Col>
-          <Col col={5}>
+          <Col col={1}>
             Hello Micky
+          </Col>
+          <Col col={4}>
+            Hi      
           </Col>
 
           <Col col={7}>
@@ -43,8 +46,20 @@ export default function Dat() {
           </Col>
         </Row>
       </Container>
-      <ContainerFluid>
+
       
+      <ContainerFluid>
+        <Row>
+            <Col col={2}>
+              Hello world
+            </Col>
+            <Col col={7}>
+              Hello world 1
+            </Col>
+            <Col col={3}>
+              Hello
+            </Col>
+        </Row>
       </ContainerFluid>
     </>
   )

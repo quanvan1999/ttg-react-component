@@ -7,7 +7,7 @@ const DivContainer = styled.div`
         width: 1320px;
     }
     @media screen and (min-device-width: 1200px) and (max-device-width: 1399px){
-        width: 1140px;
+        width: 1320px;
     }
     @media screen and (min-device-width: 992px) and (max-device-width: 1199px){
         max-width: 960px;
@@ -21,8 +21,23 @@ const DivContainer = styled.div`
     @media screen and (min-device-width: 498px) (max-device-width: 575px){
         width: 520px;
     }
+    @media screen and (min-device-width: 540px){
+        width: 490px;
+    }
     @media screen and (max-device-width: 499px){
-        width: 348px;
+        width: 350px;
+    }
+    @media screen and (max-device-width: 375px){
+        width: 330px;
+    }
+    @media screen and (max-device-width: 360px){
+        width: 320px;
+    }
+    @media screen and (max-device-width: 320px){
+        width: 280px;
+    }
+    @media screen and (max-device-width: 280px){
+        width: 250px;
     }
 `;
 const DivContainerFluid = styled.div`

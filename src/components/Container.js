@@ -14,6 +14,17 @@ const StyledContainer = styled.div`
         font-weight: 500;
         margin-bottom: 0.5rem;
     }
+    
+    &:before{
+        z-index: ${props => props.open ? '1' : -1};
+        content: "";
+        background: ${props => props.open ? '#00000021' : null};
+        width:100%;
+        top:0;
+        left:0;
+        height:100%;
+        position:fixed;
+    }
 `;
 
 const Container = (props) => {

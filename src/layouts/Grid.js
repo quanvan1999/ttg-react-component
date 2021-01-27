@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import propTypes from 'prop-types';
-// col-sm       col-md         col-xs        col-lg         col-xl         col-xxl
 const DivContainer = styled.div`
     margin: auto;
     height: auto;

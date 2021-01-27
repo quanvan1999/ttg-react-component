@@ -2,7 +2,7 @@ import React, {} from 'react'
 import {Container, ContainerFluid, Row, Col} from './layouts/Grid'
 export default function Dat() {
   // offSet,middle,auto
-  
+  // sm, md, xs, lg, xl, xxl
   return (
     <>
       <Container>

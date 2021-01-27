@@ -36,7 +36,7 @@ function Quan() {
   return (
     <div>
       <ThemeProvider theme = {theme.light}>
-        <Container headline = {"Simple List "}>
+        <Container open={open} headline = {"Simple List "}>
           <ButtonMenu open={open} setOpen={setOpen}/>
           <Menu open={open} setOpen={setOpen}>
             <Menu.Item href="#">Item 1</Menu.Item>

@@ -8,25 +8,47 @@ const StyleMenu = styled.nav`
     display:flex;
     flex-direction:column;
     justify-content : center;
-    height:100vh;
+    height:100%;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
     text-align:left;
-    padding : 2rem;
     position:absolute;
     top:0;
     left:0;
+    z-index: 1;
     transition:transform 0.3s ease-in-out;
     background:#fff;
     transform: ${props => props.open ? 'translateX(0)' : 'translateX(-100%)'};
+
+
+    @media (max-width: 768px){
+        position: fixed;
+        bottom: 0;
+        left:0;
+        transform: translateX(0);
+        top:inherit;
+        height: auto;
+        flex-direction: row;
+        width:100%;
+        padding: 0;
+        justify-content : center;
+        align-items:center;
+        & a{
+            flex: 1;
+            text-align:center;
+            font-size: 1rem;
+            padding: 10px;
+        }
+    }
 `;
 const MenuItem = styled.a`
-    font-size: 2rem;
-    padding: 1rem 0;
+    font-size: 20px;
+    padding: 1rem 3rem;
     font-weight: bold;
     text-decoration: none;
     color: #000;
-
     &:hover{
         color: red;
+        background:#ccc;
     }
 `;
 const ButtonClose = styled.button`
@@ -44,6 +66,9 @@ const ButtonClose = styled.button`
     
     &:focus{
         outline:none;
+    }
+    @media (max-width: 768px){
+        display:none;
     }
 `;
 const Menu = (props) =>{

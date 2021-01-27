@@ -16,7 +16,8 @@ import Tooltip from './components/elements/Tooltip';
 import RippleButton from './components/RippleButton';
 import AutoComplete,{Completion} from './components/Mentions/AutoComplete';
 import MultiMentions from './components/Mentions/MultiMentions';
-
+import Menu from './components/Menu';
+import ButtonMenu from './components/ButtonMenu';
 
 
 
@@ -29,44 +30,20 @@ function Quan() {
     setRangeValue(parseInt(e.target.value, 10))
   }
   
-  const [select, setSelect] = useState()
-  const data = [
-    {
-      id: "walter",
-      display: "Walter White"
-    },
-    {
-      id: "jesse",
-      display: "Jesse Pinkman"
-    },
-    {
-      id: "gus",
-      display: 'Gustavo "Gus" Fring'
-    },
-    {
-      id: "saul",
-      display: "Saul Goodman"
-    },
-    {
-      id: "hank",
-      display: "Hank Schrader"
-    },
-    {
-      id: "skyler",
-      display: "Skyler White"
-    },
-    {
-      id: "mike",
-      display: "Mike Ehrmantraut"
-    }
-  ];
-  const emailRegex = /(([^\s@]+@[^\s@]+\.[^\s@]+))$/;
+  const [open, setOpen] = useState(false)
+
 
   return (
     <div>
       <ThemeProvider theme = {theme.light}>
-        <Container headline = {"Simple List "}>
-          <MultiMentions width={700} data={data}/>
+        <Container open={open} headline = {"Simple List "}>
+          <ButtonMenu open={open} setOpen={setOpen}/>
+          <Menu open={open} setOpen={setOpen}>
+            <Menu.Item href="#">Item 1</Menu.Item>
+            <Menu.Item href="#">Item 2</Menu.Item>
+            <Menu.Item href="#">Item 3</Menu.Item>
+            <Menu.Item href="#">Item 4</Menu.Item>
+          </Menu>
         </Container>
       </ThemeProvider>
     </div>

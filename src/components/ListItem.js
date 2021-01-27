@@ -7,17 +7,7 @@ import Icon from "./elements/Icon";
 import Button from "./elements/Button"
 import Link from "./elements/Link";
 import { Checkbox, Toggle } from './elements'
-const pulse = keyframes` 
-    0% {
-      transform: scale(1);
-    }
-    70% {
-      transform: scale(.9);
-    }
-      100% {
-      transform: scale(1);
-    }
-  `;
+
 const StyleItem = styled.li`
 
     display:flex;

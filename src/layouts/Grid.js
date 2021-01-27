@@ -51,16 +51,19 @@ const DivRow = styled.div`
     --bs-gutter-y: 0;
     display: flex;
     flex-wrap: wrap;
+    justify-content: ${props => props.JustifyContent ? props.JustifyContent : "normal"};
+
+    div{
+        ${props => props.auto ? 'width: auto' : ''};
+    }
 `;
 const DivCol = styled.div`
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    padding-left: .75rem;
+    padding: .75em;
     background-color: white;
     border: 1px solid rgba(39,41,43,0.1);
     width: ${props => props.col ? (100/12 * props.col) : (100/12)}%;
     margin-left: ${props => props.offSet ? (100/12)*props.offSet : '0'}%;
-    ${props => props.auto ? 'margin-left:auto' : ''};
+    ${props => props.auto ? 'width: auto' : ''};
     ${props => props.middle ? 'margin: auto' : ''};
     @media(min-width: 1400px){
         width: ${props => props.xxl ? (100/12 * props.xxl) : ''}%;
@@ -99,12 +102,7 @@ const DivCol = styled.div`
         width: ${props => props.sm ? (100/12 * props.sm) : ''}%;
     }
 `;
-DivCol.propTypes={
-    col: propTypes.number
-}
-DivCol.defaultProps={
-    col: 1
-}
+
 const Container = (props)=>{
     return(
         <DivContainer {...props}>
@@ -121,7 +119,7 @@ const ContainerFluid = (props)=>{
 }
 const Row = (props)=>{
     return(
-        <DivRow>
+        <DivRow {...props}>
             {props.children}
         </DivRow>
     )
@@ -132,6 +130,22 @@ const Col = (props)=>{
             {props.children}
         </DivCol>
     )
+}
+
+// All defalut props
+DivCol.defaultProps={
+    col: 1
+}
+DivRow.defaultProps={
+    JustifyContent: 'normal'
+}
+
+//All propsTypes
+DivCol.propTypes={
+    col: propTypes.number
+}
+DivRow.propTypes={
+    JustifyContent: propTypes.string
 }
 
 

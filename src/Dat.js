@@ -1,64 +1,69 @@
 import React, {} from 'react'
 import {Container, ContainerFluid, Row, Col} from './layouts/Grid'
-
 export default function Dat() {
-
+  // offSet,middle,auto
+  
   return (
     <>
       <Container>
         <Row>
-          <Col col={2}>
-            Helllo World!
+          <Col col={3} offSet={4}>
+            Hello 1
           </Col>
-          <Col col={3}>
-            Hello Kitty
-          </Col>
-          <Col col={2}>
-            Hello
-          </Col>
-          <Col col={1}>
-            Hello Micky
-          </Col>
-          <Col col={4}>
-            Hi      
+          <Col col={5}>
+            Hello 2
           </Col>
 
-          <Col col={7}>
-            Hi guys
-          </Col>
-          <Col col={3}>
-            Hello
+          <Col col={2}>
+            Hello 4
           </Col>
           <Col col={2}>
-            World
+            Hello 4
+          </Col>
+          <Col col={3} offSet={2}>
+            Hello 5
+          </Col>
+
+          <Col col={5} auto>
+            Hello 6
           </Col>
         </Row>
 
         <Row>
-          <Col col={5}>
+          <Col col={8} middle sm={4}>
             Hello world
-          </Col>
-          <Col col={6}>
-            Hello world 1
-          </Col>
-          <Col col={1}>
-            Hello
           </Col>
         </Row>
       </Container>
-
-      
+      <br/>
       <ContainerFluid>
         <Row>
-            <Col col={2}>
-              Hello world
-            </Col>
-            <Col col={7}>
-              Hello world 1
-            </Col>
-            <Col col={3}>
-              Hello
-            </Col>
+          <Col col={3} offSet={4}>
+            Hello 1
+          </Col>
+          <Col col={5}>
+            Hello 2
+          </Col>
+          
+          <Col col={2}>
+            Hello 4
+          </Col>
+          <Col col={2}>
+            Hello 4
+          </Col>
+          <Col col={3} offSet={2}>
+            Hello 5
+          </Col>
+
+          <Col col={5} auto>
+            Hello 6
+          </Col>
+        </Row>
+
+        <Row>
+          <Col col={8} middle sm={4}>
+            Hello world
+          </Col>
         </Row>
       </ContainerFluid>
     </>

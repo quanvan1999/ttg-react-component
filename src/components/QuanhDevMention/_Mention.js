@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const StyledStrong = styled.strong`
-    color: red;
+    
 `;
 const Mention = ({ display }) => {
   return <StyledStrong>{display}</StyledStrong>

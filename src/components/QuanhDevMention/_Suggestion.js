@@ -8,12 +8,16 @@ const StyledLi = styled.li`
   line-height: 2rem;
   border-bottom: 1px solid #CCC;
   cursor: pointer;
-`
-const StyledSpan = styled.span`
+  list-style: none;
+  padding: 2px 8px;
+  color: #333;
+  background-color: ${props => props.focus ? "#EEE" : "inherit"};
+
   &:hover {
-    color: blue;
+    background-color: #CCC;
   }
 `
+
 const Suggestion = (props) => {
   
   const renderContent = () => {
@@ -42,15 +46,15 @@ const Suggestion = (props) => {
     let i = getSubstringIndex(display, query, ignoreAccents)
 
     if (i === -1) {
-      return <StyledSpan>{display}</StyledSpan>
+      return <span>{display}</span>
     }
 
     return (
-      <StyledSpan>
+      <span focus={props.focused}>
         {display.substring(0, i)}
         <b>{display.substring(i, i + query.length)}</b>
         {display.substring(i + query.length)}
-      </StyledSpan>
+      </span>
     )
   }
   return (

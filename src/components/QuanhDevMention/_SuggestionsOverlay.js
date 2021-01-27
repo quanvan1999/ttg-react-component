@@ -4,15 +4,21 @@ import LoadingIndicator from './LoadingIndicator'
 import PropTypes from 'prop-types'
 import { Children, useEffect, useRef } from 'react'
 
+const SuggestionCont = styled.div`
+    background: white;
+    position: absolute;
+    display: inline-flex;
+    z-index: 99;
+    margin: 16px 0px 0px 8px;
+    min-width: 100px;
+    border: 1px solid #CCC;
+`
+
 const SuggestionsOverlay = (props) => {
     const {
-        id,
-        a11ySuggestionsListLabel,
         isOpened,
-        style,
         onMouseDown,
         containerRef,
-        position,
         left,
         top,
       } = props
@@ -49,7 +55,7 @@ const SuggestionsOverlay = (props) => {
               ),
             ],
             []
-        )
+        ).slice(0, 5)
     }
 
     const renderSuggestion = (result, queryInfo, index) => {
@@ -67,7 +73,7 @@ const SuggestionsOverlay = (props) => {
                 renderSuggestion={renderSuggestion}
                 suggestion={result}
                 focus={isFocused}
-                onClick={props.onSelect(result, queryInfo)}
+                onClick={() => props.onSelect(result, queryInfo)}
             />
         )
     }
@@ -75,16 +81,20 @@ const SuggestionsOverlay = (props) => {
     const renderLoadingIndicator = () => {
         return props.isLoading && <LoadingIndicator style={props.style('loadingIndicator')} />
     }
-    return isOpened && (
-        <div style={{position: "absolute", left: left, top: top}} 
-            onMouseDown={onMouseDown} 
-            ref={containerRef}>
-            <ul ref={UlElement}>
-                {renderSuggestions()}
-            </ul>
-            {renderLoadingIndicator()}
-        </div>
-    )
+
+    if (!isOpened)
+        return null
+    else
+        return (
+            <SuggestionCont style={{left: left, top: top}} 
+                onMouseDown={onMouseDown} 
+                ref={containerRef}>
+                <ul ref={UlElement} >
+                    {renderSuggestions()}
+                </ul>
+                {renderLoadingIndicator()}
+            </SuggestionCont>
+        )
 }
 
 SuggestionsOverlay.propTypes = {

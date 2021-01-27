@@ -175,7 +175,7 @@ const getID = (suggestion) => {
 const styled = defaultStyle({
   zIndex: 1,
   backgroundColor: 'white',
-  marginTop: 14,
+  marginTop: 34,
   minWidth: 100,
 
   list: {

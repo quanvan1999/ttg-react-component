@@ -15,6 +15,7 @@ const StyleButton = styled.button`
         width: 2rem;
         height: 2rem;
     }
+    @media (max-width: 768px){display:none}
 `;
 const ButtonMenu = (props) =>{
     return(

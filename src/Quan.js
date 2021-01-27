@@ -5,9 +5,14 @@ import Container from './components/Container'
 import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB, Avatar} from './components/elements'
 import IconCheck from './components/icons/IcoCheckCircle';
 import IconError from './components/icons/IcoAlertTriangle';
-import IconPlus from './components/icons/IcoEdit2';
 import IconInfo from "./components/icons/IcoInfo";
 import IcoX from './components/icons/IcoX'
+import IcoHome from './components/icons/IcoHome'
+import IcoList from './components/icons/IcoList'
+import IcoPlus from './components/icons/IcoPlus'
+import IcoSettings from './components/icons/IcoSettings'
+
+
 import theme from './utils/theme'
 import {useState,useRef} from 'react'
 import List from './components/List'
@@ -39,10 +44,10 @@ function Quan() {
         <Container open={open} headline = {"Simple List "}>
           {/* <ButtonMenu open={open} setOpen={setOpen}/> */}
           <Menu open={true} >
-            <Menu.Item href="#"><IconCheck/>Item 1</Menu.Item>
-            <Menu.Item href="#"><IconCheck/>Item 2</Menu.Item>
-            <Menu.Item href="#"><IconCheck/>Item 3</Menu.Item>
-            <Menu.Item href="#"><IconCheck/>Item 4</Menu.Item>
+            <Menu.Item href="#"><IcoHome/>Home</Menu.Item>
+            <Menu.Item href="#"><IcoList/>List</Menu.Item>
+            <Menu.Item href="#"><IcoPlus/>Create</Menu.Item>
+            <Menu.Item href="#"><IcoSettings/>Setting</Menu.Item>
           </Menu>
         </Container>
       </ThemeProvider>

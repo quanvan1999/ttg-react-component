@@ -148,6 +148,9 @@ DivRow.propTypes={
     JustifyContent: propTypes.string
 }
 
+// offSet,middle,auto, 
+//JustifiContent : center, left, flex-end....
+// sm, md, xs, lg, xl, xxl
 
 
 export {Container, ContainerFluid, Row, Col}

@@ -3,6 +3,7 @@ import Quanh from './Quanh'
 import Dat from './Dat'
 import Signoff from './apps/Signoff'
 import {Router} from '@reach/router'
+import Examples from './components/QuanhDevMention/demo/Examples'
 function App() {
   
   
@@ -13,6 +14,7 @@ function App() {
       <Quan path="/quan"/>
       <Dat path="/dat"/>
       <Signoff path="/app/signoff"/>
+      <Examples path="/mention"/>
     </Router>
   )
 }

@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import Button from './Button';
 import PropTypes from 'prop-types'
 
-const StyledButtonGroup = styled.div`
+export const StyledButtonGroup = styled.div`
     --fillColor: ${props => props.theme.color.fill[props.color] || props.theme.color.fill.primary};
     margin: ${props => props.demo ? "8px": "0px"};
     padding: 0px;
     display: ${props => props.fullWidth ? "flex" : "inline-flex"};
+    gap: 1px;
     border-radius: 4px;
     overflow: hidden;
     background: ${props => props.theme.color.background.secondary};
@@ -54,7 +55,6 @@ const ButtonGroup = (props) => {
                         equalSize: props.equalSize,
                         displayMode: props.displayMode,
                         color: props.color,
-                        ingroup: idx === 0 ? "left" : idx === props.children.length - 1 ? "right" : "middle", 
                         type: value === child.props.value ? "contained": "outline", 
                         onSelect: () => handleClick(child.props.value)})
             })}

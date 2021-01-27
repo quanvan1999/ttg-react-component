@@ -1,19 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import useStyles from 'substyle'
 import styled from 'styled-components'
 
-const StyledMention = styled.strong`
-  font-weight: inherit;
-`
-
-const defaultStyle = {
-  fontWeight: 'inherit',
-}
-
-const Mention = ({ display, style, className, classNames }) => {
-  const styles = useStyles(defaultStyle, { style, className, classNames })
-  return <StyledMention>{display}</StyledMention>
+const StyledStrong = styled.strong`
+    color: red;
+`;
+const Mention = ({ display }) => {
+  return <StyledStrong>{display}</StyledStrong>
 }
 
 Mention.propTypes = {
@@ -36,8 +29,8 @@ Mention.defaultProps = {
   displayTransform: function(id, display) {
     return display || id
   },
-  onAdd: () => {},
-  onRemove: () => {},
+  onAdd: () => null,
+  onRemove: () => null,
   renderSuggestion: null,
   isLoading: false,
   appendSpaceOnAdd: false,

@@ -41,8 +41,7 @@ import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
 import IcoCheck from './components/icons/IcoCheck'
-import {ContainerFluid, Row, Col} from './layouts/Grid'
-
+import Example from './components/QuanhDevMention/demo/Examples'
 
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
@@ -62,10 +61,10 @@ function Quanh() {
     document.title = "Theme: " + theme[myTheme].name
   })
   const ComboxData = [
-    {id: 1, name: "La Quoc Anh", job: "Staff"},
-    {id: 2, name: "Van Thuan Quan", job: "Intern"},
-    {id: 3, name: "Nguyen Quoc Dat", job: "Intern"},
-    {id: 4, name: "Nguyen Hoang Tan", job: "Lead"}
+    {id: 1, name: "La Quoc Anh", job: "Staff", display: "La Quoc Anh"},
+    {id: 2, name: "Van Thuan Quan", job: "Intern", display: "Van Thuan Quan"},
+    {id: 3, name: "Nguyen Quoc Dat", job: "Intern", display: "Nguyen Quoc Dat"},
+    {id: 4, name: "Nguyen Hoang Tan", job: "Lead", display: "Nguyen Hoang Tan"}
   ]
   const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit mattis arcu semper elementum. Nullam accumsan erat vitae quam sagittis placerat. In sodales mi eros, id commodo nulla fermentum in. Cras vehicula, sapien id fringilla lobortis, erat nisl rhoncus ante, et maximus libero tellus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus justo nunc, sed molestie tortor dictum vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris maximus est quis ligula ullamcorper semper. Integer tempus orci dui, a lacinia lorem tempus ut. Donec sapien leo, sodales eu odio molestie, cursus lacinia quam. Aenean rhoncus rhoncus erat, nec volutpat nulla ullamcorper sit amet. Maecenas finibus, ante in suscipit rhoncus, massa lorem posuere est, vel faucibus turpis neque sit amet augue. Nulla sit amet mauris sit amet augue pharetra luctus vitae nec turpis. Duis sollicitudin commodo nisi quis mollis."
   const [mode, setMode] = useState("edit")
@@ -110,34 +109,10 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-              <Box headline="Layout" block>
-                <ContainerFluid>
-                  <Row>
-                    <Col col={1}>Col1</Col>
-                    <Col col={2}>Col2</Col>
-                    <Col col={3}>Col3</Col>
-                    <Col col={4}>Col4</Col>
-                    <Col col={5}>Col5</Col>
-                    <Col col={6}>Col6</Col>
-                    <Col col={7}>Col7</Col>
-                    <Col col={8}>Col8</Col>
-                    <Col col={9}>Col9</Col>
-                    <Col col={10}>Col10</Col>
-                    <Col col={11}>Col11</Col>
-                    <Col col={12}>Col12</Col>
-                  </Row>
-                  <Row>
-                    <Col>Auto col</Col>
-                    <Col>Auto col</Col>
-                    <Col>Auto col</Col>
-                    <Col>Auto col</Col>
-                    <Col>Auto col</Col>
-                  </Row>
-                </ContainerFluid>
-              </Box>
               <Box headline="Typography">
                 <Box.Item>
                   <H1>The biggest header.</H1>
+                  <H1>&#458; NJ</H1>
                   <H2 color="secondary">Secondary color, very nice.</H2>
                   <H3 color="success">Success, you made it.</H3>
                   <H4 color="warning">Something may go wrong.</H4>

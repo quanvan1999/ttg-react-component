@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {getDarker, getLighter} from '../../utils/color'
 import PropTypes from 'prop-types'
-
+import {StyledButtonGroup} from './ButtonGroup'
 const StyledButton = styled.button`
     --textColor: ${props => props.theme.color.background.primary};
     --darkTextColor: ${props => getDarker(props.theme.color.background.primary)};
@@ -12,7 +12,7 @@ const StyledButton = styled.button`
     --disabledTextColor: ${props => props.theme.color.text.disabled};
     --disabledFillColor: ${props => props.theme.color.fill.disabled};
     margin: ${props => props.demo? "8px": "0px"};
-    padding: ${props => props.ingroup ? "5px 15px" : props.round ? "2px" : props.type === "outline" ? "5px 15px" : "6px 16px"};
+    padding: ${props => props.round ? "2px" : props.type === "outline" ? "5px 15px" : "6px 16px"};
     transition: background 0.15s linear;
     font-size: ${props => props.theme.textSize[props.size] || "1rem" };
     font-weight: ${props => props.theme.weight[props.fontWeight] || 500};
@@ -24,12 +24,12 @@ const StyledButton = styled.button`
     background: ${props=>props.type === "contained" ? "var(--fillColor)" : "transparent"};
     flex: ${props => props.equalSize ? "1" : "none"};
     border-style: solid;
-    border-color: ${props => props.ingroup ? props.theme.color.border.primary : "var(--fillColor)"};
-    border-width: ${props => props.ingroup === "left" ? "0 0.5px 0 0" : props.ingroup === "right" ? "0 0 0 0.5px" : props.ingroup === "middle" ? "0 0.5px 0 0.5px" : props.type === "outline" ? "1px": "0px"};
-    border-radius: ${props => props.ingroup ? "0" : props => props.round ? "999px" : "4px"};
+    border-color: var(--fillColor);
+    border-width: ${props => props.type === "outline" ? "1px": "0px"};
+    border-radius: ${props => props.round ? "999px" : "4px"};
     display: ${props => props.fullWidth ? "block" : "inline-block"};
     width: ${props => props.fullWidth ? "100%": "auto"};
-    box-shadow: ${props => props.ingroup ? "none" : props.type === "contained" ? props.theme.shadow : "none"};
+    box-shadow: ${props => props.type === "contained" ? props.theme.shadow : "none"};
     &:hover {
         color: ${props => props.type === "contained" ? "var(--textColor)" : props.type === "outline" ? "var(--fillColor)" : "var(--darkFillColor)"};
         background: ${props => props.type === "contained" ? "var(--lightFillColor)" : props.type === "outline" ? "var(--darkTextColor)" : "transparent"};
@@ -42,6 +42,13 @@ const StyledButton = styled.button`
     &:active {
         color: ${props => props.type === "contained" ? "var(--fillColor)" : props.type === "outline" ? "var(--textColor)" : "var(--lightFillColor)"};
         background: ${props => props.type === "contained" ? "var(--textColor)" : props.type === "outline" ? "var(--fillColor)" : "transparent"};
+    }
+
+    ${StyledButtonGroup} & {
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 5px 15px;
     }
 `;
 

@@ -13,9 +13,8 @@ const StyledBox = styled.div`
     margin-bottom: 8px;
     .headline {
         border-bottom: 1px solid ${props => props.theme.color.border.primary};
-        padding: 4px 12px;
+        padding: 8px 12px;
         background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.05));
-        
     }
     & .flex {
         display: flex;

@@ -7,6 +7,7 @@ let isComposing = false
 const MentionsInput = (props) => {
     const suggestions = useRef({})
     const uuid = useRef(Math.random().toString().substring(2))
+    const containerRef = useRef()
     const [state, setState] = useState({
         focusIndex: 0,
         selectionStart: null,
@@ -19,10 +20,28 @@ const MentionsInput = (props) => {
         document.addEventListener('copy', handleCopy)
         document.addEventListener('cut', handleCut)
         document.addEventListener('paste', handlePaste)
+        updateSuggestionsPosition()
+
+        return (() => {
+            document.removeEventListener('copy', handleCopy)
+            document.removeEventListener('cut', handleCut)
+            document.removeEventListener('paste', handlePaste)
+        })
     })
     const handleCopy = () => {}
     const handleCut = () => {}
     const handlePaste = () => {}
+    const updateSuggestionsPosition = () => {}
+
+    const renderControl = () => {}
+    const renderSuggestionsOverlay = () => {}
+
+    return (
+        <div ref={containerRef}>
+            {renderControl()}
+            {renderSuggestionsOverlay()}
+        </div>
+    )
 }
 MentionsInput.propTypes = {
     singleLine: PropTypes.bool,

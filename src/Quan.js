@@ -23,6 +23,7 @@ import AutoComplete,{Completion} from './components/Mentions/AutoComplete';
 import MultiMentions from './components/Mentions/MultiMentions';
 import Menu from './components/Menu';
 import ButtonMenu from './components/ButtonMenu';
+import DropdownMenu from './components/DropdownMenu';
 
 
 
@@ -43,12 +44,23 @@ function Quan() {
       <ThemeProvider theme = {theme.light}>
         <Container open={open} headline = {"Simple List "}>
           {/* <ButtonMenu open={open} setOpen={setOpen}/> */}
-          <Menu open={true} >
+          {/* <Menu open={true} >
             <Menu.Item href="#"><IcoHome/>Home</Menu.Item>
             <Menu.Item href="#"><IcoList/>List</Menu.Item>
             <Menu.Item href="#"><IcoPlus/>Create</Menu.Item>
             <Menu.Item href="#"><IcoSettings/>Setting</Menu.Item>
-          </Menu>
+          </Menu> */}
+          <DropdownMenu label="Click">
+             <DropdownMenu.Item>
+               <DropdownMenu.LinkItem href="#">Message 1</DropdownMenu.LinkItem>
+              </DropdownMenu.Item>
+             <DropdownMenu.Item>
+               <DropdownMenu.LinkItem href="#">Message 2</DropdownMenu.LinkItem>
+              </DropdownMenu.Item>
+             <DropdownMenu.Item>
+               <DropdownMenu.LinkItem href="#">Message 3</DropdownMenu.LinkItem>
+              </DropdownMenu.Item>
+          </DropdownMenu>
         </Container>
       </ThemeProvider>
     </div>

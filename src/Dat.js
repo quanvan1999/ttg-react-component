@@ -1,11 +1,12 @@
 import React, {} from 'react'
-import {Container, ContainerFluid, Row, Col} from './layouts/Grid'
+import Loading1 from './components/loader/Loading1'
+import Loading2 from './components/loader/Loading2'
+import Loading3 from './components/loader/Loading3'
+import Loading4 from './components/loader/Loading4'
 export default function Dat() {
-  // offSet,middle,auto, 
-  //JustifiContent : center, left, flex-end....
-  // sm, md, xs, lg, xl, xxl
   return (
     <>
+<<<<<<< HEAD
       <Container>
         <Row auto>
           <Col col={3} offSet={4}>
@@ -100,6 +101,22 @@ export default function Dat() {
           </Col>
         </Row>
       </Container>
+=======
+      <Loading1>
+        <Loading1.Circle ColorBorder="red"/>
+        <Loading1.Circle ColorBorder="yellow" ColorAnimation="orange"/>
+        <Loading1.Circle ColorBorder="blue"/>
+      </Loading1>
+      <Loading2>
+        <Loading2.Dot/>
+        <Loading2.Dot/>
+        <Loading2.Dot/>
+      </Loading2>
+      <Loading3/>
+      <div style={{'margin-top':'30px'}}>
+        <Loading4/>
+      </div>
+>>>>>>> 5a5298403d4455b9f6768c63ab09a1779f9a18a1
     </>
   )
 }

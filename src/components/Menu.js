@@ -3,22 +3,28 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import useClickOutside from '../hooks/useClickOutside';
 import IcoX from '../components/icons/IcoX'
+import {getDarker, getLighter} from '../utils/color'
+
 
 const StyleMenu = styled.nav`
+--textColor: ${props => props.theme.color.background.primary};
+--fillColor: ${props => props.theme.color.fill[props.color] || props.theme.color.fill.primary};
+
     display:flex;
     flex-direction:column;
-    justify-content : center;
     height:100%;
     box-shadow: 2px 0 5px rgba(0,0,0,0.5);
     text-align:left;
-    position:absolute;
+    position:fixed;
     top:0;
     left:0;
     z-index: 1;
     transition:transform 0.3s ease-in-out;
-    background:#fff;
+    background: ${props => props.theme.color.fill.primary};
     transform: ${props => props.open ? 'translateX(0)' : 'translateX(-100%)'};
-
+    & svg{
+        color: ${props => props.theme.color.background.primary};
+    }
 
     @media (max-width: 768px){
         position: fixed;
@@ -37,23 +43,27 @@ const StyleMenu = styled.nav`
             text-align:center;
             font-size: 1rem;
             padding: 10px;
+            justify-content:center;
         }
     }
 `;
 const MenuItem = styled.a`
-    font-size: 20px;
-    padding: 1rem 3rem;
+    font-size: 1rem;
+    padding: 10px;
     font-weight: bold;
     text-decoration: none;
-    color: #000;
+    flex-direction: column;
+    color: ${props => props.theme.color.background.primary};
     display:flex;
     align-items:center;
     &:hover{
-        color: red;
-        background:#ccc;
+        background:${props => getLighter(props.theme.color.fill[props.color] || props.theme.color.fill.primary)};
     }
     & span{
         margin-right:5px;
+    }
+    &:active{
+        background:${props => getLighter(props.theme.color.fill[props.color] || props.theme.color.fill.primary)};
     }
 `;
 const ButtonClose = styled.button`
@@ -79,11 +89,11 @@ const ButtonClose = styled.button`
 `;
 const Menu = (props) =>{
     
-    const closePopup = () => props.setOpen(false)
-    let ref = useClickOutside(closePopup)
+    // const closePopup = () => props.setOpen(false)
+    // let ref = useClickOutside(closePopup)
 
     return(
-        <StyleMenu open={props.open} ref={ref}>
+        <StyleMenu open={props.open} >
             {
             React.Children.map(props.children, child => {
                 return React.cloneElement(

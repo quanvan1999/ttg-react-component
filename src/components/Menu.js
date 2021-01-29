@@ -62,6 +62,9 @@ const MenuItem = styled.a`
     & span{
         margin-right:5px;
     }
+    &:active{
+        background:${props => getLighter(props.theme.color.fill[props.color] || props.theme.color.fill.primary)};
+    }
 `;
 const ButtonClose = styled.button`
     display: ${props => props.open ? 'block' : 'none'};
@@ -86,11 +89,11 @@ const ButtonClose = styled.button`
 `;
 const Menu = (props) =>{
     
-    const closePopup = () => props.setOpen(false)
-    let ref = useClickOutside(closePopup)
+    // const closePopup = () => props.setOpen(false)
+    // let ref = useClickOutside(closePopup)
 
     return(
-        <StyleMenu open={props.open} ref={ref}>
+        <StyleMenu open={props.open} >
             {
             React.Children.map(props.children, child => {
                 return React.cloneElement(

@@ -2,7 +2,7 @@
 import {ThemeProvider} from 'styled-components'
 import { React } from "react";
 import Container from './components/Container'
-import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB, Avatar} from './components/elements'
+import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB, Avatar, ToggleGroup, Toggle} from './components/elements'
 import IconCheck from './components/icons/IcoCheckCircle';
 import IconError from './components/icons/IcoAlertTriangle';
 import IconInfo from "./components/icons/IcoInfo";
@@ -25,6 +25,7 @@ import Menu from './components/Menu';
 import ButtonMenu from './components/ButtonMenu';
 import DropdownMenu from './components/DropdownMenu';
 import Box from './components/Box'
+import Accordion from './components/Accordion';
 
 
 function Quan() {
@@ -75,6 +76,14 @@ function Quan() {
                <DropdownMenu.LinkItem href="#">Item 3</DropdownMenu.LinkItem>
               </DropdownMenu.Item>
           </DropdownMenu>
+          </Box>
+          <Box headline="Accordion">
+          <Accordion width= {300} label="Why is the sky blue?">
+            <ToggleGroup displayMode={mode} onSelect={v => console.log(v)}>
+              <Toggle value={1} default>Example 1 long text long text long text AccordionItemAccordionItem AccordionItem</Toggle>
+              <Toggle value={2}>Exxample 2</Toggle>
+            </ToggleGroup>
+          </Accordion>
           </Box>
         </Container>
       </ThemeProvider>

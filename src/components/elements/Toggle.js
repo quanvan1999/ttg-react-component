@@ -6,7 +6,6 @@ import {getFader} from '../../utils/color'
 const LabelToggle = styled.label`
     position: relative;
     display: inline-flex;
-    justify-content: flex-start;
     align-items: center;
     cursor: pointer;
     padding: 4px 8px 4px 0;

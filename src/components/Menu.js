@@ -46,12 +46,18 @@ const MenuItem = styled.a`
     font-weight: bold;
     text-decoration: none;
     color: #000;
+    display:flex;
+    align-items:center;
     &:hover{
         color: red;
         background:#ccc;
     }
+    & span{
+        margin-right:5px;
+    }
 `;
 const ButtonClose = styled.button`
+    display: ${props => props.open ? 'block' : 'none'};
     background:transparent;
     border:none;
     position:absolute;

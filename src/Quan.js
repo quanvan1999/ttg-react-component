@@ -37,12 +37,12 @@ function Quan() {
     <div>
       <ThemeProvider theme = {theme.light}>
         <Container open={open} headline = {"Simple List "}>
-          <ButtonMenu open={open} setOpen={setOpen}/>
-          <Menu open={open} setOpen={setOpen}>
-            <Menu.Item href="#">Item 1</Menu.Item>
-            <Menu.Item href="#">Item 2</Menu.Item>
-            <Menu.Item href="#">Item 3</Menu.Item>
-            <Menu.Item href="#">Item 4</Menu.Item>
+          {/* <ButtonMenu open={open} setOpen={setOpen}/> */}
+          <Menu open={true} >
+            <Menu.Item href="#"><IconCheck/>Item 1</Menu.Item>
+            <Menu.Item href="#"><IconCheck/>Item 2</Menu.Item>
+            <Menu.Item href="#"><IconCheck/>Item 3</Menu.Item>
+            <Menu.Item href="#"><IconCheck/>Item 4</Menu.Item>
           </Menu>
         </Container>
       </ThemeProvider>

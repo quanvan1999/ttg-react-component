@@ -1,5 +1,6 @@
 import styled, {ThemeProvider} from 'styled-components'
 import Container from './components/Container'
+import Mentions from 'rc-mentions';
 import {
   Button, 
   ButtonGroup, 
@@ -41,7 +42,7 @@ import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
 import IcoCheck from './components/icons/IcoCheck'
-import Example from './components/QuanhDevMention/demo/Examples'
+import MyMention from './components/elements/DevMention/MyMention'
 
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
@@ -109,6 +110,9 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
+              <Box headline="Mention">
+                <MyMention/>
+              </Box>
               <Box headline="Typography">
                 <Box.Item>
                   <H1>The biggest header.</H1>

@@ -35,7 +35,7 @@ const AccordionTitle = styled.div`
 `;
 const AccordionItem = styled.div`
     overflow: hidden;
-    transition:max-height 0.5s ease-out;
+    transition:max-height 0.7s ease-in;
     height:auto;
     max-height:600px;
     padding: 5px 0 5px 30px;

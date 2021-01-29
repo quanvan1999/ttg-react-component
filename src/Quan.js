@@ -2,7 +2,7 @@
 import {ThemeProvider} from 'styled-components'
 import { React } from "react";
 import Container from './components/Container'
-import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB, Avatar, ToggleGroup, Toggle} from './components/elements'
+import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB, Avatar, ToggleGroup, Toggle, CheckboxGroup} from './components/elements'
 import IconCheck from './components/icons/IcoCheckCircle';
 import IconError from './components/icons/IcoAlertTriangle';
 import IconInfo from "./components/icons/IcoInfo";
@@ -43,14 +43,15 @@ function Quan() {
   return (
     <div>
       <ThemeProvider theme = {theme.light}>
-        <Container open={open} headline = {"Simple List "}>
-          {/* <ButtonMenu open={open} setOpen={setOpen}/> */}
-          {/* <Menu open={true} >
+      {/* <Menu open={true} >
             <Menu.Item href="#"><IcoHome/>Home</Menu.Item>
             <Menu.Item href="#"><IcoList/>List</Menu.Item>
             <Menu.Item href="#"><IcoPlus/>Create</Menu.Item>
             <Menu.Item href="#"><IcoSettings/>Setting</Menu.Item>
           </Menu> */}
+        <Container open={open} headline = {"Simple List "}>
+          {/* <ButtonMenu open={open} setOpen={setOpen}/> */}
+
           <Box headline="Dropdown Menu 1">
           <DropdownMenu label="Click">
              <DropdownMenu.Item>
@@ -79,10 +80,10 @@ function Quan() {
           </Box>
           <Box headline="Accordion">
           <Accordion width= {300} label="Why is the sky blue?">
-            <ToggleGroup displayMode={mode} onSelect={v => console.log(v)}>
-              <Toggle value={1} default>Example 1 long text long text long text AccordionItemAccordionItem AccordionItem</Toggle>
-              <Toggle value={2}>Exxample 2</Toggle>
-            </ToggleGroup>
+          <CheckboxGroup  displayMode={mode}>
+                    <Checkbox value={1}>One</Checkbox>
+                    <Checkbox value={2}>Two</Checkbox>
+                  </CheckboxGroup>
           </Accordion>
           </Box>
         </Container>

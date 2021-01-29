@@ -19,7 +19,6 @@ const DivLoading = styled.div`
         }
         100%{
             transform: rotate(360deg);
-            border-top-color: ${props => props.ColorAnimation ? props.ColorAnimation : 'pink'};
         }
     }
     @-webkit-keyframes spin {

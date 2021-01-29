@@ -18,13 +18,13 @@ const DivContainer = styled.div`
     @media screen and (min-device-width: 576px) and (max-device-width: 767px){
         width: 540px;
     }
-    @media screen and (min-device-width: 498px) (max-device-width: 575px){
+    @media screen and (min-device-width: 498px) and (max-device-width: 575px){
         width: 520px;
     }
-    @media screen and (max-device-width: 540px){
+    @media screen and (max-device-width: 540px) and (min-device-width: 500px){
         width: 490px;
     }
-    @media screen and (max-device-width: 499px){
+    @media screen and (max-device-width: 499px) {
         width: 350px;
     }
     @media screen and (max-device-width: 375px){
@@ -80,22 +80,22 @@ const DivCol = styled.div`
     @media screen and (min-device-width: 576px) and (max-device-width: 767px){
         width: ${props => props.sm ? (100/12 * props.sm) : ''}%;
     }
-    @media screen and (min-device-width: 498px) (max-device-width: 575px){
+    @media screen and (min-device-width: 498px) and (max-device-width: 575px){
         width: ${props => props.sm ? (100/12 * props.sm) : ''}%;
     }
-    @media screen and (max-device-width: 540px){
+    @media screen and (max-device-width: 540px) and (min-device-width: 500px){
         width: ${props => props.sm ? (100/12 * props.sm) : ''}%;
     }
     @media screen and (max-device-width: 499px){
         width: ${props => props.sm ? (100/12 * props.sm) : ''}%;
     }
-    @media screen and (max-device-width: 375px){
+    @media screen and (max-device-width: 375px) and (min-device-width: 361px){
         width: ${props => props.sm ? (100/12 * props.sm) : ''}%;
     }
-    @media screen and (max-device-width: 360px){
+    @media screen and (max-device-width: 360px) and (min-device-width: 321px){
         width: ${props => props.sm ? (100/12 * props.sm) : ''}%;
     }
-    @media screen and (max-device-width: 320px){
+    @media screen and (max-device-width: 320px) and (min-device-width: 281px){
         width: ${props => props.sm ? (100/12 * props.sm) : ''}%;
     }
     @media screen and (max-device-width: 280px){

@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     height:100px;
     position: absolute;
     left:50%;
-    top:60%;
+    margin-top: 50px;
     transform: translate(-50%, -50%);
     div:nth-child(2){
         left:45%;

@@ -42,6 +42,13 @@ import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
 import IcoCheck from './components/icons/IcoCheck'
 
+import Loading1 from './components/loader/Loading1'
+import Loading2 from './components/loader/Loading2'
+import Loading3 from './components/loader/Loading3'
+import Loading4 from './components/loader/Loading4'
+import Loading5 from './components/loader/Loading5'
+import Loading6 from './components/loader/Loading6'
+
 
 
 const FontProvider = styled.div`
@@ -410,6 +417,32 @@ function Quanh() {
               <Box headline="Slide">
                 <Slider displayMode={mode} fullWidth defaultValue={50}/>
               </Box>
+              
+              <Box headline="Loading">
+                <Loading1 style={{'background':'#0b0b0ba8', 'width': '100%', 'justify-content':'center'}}>
+                  <Loading1.Circle ColorBorder="red"/>
+                  <Loading1.Circle ColorBorder="yellow" ColorAnimation="orange"/>
+                  <Loading1.Circle ColorBorder="blue"/>
+                </Loading1>
+                <div style={{'width':'100%', 'background':'#0b0b0ba8', 'margin':'auto'}}>
+                  <Loading2>
+                    <Loading2.Dot/>
+                    <Loading2.Dot/>
+                    <Loading2.Dot/>
+                  </Loading2>
+                </div>
+                <Loading3/>
+                <div style={{'margin-top':'30px'}}>
+                  <Loading4/>
+                </div>
+                <div style={{'width':'30%', 'margin':'auto', 'margin-top':'50px', 'text-align':'center'}}>
+                  <Loading5/>
+                </div>
+                <div style={{'width':'30%', 'margin':'auto', 'margin-top': '50px', 'text-align':' center'}}>
+                  <Loading6/>
+                </div>
+              </Box>
+
               <FAB size="large" onClick={() => document.documentElement.scrollTop = 0}>
                 <IcoArrowUpCircle/>
               </FAB>

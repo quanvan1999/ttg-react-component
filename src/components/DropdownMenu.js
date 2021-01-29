@@ -1,7 +1,7 @@
 import React, {useEffect, useRef,useState} from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-    
+
 const StyleDropDownMenu= styled.div`
     position:relative;
 `;
@@ -35,6 +35,7 @@ const ContainerMenu = styled.ul`
     padding:0;
     margin:0;
     display:block;
+    padding: 5px 0;
 `
 const Item = styled.li`
     border-bottom: 1px solid #eee;
@@ -55,7 +56,9 @@ const LinkItem = styled.a`
 const NavMenu = styled.nav`
     display:block;
     background: #fff;
+    border-radius: 4px;
     position:absolute;
+    z-index: 1;
     top: 30px;
     left:0;
     min-width: 150px;
@@ -115,4 +118,14 @@ const DropdownMenu = (props) =>{
 }
 DropdownMenu.LinkItem=LinkItem
 DropdownMenu.Item = Item
+
+DropdownMenu.defaultProps ={
+    name: '',
+    label: 'default'
+}
+
+DropdownMenu.propTypes ={
+    name: PropTypes.string,
+    label: PropTypes.string
+}
 export default DropdownMenu

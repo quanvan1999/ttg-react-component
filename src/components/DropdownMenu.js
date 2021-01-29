@@ -34,23 +34,27 @@ const ContainerMenu = styled.ul`
     list-style:none;
     padding:0;
     margin:0;
+    display:block;
 `
 const Item = styled.li`
     border-bottom: 1px solid #eee;
-    
+    display:block;
     &:last-child{
         border:none;
+    }
+    :hover{
+        background: #eee;
     }
 `;
 const LinkItem = styled.a`
     text-decoration: none;
     color: #333333;
-    padding: 15px 20px;
+    padding: 10px 20px;
     display: block;
 `
 const NavMenu = styled.nav`
+    display:block;
     background: #fff;
-    border-radius: 4px;
     position:absolute;
     top: 30px;
     left:0;
@@ -60,12 +64,12 @@ const NavMenu = styled.nav`
     opacity: 0;
     visibility: hidden;
     transform: translateY(-20px);
-    transition: opacity 0.4s ease, transform 0.4 ease, visibility 0.4s;
-
+    transition: opacity 0.4s ease;
     &.active{
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
+    
     }
 `;
 const DropdownMenu = (props) =>{
@@ -92,7 +96,7 @@ const DropdownMenu = (props) =>{
             <StyleButton onClick={() => setIsActive(!isActive)}>
                 <span>{props.label}</span>
             </StyleButton>
-            <NavMenu ref={dropdownRef} className={`menu ${isActive ? 'active' : null}`}>
+            <NavMenu ref={dropdownRef} className={`menu ${isActive ? 'active' : ''}`}>
                 <ContainerMenu>
                 {
                     React.Children.map(props.children, child => {

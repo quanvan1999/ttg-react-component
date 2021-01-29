@@ -7,7 +7,7 @@ const DivContainer = styled.div`
         width: 1320px;
     }
     @media screen and (min-device-width: 1200px) and (max-device-width: 1399px){
-        width: 1320px;
+        width: 1150px;
     }
     @media screen and (min-device-width: 992px) and (max-device-width: 1199px){
         max-width: 960px;
@@ -21,13 +21,14 @@ const DivContainer = styled.div`
     @media screen and (min-device-width: 498px) and (max-device-width: 575px){
         width: 520px;
     }
-    @media screen and (max-device-width: 540px) and (min-device-width: 500px){
+    @media screen and (min-device-width: 500px) and (max-device-width: 540px){
         width: 490px;
     }
     @media screen and (max-device-width: 499px) {
         width: 350px;
     }
     @media screen and (max-device-width: 375px){
+        font-size: 10px;
         width: 330px;
     }
     @media screen and (max-device-width: 360px){
@@ -37,6 +38,7 @@ const DivContainer = styled.div`
         width: 280px;
     }
     @media screen and (max-device-width: 280px){
+        font-size: 10px;
         width: 250px;
     }
 `;
@@ -44,6 +46,9 @@ const DivContainerFluid = styled.div`
     width: 100%;
     height: auto;
     box-sizing: border-box;
+    @media screen and (max-device-width: 375px){
+        font-size: 10px;
+    }
 `;
 const DivRow = styled.div`
     width: 100%;
@@ -58,7 +63,8 @@ const DivRow = styled.div`
     }
 `;
 const DivCol = styled.div`
-    padding: .75em;
+    margin: 0;
+    padding: 0;
     background-color: white;
     border: 1px solid rgba(39,41,43,0.1);
     width: ${props => props.col ? (100/12 * props.col) : (100/12)}%;

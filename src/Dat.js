@@ -4,7 +4,7 @@ import {Container, ContainerFluid, Row, Col} from './components/layouts/Grid'
 export default function Dat() {
   const data=['Apple', 'Banana', 'Orange', 'Tomatoes', 'Mango']
   return (
-    <div style={{'max-width':'100%'}}>
+    <div>
       <Container>
         <Row>
           <Col col={4}> 

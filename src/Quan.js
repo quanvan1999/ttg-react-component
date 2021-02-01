@@ -42,7 +42,7 @@ function Quan() {
 
   return (
     <div>
-      <ThemeProvider theme = {theme.light}>
+      <ThemeProvider theme = {theme.dark}>
       {/* <Menu open={true} >
             <Menu.Item href="#"><IcoHome/>Home</Menu.Item>
             <Menu.Item href="#"><IcoList/>List</Menu.Item>

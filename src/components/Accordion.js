@@ -8,7 +8,7 @@ const AccordionWrapper = styled.div`
     min-width: 300px;
 `;
 const AccordionList = styled.div`
-    padding: 0px 5px 0px 30px;
+    padding: 0px 0px 0px 20px;
 `;
 const AccordionTitle = styled.div`
     cursor: pointer;
@@ -41,7 +41,7 @@ const AccordionItem = styled.div`
     transition:max-height 0.7s ease-in;
     height:auto;
     max-height:600px;
-    padding: 0;
+    padding: 0 10px;
     margin-top:5px;
     &.collapsed {
         max-height: 0;

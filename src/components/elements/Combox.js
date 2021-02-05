@@ -33,7 +33,8 @@ const IconChevronDown = () => {
 Option.propTypes = {
     id: PropTypes.number,
     searchText: PropTypes.arrayOf(PropTypes.string),
-    value: PropTypes.string
+    value: PropTypes.string,
+    default: PropTypes.bool
 }
 const opa = keyframes `
     0% {transform: translateY(100%);opacity: 0;}
@@ -97,7 +98,6 @@ const slideDown = keyframes`
 const SelectContainer = styled.div`
     border: 1px solid ${props => props.theme.color.border.primary};
     background: ${props => props.theme.color.background.primary};
-    max-height: 15rem;
     position: absolute;
     overflow: hidden;
     width: 100%;
@@ -111,7 +111,7 @@ const Selection = styled.div`
     padding: 0.5rem;
     background-color: ${props => props.selected ? props.theme.color.border.primary: "transparent"};
     &:hover {
-        background-color: ${props => props.theme.color.background.secondary};
+        background-color: ${props => props.selected ? props.theme.color.border.primary : props.theme.color.background.secondary};
     }
 `;
 const StyledItem = styled.div`
@@ -151,13 +151,40 @@ const SearchBar = styled.input`
     border-bottom: 1px solid ${props => props.theme.color.border.primary};
     color: ${props => props.theme.color.fill.primary};
 `;
-
+const SelectionContainer = styled.div`
+    overflow: auto;
+    max-height: 12rem;
+    &::-webkit-scrollbar {
+        width: 0rem;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: ${props => getFader(props.theme.color.fill.primary, 0.5)};
+        border-radius: 999px;
+    }
+    &:hover {
+        &::-webkit-scrollbar {
+            width: 0.4rem;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: ${props => getFader(props.theme.color.fill.primary, 0.8)};
+        }
+        &::-webkit-scrollbar-thumb:active {
+            background-color: ${props => props.theme.color.fill.primary};   
+        }
+    }
+`
+const Divider = styled.div`
+    height: 0.5px;
+    transform: translateY(-0.5px);
+    background: ${props => props.theme.color.border.primary};
+    margin: 0px 0.2rem 0px 0.6rem;
+`
 function Combox(props) {
     const {onSelect} = props
     const [isOpen, setIsOpen] = useState(false);
     const comboxRef = useClickOutside(() => setIsOpen(false))
     // Selected item
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState(props.children.filter(child => child.props.default).map(child => child.props))
     const [returnItems, setReturnItems] = useState([])
     const [seachText, setSeachText] = useState("")
     const [removingItem, setRemovingItem] = useState("")
@@ -230,16 +257,22 @@ function Combox(props) {
                         <SearchBar ref={refSearchBar} type="input" spellCheck="false" placeholder="Search..." value={seachText} onChange={handleSearchText}/>
                     </SearchBarContainer>
                     }
+                    <SelectionContainer>
                     {props.children
-                        .filter(child => child.props.searchText.concat([child.props.value]).map(c => c.toUpperCase()).join("|").includes(seachText.toUpperCase().trim()))
+                        .filter(child => child.props.searchText.concat([child.props.value]).map(c => c.toString().toUpperCase()).join("|").includes(seachText.toUpperCase().trim()))
                             .map(child => 
+                                <>
                                 <Selection 
                                     selected={items.map(item => item.id).includes(child.props.id)} 
                                     key={child.props.id}
                                     onClick={() => addItem(child.props)}>{child.props.children}
                                 </Selection>
+                                <Divider/>
+                                </>
                             )
                     }
+                    </SelectionContainer>
+                    
                 </SelectContainer>
             }
         </Container>
@@ -255,7 +288,7 @@ Combox.propTypes = {
 Combox.defaultProps = {
     multiple: false,
     searchable: false,
-    onSelect: (v) => console.log(v)
+    onSelect: () => {}
 }
 
 export default Combox

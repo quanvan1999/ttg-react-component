@@ -40,10 +40,13 @@ HeaderCell.propTypes = {
 }
 const Body = styled.tbody``;
 const Cell = styled.td`
-    padding: 0.5rem;
+    padding: 0rem;
+    height: 40px;
+    text-overflow: ellipsis;
     border: ${props => props.footer ? "0px" : "1px"} solid ${props => props.theme.color.border.primary};
     text-align: ${props => props.textAlign || "left"};
 `;
+
 Cell.propTypes = {
     textAlign: PropTypes.string
 }

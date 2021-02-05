@@ -26,6 +26,8 @@ const ChevRight = () => {
 
 const Container = styled.ul`
     display: ${props => props.stretch ? "flex" : "inline-flex"};
+    gap: 1px;
+    background: ${props => props.theme.color.border.primary};
     justify-content: center;
     align-items: center;
     border: 1px solid ${props => props.theme.color.border.primary};
@@ -41,11 +43,9 @@ const Item = styled.li`
     height: 2rem;
     flex: 1;
     line-height: 2rem;
-    border-left: 0.5px solid ${props => props.theme.color.border.primary};
-    border-right: 0.5px solid ${props => props.theme.color.border.primary};
     user-select: none;
     color: ${props => props.active ? props.theme.color.background.primary : props.theme.color.text.primary};
-    background: ${props => props.active ? props.theme.color.fill.primary : "transparent"};
+    background: ${props => props.active ? props.theme.color.fill.primary : props.theme.color.background.primary};
     &:hover{
         background: ${props => props.active ? "auto" : props.theme.color.border.primary};
     }

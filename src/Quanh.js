@@ -1,6 +1,5 @@
 import styled, {ThemeProvider} from 'styled-components'
 import Container from './components/Container'
-import Mentions from 'rc-mentions';
 import {
   Button, 
   ButtonGroup, 
@@ -29,6 +28,9 @@ import {
   Label,
   Combox,
   Table,
+  MentionInput,
+  TypeWriter,
+  MultiMentionInput
 } from './components/elements'
 import {H1, H2, H3, H4, H5, H6, P, HL} from './components/elements/Typography'
 import theme from './utils/theme'
@@ -42,8 +44,7 @@ import IcoArrowUpCircle from './components/icons/IcoArrowUpCircle'
 import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
 import IcoCheck from './components/icons/IcoCheck'
-import MyMention from './components/elements/DevMention/MyMention'
-
+import {FContainer, Row, Col} from './components/layouts'
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
 `;
@@ -59,13 +60,23 @@ function Quanh() {
       })
   }, [])
   useEffect(() => {
-    document.title = "Theme: " + theme[myTheme].name
+    document.title = "Is online ? " + navigator.onLine
   })
   const ComboxData = [
-    {id: 1, name: "La Quoc Anh", job: "Staff", display: "La Quoc Anh"},
-    {id: 2, name: "Van Thuan Quan", job: "Intern", display: "Van Thuan Quan"},
-    {id: 3, name: "Nguyen Quoc Dat", job: "Intern", display: "Nguyen Quoc Dat"},
-    {id: 4, name: "Nguyen Hoang Tan", job: "Lead", display: "Nguyen Hoang Tan"}
+    {id: 1, name: "La Quoc Anh", job: "Staff", display: "La Quoc Anh", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=anh.lq@ttgvn.com"},
+    {id: 2, name: "Tran Thach Thao", job: "Staff", display: "Tran Thach Thao", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=thao.tt@ttgvn.com"},
+    {id: 3, name: "Le Hoang Vu", job: "Staff", display: "Le Hoang Vu", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=vu.lh@ttgvn.com"},
+    {id: 4, name: "Nguyen Hoang Tan", job: "Lead", display: "Nguyen Hoang Tan", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=tan.nh@ttgvn.com"},
+    {id: 5, name: "Ngo Kim Son", job: "Staff", display: "Nguyen Hoang Tan", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=son.nk@ttgvn.com"},
+    {id: 6, name: "Nguyen Quoc Dat", job: "Intern", display: "Nguyen Quoc Dat", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=dat.nq@ttgvn.com"},
+    {id: 7, name: "Van Thuan Quan", job: "Intern", display: "Van Thuan Quan", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=quan.vt@ttgvn.com"}
+  ]
+  const hashTagData = [
+    {id: 1, name: "Calm"},
+    {id: 2, name: "Energetic"},
+    {id: 3, name: "Elegant"},
+    {id: 4, name: "Consistent"},
+    {id: 5, name: "Confidence"},
   ]
   const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit mattis arcu semper elementum. Nullam accumsan erat vitae quam sagittis placerat. In sodales mi eros, id commodo nulla fermentum in. Cras vehicula, sapien id fringilla lobortis, erat nisl rhoncus ante, et maximus libero tellus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus justo nunc, sed molestie tortor dictum vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris maximus est quis ligula ullamcorper semper. Integer tempus orci dui, a lacinia lorem tempus ut. Donec sapien leo, sodales eu odio molestie, cursus lacinia quam. Aenean rhoncus rhoncus erat, nec volutpat nulla ullamcorper sit amet. Maecenas finibus, ante in suscipit rhoncus, massa lorem posuere est, vel faucibus turpis neque sit amet augue. Nulla sit amet mauris sit amet augue pharetra luctus vitae nec turpis. Duis sollicitudin commodo nisi quis mollis."
   const [mode, setMode] = useState("edit")
@@ -76,10 +87,15 @@ function Quanh() {
   const [snackbarState, setSnackbarState] = useState(false)
   const [font, setFont] = useState("")
   const [activePage, setActivePage] = useState(1)
+  const [mentions, setMentions] = useState([])
+  const [plainText, setPlainText] = useState("")
   return (
     <div>
       <ThemeProvider theme={theme[myTheme] || theme.light}>
         <FontProvider font={font}>
+          <Container fullWidth>
+            <TypeWriter as={H2} text="Design Guidelines React Component"/>
+          </Container>  
           <Container headline={theme[myTheme].name} fullWidth>
             <Container headline="Display Mode" >
               <ButtonGroup fullWidth onSelect={x => setMode(x)}>
@@ -110,13 +126,17 @@ function Quanh() {
 
             <br/>
             <Container headline={"Elements"} fullWidth>
-              <Box headline="Mention">
-                <MyMention/>
+              <Box headline="Mention" block>
+                <Label>
+                  Mention: {mentions.length > 0 ? mentions.map(m => m.name).join(', ') : "No one"} {mentions.length > 1 ? " are " : " is "} mentioned
+                </Label>
+                <MentionInput data={ComboxData} getMention={mens => setMentions(mens)}/>
+                <Label>Multi Mention Input (use @ or #)</Label>
+                <MultiMentionInput data1={ComboxData} data2={hashTagData}/>
               </Box>
               <Box headline="Typography">
                 <Box.Item>
                   <H1>The biggest header.</H1>
-                  <H1>&#458; NJ</H1>
                   <H2 color="secondary">Secondary color, very nice.</H2>
                   <H3 color="success">Success, you made it.</H3>
                   <H4 color="warning">Something may go wrong.</H4>
@@ -140,7 +160,7 @@ function Quanh() {
                   </Table.Header>
                   <Table.Body>
                     {todoData.slice((activePage-1)*3, (activePage-1)*3 + 3).map(d => 
-                      <Table.Row>
+                      <Table.Row key={d.id}>
                         <Table.Cell textAlign="center">{d.id}</Table.Cell>
                         <Table.Cell textAlign="center">{users.find(user => user.id === d.userId).name || "Unknown"}</Table.Cell>
                         <Table.Cell textAlign="center">{d.title}</Table.Cell>
@@ -208,10 +228,10 @@ function Quanh() {
                   </Combox>
                 </Box.Item>
                 <Box.Item>
-                  <Label>Select Multiple with Search</Label>
+                  <Label>Select Multiple with Search (Default Intern)</Label>
                   <Combox demo multiple searchable>
                   {ComboxData.map((data) => 
-                    <Combox.Option id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
+                    <Combox.Option default={data.job === "Intern"} id={data.id} searchText={[data.job]} value={data.name} key={data.id}>{data.name}</Combox.Option>
                   )}
                   </Combox>
                 </Box.Item>
@@ -323,7 +343,7 @@ function Quanh() {
                 <Button size="medium" displayMode={mode} demo type="contained" > Settings</Button>
               </Box>
               <Box headline="Calendar">
-                  <Calendar demo/>
+                  <Calendar demo fullWidth/>
               </Box>
               <Box headline="Toggle">
                 <Box.Item>

@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
-
+import styled, {ThemeProvider} from 'styled-components'
+import { Button } from '../components/elements'
+import theme from '../utils/theme'
 const Signoff = () => {
     useEffect(() => {
         
     })
     return (
-        <div>
-            Hello Signoff
-        </div>
+        <ThemeProvider theme={theme.dark}>
+            <Button>Hello</Button>
+        </ThemeProvider>
     )
 }
 

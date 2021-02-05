@@ -29,6 +29,8 @@ import Combox from './Combox'
 import Table from './Table'
 import Typography from './Typography'
 import MentionInput from './MentionInput'
+import TypeWriter from './TypeWriter'
+import MultiMentionInput from './MultiMentionInput'
 export {
     Button, 
     ButtonGroup, 
@@ -60,5 +62,7 @@ export {
     Combox,
     Table,
     Typography,
-    MentionInput
+    MentionInput,
+    TypeWriter,
+    MultiMentionInput
 }

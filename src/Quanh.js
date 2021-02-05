@@ -28,7 +28,9 @@ import {
   Label,
   Combox,
   Table,
-  MentionInput
+  MentionInput,
+  TypeWriter,
+  MultiMentionInput
 } from './components/elements'
 import {H1, H2, H3, H4, H5, H6, P, HL} from './components/elements/Typography'
 import theme from './utils/theme'
@@ -58,7 +60,7 @@ function Quanh() {
       })
   }, [])
   useEffect(() => {
-    document.title = "Theme: " + theme[myTheme].name
+    document.title = "Is online ? " + navigator.onLine
   })
   const ComboxData = [
     {id: 1, name: "La Quoc Anh", job: "Staff", display: "La Quoc Anh", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=anh.lq@ttgvn.com"},
@@ -68,6 +70,13 @@ function Quanh() {
     {id: 5, name: "Ngo Kim Son", job: "Staff", display: "Nguyen Hoang Tan", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=son.nk@ttgvn.com"},
     {id: 6, name: "Nguyen Quoc Dat", job: "Intern", display: "Nguyen Quoc Dat", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=dat.nq@ttgvn.com"},
     {id: 7, name: "Van Thuan Quan", job: "Intern", display: "Van Thuan Quan", avatar: "https://ttgvncom.sharepoint.com/sites/CommandCenter/_layouts/15/UserPhoto.aspx?Size=L&AccountName=quan.vt@ttgvn.com"}
+  ]
+  const hashTagData = [
+    {id: 1, name: "Calm"},
+    {id: 2, name: "Energetic"},
+    {id: 3, name: "Elegant"},
+    {id: 4, name: "Consistent"},
+    {id: 5, name: "Confidence"},
   ]
   const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit mattis arcu semper elementum. Nullam accumsan erat vitae quam sagittis placerat. In sodales mi eros, id commodo nulla fermentum in. Cras vehicula, sapien id fringilla lobortis, erat nisl rhoncus ante, et maximus libero tellus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus justo nunc, sed molestie tortor dictum vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris maximus est quis ligula ullamcorper semper. Integer tempus orci dui, a lacinia lorem tempus ut. Donec sapien leo, sodales eu odio molestie, cursus lacinia quam. Aenean rhoncus rhoncus erat, nec volutpat nulla ullamcorper sit amet. Maecenas finibus, ante in suscipit rhoncus, massa lorem posuere est, vel faucibus turpis neque sit amet augue. Nulla sit amet mauris sit amet augue pharetra luctus vitae nec turpis. Duis sollicitudin commodo nisi quis mollis."
   const [mode, setMode] = useState("edit")
@@ -84,6 +93,9 @@ function Quanh() {
     <div>
       <ThemeProvider theme={theme[myTheme] || theme.light}>
         <FontProvider font={font}>
+          <Container fullWidth>
+            <TypeWriter as={H2} text="Design Guidelines React Component"/>
+          </Container>  
           <Container headline={theme[myTheme].name} fullWidth>
             <Container headline="Display Mode" >
               <ButtonGroup fullWidth onSelect={x => setMode(x)}>
@@ -119,6 +131,8 @@ function Quanh() {
                   Mention: {mentions.length > 0 ? mentions.map(m => m.name).join(', ') : "No one"} {mentions.length > 1 ? " are " : " is "} mentioned
                 </Label>
                 <MentionInput data={ComboxData} getMention={mens => setMentions(mens)}/>
+                <Label>Multi Mention Input (use @ or #)</Label>
+                <MultiMentionInput data1={ComboxData} data2={hashTagData}/>
               </Box>
               <Box headline="Typography">
                 <Box.Item>

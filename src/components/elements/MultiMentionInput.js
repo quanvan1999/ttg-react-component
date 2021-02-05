@@ -7,6 +7,17 @@ import '@draft-js-plugins/mention/lib/plugin.css';
 import {getFader} from '../../utils/color'
 import PropTypes from 'prop-types'
 
+const StyledDiv = styled.div`
+    min-height: 20px;
+    background: yellow;
+`
+const Test = (props) => {
+    return (
+        <StyledDiv>
+            Hello
+        </StyledDiv>
+    )
+}
 
 const ItemStyle = props => `
     border-bottom: 1px solid ${props.theme.color.border.primary};
@@ -47,21 +58,27 @@ const MentionInput = (props) => {
     const ref = useRef()
     const {getMention} = props
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
-    const [open, setOpen] = useState(true)
-    const [suggestions, setSuggestions] = useState(props.data)
+    const [open1, setOpen1] = useState(true)
+    const [open2, setOpen2] = useState(true)
+    const [suggestions1, setSuggestions1] = useState(props.data1)
+    const [suggestions2, setSuggestions2] = useState(props.data2)
     const [mentions, setMentions] = useState([])
     const mentionLength = useRef(0)
 
-    const {MentionSuggestions, plugins} = useMemo(() => {
-        const mentionPlugin = createMentionPlugin({entityMutability: "SEGMENTED", mentionTrigger: "@"})
-        const {MentionSuggestions} = mentionPlugin
-        const plugins = [mentionPlugin]
-        return {MentionSuggestions, plugins}
-    }, [])
-   
+    const {MentionSuggestions1, MentionSuggestions2, plugins} = useMemo(() => {
+        const mentionPlugin1 = createMentionPlugin({mentionTrigger: "@", mentionPrefix: "@"})
+        const mentionPlugin2 = createMentionPlugin({mentionTrigger: "#", mentionPrefix: "#"})
+        const MentionSuggestions1 = mentionPlugin1.MentionSuggestions
+        const MentionSuggestions2 = mentionPlugin2.MentionSuggestions
+        const plugins = [mentionPlugin1, mentionPlugin2]
+        return {MentionSuggestions1, MentionSuggestions2, plugins}
+    },[])
+    
 
-    const onOpenChange = useCallback((open) => setOpen(open), [])
-    const onSearchChange = useCallback(({value}) => setSuggestions(defaultSuggestionsFilter(value, props.data)), [props.data])
+    const onOpenChange1 = useCallback((open) => setOpen1(open), [])
+    const onOpenChange2 = useCallback((open) => setOpen2(open), [])
+    const onSearchChange1 = useCallback(({value}) => setSuggestions1(defaultSuggestionsFilter(value, props.data1)), [props.data1])
+    const onSearchChange2 = useCallback(({value}) => setSuggestions2(defaultSuggestionsFilter(value, props.data2)), [props.data2])
 
     useEffect(() => {
         let contentState = convertToRaw(editorState.getCurrentContent())
@@ -86,11 +103,17 @@ const MentionInput = (props) => {
                 plugins={plugins} 
                 ref={ref}
             />
-            <MentionSuggestions
-                open={open} 
-                onOpenChange={onOpenChange} 
-                suggestions={suggestions} 
-                onSearchChange={onSearchChange}
+            <MentionSuggestions1 
+                open={open1} 
+                onOpenChange={onOpenChange1} 
+                suggestions={suggestions1} 
+                onSearchChange={onSearchChange1}
+            />
+            <MentionSuggestions2
+                open={open2} 
+                onOpenChange={onOpenChange2} 
+                suggestions={suggestions2} 
+                onSearchChange={onSearchChange2}
             />
         </Container>
     )

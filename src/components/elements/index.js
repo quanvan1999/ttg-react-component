@@ -28,6 +28,7 @@ import Label from './Label'
 import Combox from './Combox'
 import Table from './Table'
 import Typography from './Typography'
+import MentionInput from './MentionInput'
 export {
     Button, 
     ButtonGroup, 
@@ -58,5 +59,6 @@ export {
     Label,
     Combox,
     Table,
-    Typography
+    Typography,
+    MentionInput
 }

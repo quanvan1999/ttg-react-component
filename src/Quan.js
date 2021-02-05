@@ -19,8 +19,6 @@ import List from './components/List'
 import ListItem from './components/ListItem'
 import Tooltip from './components/elements/Tooltip';
 import RippleButton from './components/RippleButton';
-import AutoComplete,{Completion} from './components/Mentions/AutoComplete';
-import MultiMentions from './components/Mentions/MultiMentions';
 import Menu from './components/Menu';
 import ButtonMenu from './components/ButtonMenu';
 import DropdownMenu from './components/DropdownMenu';

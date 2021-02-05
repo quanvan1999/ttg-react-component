@@ -81,7 +81,7 @@ const popupCalendar = keyframes`
 const StyledCalendar = styled.div`
     position: absolute;
     z-index: 999;
-    width: 231px;
+    width: 240px;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
@@ -100,7 +100,7 @@ const CalendarHead = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.9rem;
+    font-size: ${props => props.theme.textSize.medium};
     user-select: none;
 `;
 const StyledCalendarDate = styled.div`
@@ -110,8 +110,9 @@ const StyledCalendarDate = styled.div`
 const StyledCalendarBar = styled.ul`
     display: flex;
     width: 100%;
+    padding: 4px;
+    gap: 4px;
     background: ${props => props.theme.color.fill.secondary};
-    color: white;
     justify-content: flex-start;
     flex-wrap: wrap;
     user-select: none;
@@ -122,13 +123,17 @@ const CalendarContent = styled.ul`
     background: ${props => props.theme.color.background.primary};
     justify-content: flex-start;
     flex-wrap: wrap;
+    gap: 4px;
+    padding: 4px;
 `;
 const StyledLi = styled.li`
     list-style-type: none;
-    width: calc(100%/7);
+    //width: calc(100%/7);
+    flex: 1 0 12%;
+    border-radius: 99px;
     text-align: center;
-    padding: 0.2rem 0rem;
-    font-size: 0.8rem;
+    padding: 0.4rem;
+    font-size: ${props => props.theme.textSize.small};
     cursor: pointer;
     user-select: none;
     &.date-item {

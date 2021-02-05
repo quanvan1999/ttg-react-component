@@ -6,7 +6,7 @@ import MentionsInput  from '../Mention/MentionsInput';
 // import provideExampleValue  from "../Mention/higher-order/provideExampleValue";
 import provideExampleValue from '../Mention/higher-order/provideExampleValue';
 
-import defaultStyle from "../Mentions/defaultStyle";
+import defaultStyle from "./defaultStyle";
 
 // use first/outer capture group to extract the full entered sequence to be replaced
 // and second/inner capture group to extract search string from the match

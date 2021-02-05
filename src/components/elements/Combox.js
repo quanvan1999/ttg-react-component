@@ -33,7 +33,8 @@ const IconChevronDown = () => {
 Option.propTypes = {
     id: PropTypes.number,
     searchText: PropTypes.arrayOf(PropTypes.string),
-    value: PropTypes.string
+    value: PropTypes.string,
+    default: PropTypes.bool
 }
 const opa = keyframes `
     0% {transform: translateY(100%);opacity: 0;}
@@ -157,7 +158,7 @@ function Combox(props) {
     const [isOpen, setIsOpen] = useState(false);
     const comboxRef = useClickOutside(() => setIsOpen(false))
     // Selected item
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState(props.children.filter(child => child.props.default).map(child => child.props))
     const [returnItems, setReturnItems] = useState([])
     const [seachText, setSeachText] = useState("")
     const [removingItem, setRemovingItem] = useState("")
@@ -231,7 +232,7 @@ function Combox(props) {
                     </SearchBarContainer>
                     }
                     {props.children
-                        .filter(child => child.props.searchText.concat([child.props.value]).map(c => c.toUpperCase()).join("|").includes(seachText.toUpperCase().trim()))
+                        .filter(child => child.props.searchText.concat([child.props.value]).map(c => c.toString().toUpperCase()).join("|").includes(seachText.toUpperCase().trim()))
                             .map(child => 
                                 <Selection 
                                     selected={items.map(item => item.id).includes(child.props.id)} 

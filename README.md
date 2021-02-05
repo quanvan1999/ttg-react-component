@@ -155,7 +155,7 @@ Name|Type|Default|Description
 `disable`|`bool`| `false`|Mode disable
 #### Example:
 `<TabPane name="Active" value="1"></TabPane>`
-### 16. `Avata` *Avata*
+### 16. `Avatar` *Avatar*
 #### Props
 Name|Type|Default|Description
 ---|---|---|---
@@ -165,13 +165,13 @@ Name|Type|Default|Description
 `size`|`string`|`medium`|Show large or small avatars
 #### Example:
 `<Avatar demo alt="Example" fluid={false} size="small"></Avatar>`
-### 17. `AvataGroup` *Avata Group*
+### 17. `AvatarGroup` *Avatar Group*
 #### Props
 Name|Type|Default|Description
 ---|---|---|---
 `demo`|`bool`|`false`|Only use for testing purpose, it will set the margin by 8px
 `max`|`number`|`none`|The maximum number of images you want to display
-`size`|`string`|`medium`|Show large or small AvataGroup
+`size`|`string`|`medium`|Show large or small AvatarGroup
 #### Example:
 `<AvatarGroup demo  max={9} size="small">`
 ### 18. `Alert` *Alert*
@@ -202,7 +202,22 @@ Name|Type|Default|Description
 `timeOut`|`number`|`5000`|Time to turn off Snackbar
 #### Example:
 `<Snackbar visible={snackbarState} onClose={() => setSnackbarState(false)} timeOut={200000}></Snackbar>`
-
+### 21. `Tooltip` *Tooltip*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`content`|`string`|`null`|Content of Tooltips
+`position`|`string`|`bottom`|Set position for Tooltips
+#### Example:
+` <Tooltip content="Useful animation about this button" position="top"><Button demo color="success" type="contained">Hover to see tooltip at the top</Button></Tooltip>`
+### 22. `Float Action Button` *FAB*
+#### Props
+Name|Type|Default|Description
+---|---|---|---
+`size`|`"small"/"medium"/"large"`|`medium`| Specifies the size in type
+`position`|`bool`|`false`| Set position on Right and Left
+#### Example:
+` <Tooltip content="Useful animation about this button" position="top"><Button demo color="success" type="contained">Hover to see tooltip at the top</Button></Tooltip>`
  
 
 

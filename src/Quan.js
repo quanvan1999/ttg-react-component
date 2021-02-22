@@ -2,7 +2,7 @@
 import {ThemeProvider} from 'styled-components'
 import { React } from "react";
 import Container from './components/Container'
-import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB, Avatar} from './components/elements'
+import {Button, ButtonGroup, Checkbox, Radio, RadioGroup, SimpleInput, Alert, Snackbar, FAB, Avatar, ToggleGroup, Toggle, CheckboxGroup} from './components/elements'
 import IconCheck from './components/icons/IcoCheckCircle';
 import IconError from './components/icons/IcoAlertTriangle';
 import IconInfo from "./components/icons/IcoInfo";
@@ -22,7 +22,8 @@ import RippleButton from './components/RippleButton';
 import Menu from './components/Menu';
 import ButtonMenu from './components/ButtonMenu';
 import DropdownMenu from './components/DropdownMenu';
-
+import Box from './components/Box'
+import Accordion from './components/Accordion';
 
 
 function Quan() {
@@ -39,15 +40,17 @@ function Quan() {
 
   return (
     <div>
-      <ThemeProvider theme = {theme.light}>
-        <Container open={open} headline = {"Simple List "}>
-          {/* <ButtonMenu open={open} setOpen={setOpen}/> */}
-          {/* <Menu open={true} >
+      <ThemeProvider theme = {theme.dark}>
+      {/* <Menu open={true} >
             <Menu.Item href="#"><IcoHome/>Home</Menu.Item>
             <Menu.Item href="#"><IcoList/>List</Menu.Item>
             <Menu.Item href="#"><IcoPlus/>Create</Menu.Item>
             <Menu.Item href="#"><IcoSettings/>Setting</Menu.Item>
           </Menu> */}
+        <Container open={open} headline = {"Simple List "}>
+          {/* <ButtonMenu open={open} setOpen={setOpen}/> */}
+
+          <Box headline="Dropdown Menu 1">
           <DropdownMenu label="Click">
              <DropdownMenu.Item>
                <DropdownMenu.LinkItem href="#">Message 1</DropdownMenu.LinkItem>
@@ -59,6 +62,28 @@ function Quan() {
                <DropdownMenu.LinkItem href="#">Message 3</DropdownMenu.LinkItem>
               </DropdownMenu.Item>
           </DropdownMenu>
+          </Box>
+          <Box headline="Dropdown Menu 2">
+          <DropdownMenu label="Click 2">
+             <DropdownMenu.Item>
+               <DropdownMenu.LinkItem href="#">Item 1</DropdownMenu.LinkItem>
+              </DropdownMenu.Item>
+             <DropdownMenu.Item>
+               <DropdownMenu.LinkItem href="#">Item 2</DropdownMenu.LinkItem>
+              </DropdownMenu.Item>
+             <DropdownMenu.Item>
+               <DropdownMenu.LinkItem href="#">Item 3</DropdownMenu.LinkItem>
+              </DropdownMenu.Item>
+          </DropdownMenu>
+          </Box>
+          <Box headline="Accordion">
+          <Accordion width= {300} label="Why is the sky blue?">
+          <CheckboxGroup  displayMode={mode}>
+                    <Checkbox value={1}>One</Checkbox>
+                    <Checkbox value={2}>Two</Checkbox>
+                  </CheckboxGroup>
+          </Accordion>
+          </Box>
         </Container>
       </ThemeProvider>
     </div>

@@ -1,12 +1,13 @@
 import React, {useEffect, useRef,useState} from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
-    
+
 const StyleDropDownMenu= styled.div`
     position:relative;
 `;
 const StyleButton = styled.button`
-    background: #ffffff;
+    background: ${props => props.theme.color.fill.primary};
+    color: ${props => props.theme.color.background.primary};
     border-radius: 90px;
     cursor: pointer;
     display: flex;
@@ -20,8 +21,10 @@ const StyleButton = styled.button`
 
     &:hover {
         box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
-      }
-      
+    }
+    &:focus{
+        outline: none;
+    }  
     & span {
         font-weight: 700;
         vertical-align: middle;
@@ -35,27 +38,32 @@ const ContainerMenu = styled.ul`
     padding:0;
     margin:0;
     display:block;
+    padding: 5px 0;
 `
 const Item = styled.li`
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid ${props => props.theme.color.border.primary};
     display:block;
     &:last-child{
         border:none;
     }
-    :hover{
-        background: #eee;
-    }
+
 `;
 const LinkItem = styled.a`
     text-decoration: none;
-    color: #333333;
+    color: ${props => props.theme.color.text.primary};
     padding: 10px 20px;
     display: block;
+    :hover{
+        color: ${props => props.theme.color.background.primary};
+        background :${props => props.theme.color.fill.primary};
+    }
 `
 const NavMenu = styled.nav`
     display:block;
-    background: #fff;
+    background: ${props => props.theme.color.background.primary};
+    border-radius: 4px;
     position:absolute;
+    z-index: 1;
     top: 30px;
     left:0;
     min-width: 150px;
@@ -115,4 +123,14 @@ const DropdownMenu = (props) =>{
 }
 DropdownMenu.LinkItem=LinkItem
 DropdownMenu.Item = Item
+
+DropdownMenu.defaultProps ={
+    name: '',
+    label: 'default'
+}
+
+DropdownMenu.propTypes ={
+    name: PropTypes.string,
+    label: PropTypes.string
+}
 export default DropdownMenu

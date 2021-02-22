@@ -45,6 +45,8 @@ import IcoChevronLeft from './components/icons/IcoChevronLeft'
 import IcoChevronRight from './components/icons/IcoChevronRight'
 import IcoCheck from './components/icons/IcoCheck'
 import {FContainer, Row, Col} from './components/layouts'
+import CustomMentionInput from './components/elements/Mention/CustomMentionInput'
+
 const FontProvider = styled.div`
   font-family: ${props => props.font}, "Heveltica", "Segoe UI";
 `;
@@ -80,7 +82,7 @@ function Quanh() {
   ]
   const text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit mattis arcu semper elementum. Nullam accumsan erat vitae quam sagittis placerat. In sodales mi eros, id commodo nulla fermentum in. Cras vehicula, sapien id fringilla lobortis, erat nisl rhoncus ante, et maximus libero tellus commodo ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dapibus justo nunc, sed molestie tortor dictum vitae. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris maximus est quis ligula ullamcorper semper. Integer tempus orci dui, a lacinia lorem tempus ut. Donec sapien leo, sodales eu odio molestie, cursus lacinia quam. Aenean rhoncus rhoncus erat, nec volutpat nulla ullamcorper sit amet. Maecenas finibus, ante in suscipit rhoncus, massa lorem posuere est, vel faucibus turpis neque sit amet augue. Nulla sit amet mauris sit amet augue pharetra luctus vitae nec turpis. Duis sollicitudin commodo nisi quis mollis."
   const [mode, setMode] = useState("edit")
-  const [myTheme, setTheme] = useState("light")
+  const [myTheme, setTheme] = useState("dark")
   const [textValue, setTextValue] = useState("")
   const [modalState, setModalState] = useState(false)
   const [modalState2, setModalState2] = useState(false)
@@ -88,6 +90,7 @@ function Quanh() {
   const [font, setFont] = useState("")
   const [activePage, setActivePage] = useState(1)
   const [mentions, setMentions] = useState([])
+  const [mentions2, setMentions2] = useState([])
   const [plainText, setPlainText] = useState("")
   return (
     <div>
@@ -133,6 +136,8 @@ function Quanh() {
                 <MentionInput data={ComboxData} getMention={mens => setMentions(mens)}/>
                 <Label>Multi Mention Input (use @ or #)</Label>
                 <MultiMentionInput data1={ComboxData} data2={hashTagData}/>
+                <Label>Custom Mention</Label>
+                <CustomMentionInput data={ComboxData}/>
               </Box>
               <Box headline="Typography">
                 <Box.Item>
@@ -434,6 +439,32 @@ function Quanh() {
               <Box headline="Slide">
                 <Slider displayMode={mode} fullWidth defaultValue={50}/>
               </Box>
+              
+              {/* <Box headline="Loading">
+                <Loading1 style={{'background':'#0b0b0ba8', 'width': '100%', 'justify-content':'center'}}>
+                  <Loading1.Circle ColorBorder="red"/>
+                  <Loading1.Circle ColorBorder="yellow" ColorAnimation="orange"/>
+                  <Loading1.Circle ColorBorder="blue"/>
+                </Loading1>
+                <div style={{'width':'100%', 'background':'#0b0b0ba8', 'margin':'auto'}}>
+                  <Loading2>
+                    <Loading2.Dot/>
+                    <Loading2.Dot/>
+                    <Loading2.Dot/>
+                  </Loading2>
+                </div>
+                <Loading3/>
+                <div style={{'margin-top':'30px'}}>
+                  <Loading4/>
+                </div>
+                <div style={{'width':'30%', 'margin':'auto', 'margin-top':'50px', 'text-align':'center'}}>
+                  <Loading5/>
+                </div>
+                <div style={{'width':'30%', 'margin':'auto', 'margin-top': '50px', 'text-align':' center'}}>
+                  <Loading6/>
+                </div>
+              </Box> */}
+
               <FAB size="large" onClick={() => document.documentElement.scrollTop = 0}>
                 <IcoArrowUpCircle/>
               </FAB>

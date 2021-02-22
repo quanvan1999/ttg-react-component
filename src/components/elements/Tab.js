@@ -5,7 +5,7 @@ import {getFader} from '../../utils/color'
 const Container = styled.div`
     height: ${props => props.fullHeight ? "100%" : props.height ? props.height : "auto"};
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 `;
 const DivTab = styled.div`
     display:flex;

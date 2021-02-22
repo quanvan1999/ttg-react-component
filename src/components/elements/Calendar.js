@@ -112,7 +112,7 @@ const StyledCalendarBar = styled.ul`
     width: 100%;
     padding: 4px;
     gap: 4px;
-    background: ${props => props.theme.color.fill.secondary};
+    background: ${props => props.theme.color.background.secondary};
     justify-content: flex-start;
     flex-wrap: wrap;
     user-select: none;
@@ -145,7 +145,8 @@ const StyledLi = styled.li`
     }
     
     &.date-title {
-        color: ${props => props.theme.color.background.primary};
+        color: ${props => props.theme.color.text.primary};
+        font-weight: 700;
     }
 `;
 

@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */
+
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 const Label = styled.label`

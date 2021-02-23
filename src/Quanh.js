@@ -30,7 +30,8 @@ import {
   Table,
   MentionInput,
   TypeWriter,
-  MultiMentionInput
+  MultiMentionInput, 
+  TeamsCalendar
 } from './components/elements'
 import {H1, H2, H3, H4, H5, H6, P, HL} from './components/elements/Typography'
 import theme from './utils/theme'
@@ -348,7 +349,8 @@ function Quanh() {
                 <Button size="medium" displayMode={mode} demo type="contained" > Settings</Button>
               </Box>
               <Box headline="Calendar">
-                  <Calendar demo fullWidth/>
+                  <Calendar demo/>
+                  <TeamsCalendar demo/>
               </Box>
               <Box headline="Toggle">
                 <Box.Item>

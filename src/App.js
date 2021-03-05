@@ -1,7 +1,8 @@
 import Quan from './Quan'
 import Quanh from './Quanh'
 import Dat from './Dat'
-import Signoff from './apps/Signoff'
+import Form from './apps/Form'
+import Main from './apps/Main'
 import {Router} from '@reach/router'
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <Quanh path="/quanh"/>
       <Quan path="/quan"/>
       <Dat path="/dat"/>
-      <Signoff path="/app/signoff"/>
+      <Main path="/app/form"/>
+      <Form path="/app/form/new"/>
     </Router>
   )
 }

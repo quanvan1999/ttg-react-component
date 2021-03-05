@@ -10,7 +10,7 @@ const StyledSpan = styled.span`
     justify-content: center;
     align-items: center;
     height: 100%;
-    
+    color: ${props => props.theme.color.text.primary};
 `;
 
 const IconX = () => {
@@ -113,6 +113,7 @@ const Selection = styled.div`
     &:hover {
         background-color: ${props => props.selected ? props.theme.color.border.primary : props.theme.color.background.secondary};
     }
+    color: ${props => props.theme.color.text.primary};
 `;
 const StyledItem = styled.div`
     display: flex;
@@ -258,8 +259,10 @@ function Combox(props) {
                     </SearchBarContainer>
                     }
                     <SelectionContainer>
-                    {props.children
+                    {
+                        (props.searchable ? props.children
                         .filter(child => child.props.searchText.concat([child.props.value]).map(c => c.toString().toUpperCase()).join("|").includes(seachText.toUpperCase().trim()))
+                        : props.children)
                             .map(child => 
                                 <>
                                 <Selection 

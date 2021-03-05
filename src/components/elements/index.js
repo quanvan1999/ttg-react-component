@@ -31,6 +31,7 @@ import Typography from './Typography'
 import MentionInput from './MentionInput'
 import TypeWriter from './TypeWriter'
 import MultiMentionInput from './MultiMentionInput'
+import TeamsCalendar from './TeamsCalendar'
 export {
     Button, 
     ButtonGroup, 
@@ -64,5 +65,6 @@ export {
     Typography,
     MentionInput,
     TypeWriter,
-    MultiMentionInput
+    MultiMentionInput,
+    TeamsCalendar
 }

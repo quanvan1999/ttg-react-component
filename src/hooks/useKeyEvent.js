@@ -15,7 +15,7 @@ const useKeyEvent = (key = "Escape", func = () => console.log("Key pressed...!")
                 }
             })
         })
-      }, [func, key])
+    }, [func, key])
 }
 
 export default useKeyEvent

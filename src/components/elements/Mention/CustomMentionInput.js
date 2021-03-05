@@ -48,40 +48,67 @@ const CustomMentionInput = (props) => {
     const containerRef = useRef()
     const {getMention} = props
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
-    const [open, setOpen] = useState(true)
+    const [open1, setOpen1] = useState(true)
+    const [open2, setOpen2] = useState(true)
     const [suggestions, setSuggestions] = useState(props.data)
     const [mentions, setMentions] = useState([])
     const mentionLength = useRef(0)
-    const {MentionSuggestions , plugins} = useMemo(() => {
-        const mentionPlugin = createMentionPlugin({
+
+    const {DateSuggestions, MentionSuggestions , plugins} = useMemo(() => {
+        const datePlugin = createMentionPlugin({
             entityMutability: "IMMUTABLE", 
             mentionTrigger: "//", 
             mentionSuggestionsComponent: CalendarSuggestion
         })
-        const {MentionSuggestions} = mentionPlugin
-        const plugins = [mentionPlugin]
-        return {MentionSuggestions, plugins}
-    }, [])
-   
+        const DateSuggestions = datePlugin.MentionSuggestions
 
-    const onOpenChange = useCallback((open) => setOpen(open), [])
+        const mentionPlugin = createMentionPlugin({mentionTrigger: "@"})
+        const MentionSuggestions = mentionPlugin.MentionSuggestions
+        const plugins = [datePlugin, mentionPlugin]
+        return {DateSuggestions, MentionSuggestions, plugins}
+    }, [])
+
+    const onOpenChange1 = useCallback((open) => setOpen1(open), [])
+    const onOpenChange2 = useCallback((open) => setOpen2(open), [])
     const onSearchChange = useCallback(({value}) => setSuggestions(defaultSuggestionsFilter(value, props.data)), [props.data])
 
     useEffect(() => {
         let contentState = convertToRaw(editorState.getCurrentContent())
         let models = contentState.entityMap
-        let data = Object.values(models).filter(_ => _.type === "//mention").map(_ => _.data.mention.name)
-        console.log(data)
-        if (data.length !== mentionLength.current) {
-            mentionLength.current = data.length
-            setMentions(data)
-        }
+        let text = contentState.blocks[0].text
+        
+        let dateData = Object.values(models).filter(_ => _.type === "//mention").map(_ => _.data.mention.name)
+        let mentionData = Object.values(models).filter(_ => _.type === "mention").map(_ => _.data.mention.name)
+        console.log(mentionData)
+        dateData.forEach(item => {
+            text = text.replace(item, '')
+        });
+        mentionData.forEach(item => {
+            text = text.replace(item, '')
+        })
+        text = text.trimEnd()
+        console.log({
+            text: text,
+            date: dateData,
+            people: mentionData
+        })
+        setMentions(dateData)
     }, [setMentions, editorState])
 
     useEffect(() => {
         getMention(mentions)
     })
-
+    useEffect(() => {
+        const ele = ref.current
+        const onEnter = ref.current.addEventListener('keypress', e => {
+            if (e.key === "Enter") {
+                alert("Oke")
+            }
+        })
+        return (() => {
+            ele.removeEventListener(onEnter)
+        })
+    })
     return (
         <Container demo={props.demo} onClick={() => ref.current.focus()} ref={containerRef}>
             <Editor 
@@ -91,10 +118,16 @@ const CustomMentionInput = (props) => {
                 plugins={plugins} 
                 ref={ref}
             />
-            <MentionSuggestions
+            <DateSuggestions
                 inputRef={containerRef.current}
-                open={open}
-                onOpenChange={onOpenChange}
+                open={open1}
+                onOpenChange={onOpenChange1}
+            />
+            <MentionSuggestions
+                open={open2}
+                onOpenChange={onOpenChange2} 
+                suggestions={suggestions} 
+                onSearchChange={onSearchChange}
             />
         </Container>
     )

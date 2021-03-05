@@ -98,17 +98,6 @@ const CustomMentionInput = (props) => {
     useEffect(() => {
         getMention(mentions)
     })
-    useEffect(() => {
-        const ele = ref.current
-        const onEnter = ref.current.addEventListener('keypress', e => {
-            if (e.key === "Enter") {
-                alert("Oke")
-            }
-        })
-        return (() => {
-            ele.removeEventListener(onEnter)
-        })
-    })
     return (
         <Container demo={props.demo} onClick={() => ref.current.focus()} ref={containerRef}>
             <Editor 

@@ -79,7 +79,7 @@ const CustomMentionInput = (props) => {
         
         let dateData = Object.values(models).filter(_ => _.type === "//mention").map(_ => _.data.mention.name)
         let mentionData = Object.values(models).filter(_ => _.type === "mention").map(_ => _.data.mention.name)
-        console.log(mentionData)
+
         dateData.forEach(item => {
             text = text.replace(item, '')
         });
@@ -87,12 +87,13 @@ const CustomMentionInput = (props) => {
             text = text.replace(item, '')
         })
         text = text.trimEnd()
-        console.log({
+        let data = {
             text: text,
             date: dateData,
             people: mentionData
-        })
-        setMentions(dateData)
+        }
+        console.log(data)
+        setMentions(data)
     }, [setMentions, editorState])
 
     useEffect(() => {

@@ -1,5 +1,5 @@
 import {useState, useRef, useMemo, useCallback, useEffect} from 'react'
-import {convertToRaw, EditorState} from 'draft-js'
+import {convertToRaw, EditorState, getDefaultKeyBinding} from 'draft-js'
 import createMentionPlugin, {defaultSuggestionsFilter} from '@draft-js-plugins/mention'
 import Editor from '@draft-js-plugins/editor'
 import styled from 'styled-components'
@@ -99,6 +99,12 @@ const CustomMentionInput = (props) => {
     useEffect(() => {
         getMention(mentions)
     })
+    const handleReturn = (e) => {
+        if (!open1 && !open2)
+            return 'handled'
+        return getDefaultKeyBinding(e)
+    }
+
     return (
         <Container demo={props.demo} onClick={() => ref.current.focus()} ref={containerRef}>
             <Editor 
@@ -107,6 +113,8 @@ const CustomMentionInput = (props) => {
                 onChange={setEditorState} 
                 plugins={plugins} 
                 ref={ref}
+                handleReturn={handleReturn}
+
             />
             <DateSuggestions
                 inputRef={containerRef.current}
